@@ -1,0 +1,17 @@
+.buttonListadoCliente-container{
+    position: absolute;
+    margin-top: 100px;
+}
+
+.buttonListadoPublicador-container{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 180px;
+}
+
+
+.buttonListadoVivienda-container{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 400px;
+}

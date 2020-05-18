@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+.main-container{
+    margin-top: 1px;
+}
+
+.buttonListadoEntidades-container{
+    position: absolute;
+    margin-top: 100px;
+}
+
+.buttonRegistroEntidades-container{
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 100px;
+}
+
+.searchVivienda-container{
+    position: absolute;
+    margin-top: 300px;
+}

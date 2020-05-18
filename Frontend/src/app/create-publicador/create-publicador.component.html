@@ -1,0 +1,21 @@
+<p>create-publicador works!</p>
+<h3>Registro de publicador</h3>
+<div>
+    <form (ngSubmit) = "save()">
+        <div class = "form-group">
+            <label for = "razonSocial">Razon Social</label>
+            <input type = "text" class = "form-control" id = "razonSocial" [(ngModel)] = "publicador.razonSocial" name ="razonSocial">
+        </div>
+        <div class = "form-group">
+            <label for = "ruc">Ruc</label>
+            <input type = "text" class = "form-control" id = "ruc" [(ngModel)] = "publicador.ruc" name ="ruc">
+        </div>
+        <div class = "form-group">
+            <label for = "nombre">Nombre</label>
+            <input type = "text" class = "form-control" id = "nombre" [(ngModel)] = "publicador.nombre" name ="nombre">
+        </div>
+        <div class = "form-group">
+            <button type = "submit" class = "btn btn-success">Registro</button>
+        </div>
+    </form>
+</div>

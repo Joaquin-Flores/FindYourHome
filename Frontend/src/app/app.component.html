@@ -1,0 +1,69 @@
+<!--
+</div>
+<div>
+  <nav>
+      <a routerLink = "listCliente" class= "btn btn-primary active">Lista Clientes</a>
+      <a routerLink = "newCliente" class= "btn btn-primary active">Nuevo Cliente</a>
+      <a routerLink = "listPublicador" class= "btn btn-primary active">Lista Publicadores</a>
+      <a routerLink = "newPublicador" class= "btn btn-primary active">Nuevo Publicador</a>
+      <a routerLink = "listVivienda" class= "btn btn-primary active">Lista Viviendas</a>
+      <a routerLink = "newVivienda" class= "btn btn-primary active">Nueva Vivienda</a>
+      <a routerLink = "filtrarVivienda" class= "btn btn-primary active">Filtrar Vivienda</a>
+  </nav>
+</div>
+<router-outlet></router-outlet>-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">FoundYourHome</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive = "active">
+        <a class="nav-link" href="#">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <!--<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>-->
+    </ul>
+  </div>
+</nav>
+ 
+<div class = "container buttonListadoEntidades-container" *ngIf = "isHomeRoute()">
+  <nav>
+    <!--<a routerLink = "listaEntidades" class = "btn btn-primary active" (click) = "toggleisClickedListado()">Listado Entidades</a>-->
+    <a routerLink = "listaEntidades" class = "btn btn-primary active">Listado Entidades</a>
+  </nav>
+</div>
+
+<div class = "container buttonRegistroEntidades-container" *ngIf = "isHomeRoute()">
+  <nav>
+    <a routerLink = "registroEntidades" class = "btn btn-primary active">Registro Entidades</a>
+  </nav>
+</div>
+
+<div class = "container searchVivienda-container" *ngIf = "isHomeRoute()">
+  <label>Buscar Vivienda por ubicacion</label>
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+
+<router-outlet></router-outlet>
+
+
+
