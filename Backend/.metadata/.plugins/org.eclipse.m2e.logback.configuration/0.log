@@ -1,0 +1,8 @@
+2020-05-18 16:56:19,018 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-05-18 16:58:04,034 [Worker-1: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.foundyourhome:webFYH:0.0.1-SNAPSHOT @ /home/mrjoako/Documents/Git/FindYourHome/Backend/webFYH/pom.xml.
+2020-05-18 16:58:04,034 [Worker-3: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.foundyourhome:webFYH:0.0.1-SNAPSHOT @ /home/mrjoako/Documents/Git/FindYourHome/Backend/webFYH/pom.xml.
+2020-05-18 16:58:05,231 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-18 16:58:05,234 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-05-18 16:58:05,242 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-05-18 16:58:05,244 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-05-18 16:58:05,244 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/mrjoako/Documents/Git/FindYourHome/Backend/webFYH/src/test/resources
