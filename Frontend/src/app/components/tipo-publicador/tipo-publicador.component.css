@@ -1,0 +1,41 @@
+.brandComprar-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 750px;
+}
+.brandVender-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 860px;
+    
+}
+
+.brandAlquilar-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 950px;
+}
+
+.brandInicio-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 1050px;
+}
+
+.labelHead-container{
+    position: fixed;
+    margin-top: 100px;
+    margin-left: 780px;
+}
+
+.independienteButton-container{
+    position: fixed;
+    margin-top: 180px;
+    margin-left: 750px;
+}
+
+.inmobiliariaButton-container{
+    position: fixed;
+    margin-top: 180px;
+    margin-left: 950px;
+}
