@@ -1,0 +1,65 @@
+Frontend
+
+---------------------------------------
+
+Version: 0.4
+Fecha: 19/05/2020  02:50
+Descripcion:
+ - Crea components:
+   ->tipo-publicador
+   ->publicar-inmueble
+
+ - Modifica app-routing.module.ts
+ - Modifica app.component.html
+
+---------------------------------------
+
+Version: 0.3
+Fecha: 19/05/2020  01:30
+Descripcion:
+ - Modifica create-cliente:
+   ->sumbit
+   ->isRClienteRoute
+
+ - Crea components:
+   ->registro-exitoso
+   ->encuesta
+
+ - Modifica app-routing.module.ts
+ - Modifica app.component.html
+
+---------------------------------------
+
+Version: 0.2
+Fecha: 19/05/2020  00:50
+Descripcion:
+ - Modifica show-vivienda
+ - Modifica filtrar-vivienda
+ - Modifica vivienda.service.ts
+ - Modifica app-routing.module.ts
+ - Modifica app.component.html
+ - Modifica app.component.ts
+
+---------------------------------------
+
+Version: 0.1
+Fecha: 18/05/2020  15:00
+Descripcion:
+ - Contiene todas las clases del proyecto inicializadas.
+ - Contiene los servicios: cliente, publicador y vivienda.
+   -- Funciones de servicios incluidos:
+      ->cliente -- getCliente, createCliente, getClienteList.
+      ->publicador -- getPublicador, createPublicador, getPublicadorList.
+      ->vivienda -- getVivienda, createVivienda, getViviendaList, filtrarVivienda.
+
+ - Contiene la carpeta components.
+   ->home
+   ->listar-entidades
+   ->registro-entidades
+ - Contiene los 'component.ts' listos:
+    ->cliente -- createCliente, getClienteList.
+    ->publicador -- createPublicador, getPublicadorList.
+    ->vivienda -- createVivienda, getViviendaList, filtrarVivienda.
+
+ ** Falta terminar los .html de los 'component'
+
