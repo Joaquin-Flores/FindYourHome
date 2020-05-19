@@ -12,13 +12,14 @@
   </nav>
 </div>
 <router-outlet></router-outlet>-->
-
+<div *ngIf = "isHomeRoute()">
+<H1 align="center" style="color:black"  >FindYourHome</H1>
+<h5 align="center">¿Buscas una vivienda con diseño basado en tus gustos?</h5 >
+<h5 align="center">!Estás en el sitio correcto!</h5 >
+<hr style="border:20px;" style="width:100%"  style="border-color:black;" >
+</div>
+<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">FoundYourHome</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive = "active">
@@ -37,45 +38,57 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>-->
+      </li>
     </ul>
   </div>
-</nav>
+</nav>-->
  
+<!--LISTADO DE ENTIDADES -->
+<!--
 <div class = "container buttonListadoEntidades-container" *ngIf = "isHomeRoute()">
   <nav>
-    <!--<a routerLink = "listaEntidades" class = "btn btn-primary active" (click) = "toggleisClickedListado()">Listado Entidades</a>-->
+    <!--<a routerLink = "listaEntidades" class = "btn btn-primary active" (click) = "toggleisClickedListado()">Listado Entidades</a>
     <a routerLink = "listaEntidades" class = "btn btn-primary active">Listado Entidades</a>
   </nav>
 </div>
+-->
 
-<div class = "container buttonRegistroEntidades-container" *ngIf = "isHomeRoute()">
-  <nav>
-    <a routerLink = "registroEntidades" class = "btn btn-primary active">Registro Entidades</a>
-  </nav>
+
+<div align="center" *ngIf = "isHomeRoute()">
+
+    <nav>
+        
+        <a routerLink="filtrarVivienda"  class="btn btn-primary active" >Comprar inmueble</a>
+        <a routerLink="list" class="btn btn-primary active">Vender Inmueble</a>
+        <a routerLink="filtrarVivienda"  class="btn btn-primary active">Alquilar Inmueble</a>
+    </nav>    
 </div>
 
-<div class = "container buttonRegistroEntidades-container" *ngIf = "isHomeRoute()">
+<div style= "position:absolute; top:1;right:0" *ngIf = "isHomeRoute()">
+  <H3 style="color:Black"  >Iniciar sesión</H3>
+  <input placeholder="Nombre de usuario" type="text" class="form-control" id="n_usuario">
+  <input placeholder="Contraseña" type="text" class="form-control" id="c_usuario">
+  <button type="submit" class="btn btn-success">Ingresar</button>
+  <H5 style="color:Black"  >¿Eres nuevo aquí?</H5>
   <nav>
-    <a routerLink = "registroEntidades" class = "btn btn-primary active">Registro Entidades</a>
+    <a routerLink="registroEntidades/newCliente"  class="btn btn-primary active">Regístrate gratis</a>
   </nav>
 </div>
-
-<div class = "container searchVivienda-container" *ngIf = "isHomeRoute()">
-  <nav>
-    <a routerLink = "filtrarVivienda" class = "btn btn-primary active">Buscar Vivienda</a>
-  </nav>
-</div>
-
 
 <!--
+<div class = "container buttonRegistroEntidades-container" *ngIf = "isHomeRoute()">
+  <nav>
+    <a routerLink = "registroEntidades" class = "btn btn-primary active">Registro Entidades</a>
+  </nav>
+</div>
+-->
 <div class = "container searchVivienda-container" *ngIf = "isHomeRoute()">
   <label>Buscar Vivienda por ubicacion</label>
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
-</div>-->
+</div>
 
 <router-outlet></router-outlet>
 

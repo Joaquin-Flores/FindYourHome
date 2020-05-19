@@ -13,6 +13,8 @@ import { FiltrarViviendaComponent } from './filtrar-vivienda/filtrar-vivienda.co
 import { HomeComponent } from './components/home/home.component';
 import { ListaEntidadesComponent } from './components/lista-entidades/lista-entidades.component';
 import { RegistroEntidadesComponent } from './components/registro-entidades/registro-entidades.component';
+import { EncuestaComponent } from './encuesta/encuesta.component';
+import { RegistroExitosoComponent } from './registro-exitoso/registro-exitoso.component';
 
 
 const routes: Routes = [
@@ -27,8 +29,10 @@ const routes: Routes = [
   {path: 'showPublicador', component: ShowPublicadorComponent},
   {path: 'listaEntidades/listVivienda', component: ListViviendaComponent},
   {path: 'registroEntidades/newVivienda', component: CreateViviendaComponent},
-  {path: 'filtrarVivienda/showVivienda', component: ShowViviendaComponent},
+  {path: 'showVivienda', component: ShowViviendaComponent},
   {path: 'filtrarVivienda', component: FiltrarViviendaComponent},
+  {path: 'encuesta', component: EncuestaComponent},
+  {path: 'encuesta/msgRegistro', component: RegistroExitosoComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
