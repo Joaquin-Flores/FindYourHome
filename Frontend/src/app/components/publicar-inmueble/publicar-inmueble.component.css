@@ -1,0 +1,29 @@
+.labelHead-container{
+    position: fixed;
+    margin-top: 20px;
+    margin-left: 800px;
+}
+
+.propiedadHead-container{
+    position: fixed;
+    margin-top: 0px;
+    margin-left: 520px;
+}
+
+.edificioHead-container{
+    position: fixed;
+    margin-top: 0px;
+    margin-left: 1100px;
+}
+
+.interiorHead-container{
+    position: fixed;
+    margin-top: 300px;
+    margin-left: 520px;
+}
+
+.construccionHead-container{
+    position: fixed;
+    margin-top: 335px;
+    margin-left: 1100px;
+}
