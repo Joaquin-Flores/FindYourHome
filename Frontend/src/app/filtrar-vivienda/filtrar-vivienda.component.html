@@ -1,39 +1,143 @@
-<p>filtrar-vivienda works!</p>
-<h3>Filtro de Viviendas</h3>
+
+<nav class ="navbar navbar-expand-lg navbar-light bg-light">
+    <div class = "container brandComprar-container">
+        <a class="navbar-brand" href="#">comprar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    </div>
+    <div class = "container brandVender-container">
+        <a class="navbar-brand" href="#">vender</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    </div>
+    <div class = "container brandAlquilar-container">
+        <a class="navbar-brand" href="#">alquilar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    </div>
+    <div class = "container brandInicio-container">
+        <a class="navbar-brand" href="#">inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    </div>
+</nav>
+<hr style="border:20px;" style="width:100%" style="border-color:black;" >
+
+
+<div class = "container dropDown-container">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ordenar por
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Relevancia</a>
+          <a class="dropdown-item" href="#">De bajo a alto precio</a>
+          <a class="dropdown-item" href="#">De alto a bajo precio</a>
+          <a class="dropdown-item" href="#">Más reciente</a>
+        </div>
+      </div>
+</div>
+
+<div class = "container cardLogo-container">
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Logo</h5>
+          <p class="card-text">LOGO</p>
+        </div>
+    </div>
+</div>
+
 <div>
     <form (ngSubmit)="filtrarVivienda()">
-        <div class="form-group">
-            <label for="ubicacion">Ubicacion</label>
-            <input type="text" class="form-control" id="ubicacion" [(ngModel)]="ubicacion" name="ubicacion">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Filtrar</button>
-        </div>
-        <div class="card border-dark mb-3">
-            <div class="card-header">Viviendas</div>
-            <div class="card-body text-black">
-                <h5 class="card-title">Listado de Viviendas</h5>
-                <table class="table table-dark">
-                    <thead>
-                        <tr>
-                            <th>codigo</th>
-                            <th>plano</th>
-                            <th>dimension</th>
-                            <th>ubicacion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of viviendas">
-                            <th>{{p.codigo}}</th>
-                            <th>{{p.plano}}</th>	
-                            <th>{{p.dimension}}</th>
-                            <th>{{p.ubicacion}}</th>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class = "container searchVivienda-container">
+            <div class="form-inline my-2 my-lg-0">
+              <input type="text" class="form-control" id="ubicacion" [(ngModel)]="ubicacion" name="ubicacion" placeholder="Search" aria-label="Search">
+              <button type="submit" class="btn btn-success">Search</button>
             </div>
-        
         </div>
-        
+        <div class = "listadoVivienda-container">
+            <div class="card border-dark mb-3">
+                <div class="card-body text-black">
+                    <h5 class="card-title">Viviendas</h5>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>codigo</th>
+                                <th>plano</th>
+                                <th>dimension</th>
+                                <th>ubicacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of viviendas">
+                                <th>{{p.codigo}}</th>
+                                <th>{{p.plano}}</th>	
+                                <th>{{p.dimension}}</th>
+                                <th>{{p.ubicacion}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>    
+            </div>  
+        </div>
     </form>
 </div>
+
+<div class ="container visualizarMapa-container">
+    <button type="button" class="btn btn-secondary">Visualizar en Mapa</button>
+</div>
+
+<div class ="container misGustos-container">
+    <button type="button" class="btn btn-secondary">Con relación a mis gustos</button>
+</div>
+
+
+<div class ="container limpiarFiltro-container">
+    <button type="button" class="btn btn-secondary">Limpiar filtros</button>
+</div>
+
+
+<div class = "container dropDownPrecio-container">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Precio
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Prueba</a>
+        </div>
+    </div>
+</div>
+<div class = "container dropDownCamas-container">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Camas
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Prueba</a>
+        </div>
+    </div>
+</div>
+<div class = "container dropDownBanos-container">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Baños
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Prueba</a>
+        </div>
+    </div>
+</div>
+
+<div class = "container guardarBusqueda-container">
+    <nav>
+      <!--<a routerLink = "listaEntidades" class = "btn btn-primary active" (click) = "toggleisClickedListado()">Listado Entidades</a>-->
+      <a routerLink = "showVivienda" class = "btn btn-primary active">Guardar busqueda</a>
+    </nav>
+</div>
+
+<router-outlet></router-outlet>

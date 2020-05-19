@@ -1,0 +1,110 @@
+.brandComprar-container{
+    position:fixed;
+    margin-top: 30px;
+    margin-left: 750px;
+}
+.brandVender-container{
+    position:fixed;
+    margin-top: 30px;
+    margin-left: 860px;
+    
+}
+
+.brandAlquilar-container{
+    position:fixed;
+    margin-top: 30px;
+    margin-left: 950px;
+}
+
+.brandInicio-container{
+    position:fixed;
+    margin-top: 30px;
+    margin-left: 1050px;
+}
+
+.descripcionBox-container{
+    position:fixed;
+    margin-top: 100px;
+    margin-left: 1100px;
+}
+
+.detalleBox-container{
+    position:fixed;
+    margin-top: 350px;
+    margin-left: 1130px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: solid;
+}
+
+.detalleInmobiliaria-container{
+    position:fixed;
+    margin-top: 650px;
+    margin-left: 1130px;
+}
+
+.contactarInmobiliaria-container{
+    position:fixed;
+    margin-top: 710px;
+    margin-left: 1130px;
+}
+
+.cardLogo-container{
+    position: fixed;
+    margin-top: 100px;
+    margin-left: 370px;
+}
+
+.cardGrid1-container{
+    position: fixed;
+    margin-top: 300px;
+    margin-left: 370px;
+}
+.cardGrid2-container{
+    position: fixed;
+    margin-top: 300px;
+    margin-left: 690px;
+}
+
+.cardGrid3-container{
+    position: fixed;
+    margin-top: 470px;
+    margin-left: 370px;
+}
+
+.cardGrid4-container{
+    position: fixed;
+    margin-top: 470px;
+    margin-left: 690px;
+}
+
+.hagamosTour-container{
+    position: fixed;
+    margin-top: 650px;
+    margin-left: 590px;
+}
+
+.cardTour1-container{
+    position: fixed;
+    margin-top: 680px;
+    margin-left: 370px;
+}
+
+.cardTour2-container{
+    position: fixed;
+    margin-top: 680px;
+    margin-left: 590px;
+}
+
+.cardTour3-container{
+    position: fixed;
+    margin-top: 680px;
+    margin-left: 810px;
+}
+
+.iconScroll-container{
+    position: fixed;
+    margin-top: 840px;
+    margin-left: 500px;
+}

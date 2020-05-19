@@ -55,13 +55,27 @@
   </nav>
 </div>
 
+<div class = "container buttonRegistroEntidades-container" *ngIf = "isHomeRoute()">
+  <nav>
+    <a routerLink = "registroEntidades" class = "btn btn-primary active">Registro Entidades</a>
+  </nav>
+</div>
+
+<div class = "container searchVivienda-container" *ngIf = "isHomeRoute()">
+  <nav>
+    <a routerLink = "filtrarVivienda" class = "btn btn-primary active">Buscar Vivienda</a>
+  </nav>
+</div>
+
+
+<!--
 <div class = "container searchVivienda-container" *ngIf = "isHomeRoute()">
   <label>Buscar Vivienda por ubicacion</label>
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
-</div>
+</div>-->
 
 <router-outlet></router-outlet>
 

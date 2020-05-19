@@ -12,6 +12,7 @@ export class FiltrarViviendaComponent implements OnInit {
 
   viviendas: Observable<Vivienda[]>
   ubicacion: "";
+  idVivienda: number;
 
   constructor(private viviendaServicio: ViviendaService) { }
 
@@ -23,5 +24,9 @@ export class FiltrarViviendaComponent implements OnInit {
     this.viviendaServicio.filtrarVivienda(this.ubicacion).subscribe(
       viviendas => this.viviendas = viviendas
     );
+  }
+
+  setidVivienda(id:number){
+    this.idVivienda = id;
   }
 }
