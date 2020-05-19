@@ -2,8 +2,50 @@ FindYourHome
 
 ---------------------------------------
 
+Version: 0.3.1
+Fecha: 18/05/2020  15:00
+Descripción: 
+ - Actualiza el Frontend a la version 0.4
+   -- Crea components:
+      ->tipo-publicador
+      ->publicar-inmueble
+
+   -- Ajusta cambios en archivos comunes
+
+---------------------------------------
+
+Version: 0.3.0
+Fecha: 18/05/2020  15:00
+Descripción:
+ - Actualiza el Frontend a la version 0.3
+   -- Modifica create-cliente:
+      ->sumbit
+      ->isRClienteRoute
+
+   -- Crea components:
+      ->registro-exitoso
+      ->encuesta
+
+   -- Ajusta cambios en archivos comunes
+
+---------------------------------------
+
+Version: 0.2.0
+Fecha: 18/05/2020  15:00
+Descripción: 
+ - Actualiza el Frontend a la version 0.2
+   -- Modifica show-vivienda
+   -- Modifica filtrar-vivienda
+   -- Modifica vivienda.service.ts
+   -- Modifica app.components.ts
+   -- Modifica app.components.html
+   -- Modifica app-routing.module.ts
+   -- Modifica styles.css
+
+---------------------------------------
+
 Version: 0.1.0
 Fecha: 18/05/2020  15:00
 Descripción: 
- - Se agrega a la rama 'master' los archivos del Back y Frontend, de donde se empezará a trabajar.
+ - Agrega a la rama 'master' los archivos del Back y Frontend (revisar 'versiones.txt?' en las carpetas), de donde se empezará a trabajar.
 
