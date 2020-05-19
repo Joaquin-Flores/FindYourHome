@@ -16,12 +16,19 @@ export class CreateClienteComponent implements OnInit {
   
   ngOnInit(): void {
   }
-
+  isRClienteRoute(){
+    return this.router.url == '/registroEntidades/newCliente';
+  }
+  submit(){
+    this.router.navigate(['/encuesta']) //your router URL need to pass it here
+  }
   save(){
     console.log("Click");
     console.log(this.cliente);
     this.clienteServicio.createCliente(this.cliente).subscribe(
       data => this.router.navigate(['/listCliente'])
     );
+ 
+
   }
 }

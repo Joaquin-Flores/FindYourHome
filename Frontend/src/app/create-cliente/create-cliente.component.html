@@ -1,7 +1,8 @@
-<p>create-cliente works!</p>
-<h3>Registro de cliente</h3>
-<div>
+ <h3>Registro de cliente</h3>
+<div *ngIf = "isRClienteRoute()">
+   
     <form (ngSubmit) = "save()">
+        
         <div class = "form-group">
             <label for = "usuario">Usuario</label>
             <input type = "text" class = "form-control" id = "usuario" [(ngModel)] = "cliente.usuario" name ="usuario">
@@ -26,8 +27,12 @@
             <label for = "ruc">Ruc</label>
             <input type = "text" class = "form-control" id = "ruc" [(ngModel)] = "cliente.ruc" name ="ruc">
         </div>
-        <div class = "form-group">
-            <button type = "submit" class = "btn btn-success">Registro</button>
+         <div class = "form-group">
+            <button type="submit"   class = "btn btn-success">Registro</button>
         </div>
+        <div class = "form-group" align="right">
+            <button (click)="submit()"  >Siguiente</button>
+        </div>
+        
     </form>
 </div>
