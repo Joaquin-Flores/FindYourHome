@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Vivienda } from '../model/vivienda';
+import { ViviendaService } from '../vivienda.service';
 
 @Component({
   selector: 'app-show-vivienda',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowViviendaComponent implements OnInit {
 
-  constructor() { }
+  vivienda: Observable<Vivienda>
+
+  constructor(private servicioVivienda: ViviendaService) { }
 
   ngOnInit(): void {
   }
+
 
 }

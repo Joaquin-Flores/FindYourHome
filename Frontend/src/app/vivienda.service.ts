@@ -13,8 +13,10 @@ export class ViviendaService {
 
   constructor(private http: HttpClient) { }
 
-  getVivienda(id:number):Observable<object>{
-    return this.http.get('${this.baseUrl}/${id}')
+  getVivienda(id:number):Observable<any>{
+    return this.http.get(this.urlBase + "/vivienda/" + id).pipe(
+      map(response => response as Vivienda)
+    );
   }
 
   createVivienda(vivienda: object): Observable<Object>{
@@ -23,7 +25,7 @@ export class ViviendaService {
   }
 
   getViviendaList(): Observable<any>{
-    console.log("llamanado rest: " + this.urlBase + "/vivienda")
+    console.log("llamanado rest: " + this.urlBase + "/viviendas")
     return this.http.get(this.urlBase+"/viviendas").pipe(
       map(response => response as Vivienda[])
     );

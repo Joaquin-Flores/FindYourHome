@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'showPublicador', component: ShowPublicadorComponent},
   {path: 'listaEntidades/listVivienda', component: ListViviendaComponent},
   {path: 'registroEntidades/newVivienda', component: CreateViviendaComponent},
-  {path: 'showVivienda', component: ShowViviendaComponent},
+  {path: 'filtrarVivienda/showVivienda', component: ShowViviendaComponent},
   {path: 'filtrarVivienda', component: FiltrarViviendaComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

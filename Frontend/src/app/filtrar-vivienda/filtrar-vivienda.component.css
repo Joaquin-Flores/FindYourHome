@@ -1,0 +1,93 @@
+
+
+.brandComprar-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 750px;
+}
+.brandVender-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 860px;
+    
+}
+
+.brandAlquilar-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 950px;
+}
+
+.brandInicio-container{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 1050px;
+}
+
+.searchVivienda-container{
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 500px;
+}
+
+.listadoVivienda-container{
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 400px;
+    height: 200px;
+    width: 65%;
+}
+
+.guardarBusqueda-container{
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 1150px;
+}
+
+.visualizarMapa-container{
+    position: absolute;
+    margin-top: 500px;
+    margin-left: 50px;
+}
+
+.dropDown-container{
+    position: absolute;
+    margin-top: 580px;
+    margin-left: 50px;
+}
+
+.dropDownPrecio-container{
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 780px;
+}
+
+.dropDownCamas-container{
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 880px;
+}
+
+.dropDownBanos-container{
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 980px;
+}
+
+.misGustos-container{
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 780px;
+}
+
+.limpiarFiltro-container{
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 1000px;
+}
+
+.cardLogo-container{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 20px;
+}

@@ -19,8 +19,9 @@ export class AppComponent {
   toggleisClickedRegistro(){
     this.isClickedRegistro = !this.isClickedRegistro;
   }*/
-  constructor(private router:Router){} 
 
+  constructor(private router:Router){} 
+  
   isHomeRoute(){
     return this.router.url == '/home';
   }
