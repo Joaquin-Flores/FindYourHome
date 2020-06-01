@@ -1,20 +1,21 @@
 package com.foundyourhome.relaciones.rest;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.foundyourhome.relaciones.entidades.Cliente;
+import com.foundyourhome.relaciones.entidades.Contacto;
 //import com.foundyourhome.relaciones.entidades.Diseno;
 import com.foundyourhome.relaciones.entidades.Publicador;
+import com.foundyourhome.relaciones.entidades.ResumenDiseno;
+import com.foundyourhome.relaciones.entidades.Suscripcion;
 import com.foundyourhome.relaciones.entidades.Vivienda;
 import com.foundyourhome.relaciones.servicios.ServicioRegistro;
 
@@ -60,76 +61,48 @@ public class RegistroRest {
 		return v;
 	}
 	
-	//NO SE COMO HACER ESA WVD
-	/*@PostMapping("/registrarvivienda/{codigo}/registrarDiseno")
-	public Diseno registrarDiseno(@PathVariable(value = "codigo") Long codigo, @RequestBody Diseno diseno){
-		Diseno d = null;
-		try {
-			d = servicioRegistro.registrarDiseno(codigo, diseno);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
-		}
-		return d;
-	}*/
-	
-	//FILTRADO
-	@GetMapping("/cliente/{codigo}")
-	public Cliente mostrarCliente(Long codigo) {
+	@PutMapping("registrarlistadeseocliente/{codigo}")
+	public Cliente registrarListaDeseoVivienda(@RequestBody Cliente cliente,@PathVariable(value = "codigo") Long codigo) {
 		Cliente c = null;
 		try {
-			c = servicioRegistro.mostrarCliente(codigo);
+			c = servicioRegistro.registrarListaDeseoCliente(cliente, codigo);
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro entidad");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
 		}
 		return c;
 	}
 	
-	@GetMapping("/publicador/{codigo}")
-	public Publicador mostrarPublicador(Long codigo) {
-		Publicador p = null;
+	@PostMapping("/registrarsuscripcion")
+	public Suscripcion registrarSuscripcion(@RequestBody Suscripcion suscripcion){
+		Suscripcion s = null;
 		try {
-			p = servicioRegistro.mostrarPublicador(codigo);
+			s = servicioRegistro.registrarSuscripcion(suscripcion);
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro entidad");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
 		}
-		return p;
+		return s;
 	}
 	
-	@GetMapping("/vivienda/{codigo}")
-	public Vivienda mostrarVivienda(Long codigo) {
-		Vivienda v = null;
+	@PostMapping("/registrarresumendiseno")
+	public ResumenDiseno registrarResumenDiseno(@RequestBody ResumenDiseno resumenDiseno){
+		ResumenDiseno rD = null;
 		try {
-			v = servicioRegistro.mostrarVivienda(codigo);
+			rD = servicioRegistro.registrarResumenDiseno(resumenDiseno);
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro entidad");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
 		}
-		return v;
+		return rD;
 	}
 	
-	@GetMapping("/filtrarVivienda/{ubicacion}")
-	public List<Vivienda> filtrarViviendas(@PathVariable String ubicacion) {
-		return servicioRegistro.filtrarViviendas(ubicacion);
+	@PostMapping("/registrarcontacto")
+	public Contacto registrarContacto(@RequestBody Contacto contacto){
+		Contacto c = null;
+		try {
+			c = servicioRegistro.registrarContacto(contacto);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
+		}
+		return c;
 	}
-	
-	//LISTADO
-	@GetMapping("/clientes")
-	public List<Cliente> obtenerClientes(){
-		return servicioRegistro.obtenerClientes();
-	}	
-	
-	@GetMapping("/publicadores")
-	public List<Publicador> obtenerPublicadores(){
-		return servicioRegistro.obtenerPublicadores();
-	}	
-	
-	@GetMapping("/viviendas")
-	public List<Vivienda> obtenerViviendas(){
-		return servicioRegistro.obtenerViviendas();
-	}	
-	
-	/*@GetMapping("/disenos")
-	public List<Diseno> obtenerDisenos(){
-		return servicioRegistro.obtenerDisenos();
-	}	*/
 	
 }
