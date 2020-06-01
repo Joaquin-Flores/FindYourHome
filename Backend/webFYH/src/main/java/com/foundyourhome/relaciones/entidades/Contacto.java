@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TP_CONTACTO")
-public class Contacto implements Serializable{
-	
+public class Contacto implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -24,13 +24,25 @@ public class Contacto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO_CONTACTO")
 	private Long codigo;
-	
+
 	@Column(length = 20)
-	private String fecha;	
-	
+	private String fecha;
+
 	@OneToOne
-	@JoinColumn(name = "CODIGO_VIVIENDADISENO")
-	private ResumenDiseno viviendaDiseno;
+	@JoinColumn(name = "CODIGO_RESUMENDISENO")
+	private ResumenDiseno resumenDiseno;
+
+	public Contacto(Long codigo, String fecha, ResumenDiseno resumenDiseno) {
+		super();
+		this.codigo = codigo;
+		this.fecha = fecha;
+		this.resumenDiseno = resumenDiseno;
+	}
+
+	public Contacto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -48,12 +60,37 @@ public class Contacto implements Serializable{
 		this.fecha = fecha;
 	}
 
-	public ResumenDiseno getViviendaDiseno() {
-		return viviendaDiseno;
+	public ResumenDiseno getResumenDiseno() {
+		return resumenDiseno;
 	}
 
-	public void setViviendaDiseno(ResumenDiseno viviendaDiseno) {
-		this.viviendaDiseno = viviendaDiseno;
+	public void setResumenDiseno(ResumenDiseno resumenDiseno) {
+		this.resumenDiseno = resumenDiseno;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contacto other = (Contacto) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+
 }

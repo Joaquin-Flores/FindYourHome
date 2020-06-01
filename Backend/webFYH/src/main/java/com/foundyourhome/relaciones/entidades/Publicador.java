@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "TP_PUBLICADOR")
-public class Publicador implements Serializable{
+public class Publicador implements Serializable {
 
 	/**
 	 * 
@@ -28,22 +28,49 @@ public class Publicador implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO_PUBLICADOR")
 	private Long codigo;
-	
+
 	@Column(unique = true, length = 20)
 	private String razonSocial;
 	@Column(unique = true, length = 20)
 	private String ruc;
+	@Column(length = 20)
 	private String nombre;
-	
+	@Column(length = 20)
+	private String apellido;
+	@Column(unique = true, length = 20)
+	private String correo;
+	@Column(unique = true)
+	private String contacto;
+
 	@OneToMany(mappedBy = "publicador", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Vivienda> vivienda;
-	
+
 	@OneToOne(mappedBy = "publicador")
-	private ResumenDiseno viviendaDiseno;
-	
+	private ResumenDiseno resumenDiseno;
+
 	@OneToOne(mappedBy = "publicador")
 	private Suscripcion suscripcion;
+
+	public Publicador(Long codigo, String razonSocial, String ruc, String nombre, String apellido, String correo,
+			String contacto, List<Vivienda> vivienda, ResumenDiseno viviendaDiseno, Suscripcion suscripcion) {
+		super();
+		this.codigo = codigo;
+		this.razonSocial = razonSocial;
+		this.ruc = ruc;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.correo = correo;
+		this.contacto = contacto;
+		this.vivienda = vivienda;
+		this.resumenDiseno = viviendaDiseno;
+		this.suscripcion = suscripcion;
+	}
+
+	public Publicador() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -51,6 +78,14 @@ public class Publicador implements Serializable{
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getContacto() {
+		return contacto;
+	}
+
+	public void setContacto(String contacto) {
+		this.contacto = contacto;
 	}
 
 	public String getRazonSocial() {
@@ -77,6 +112,22 @@ public class Publicador implements Serializable{
 		this.nombre = nombre;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
 	public List<Vivienda> getVivienda() {
 		return vivienda;
 	}
@@ -86,11 +137,11 @@ public class Publicador implements Serializable{
 	}
 
 	public ResumenDiseno getViviendaDiseno() {
-		return viviendaDiseno;
+		return resumenDiseno;
 	}
 
-	public void setViviendaDiseno(ResumenDiseno viviendaDiseno) {
-		this.viviendaDiseno = viviendaDiseno;
+	public void setViviendaDiseno(ResumenDiseno resumenDiseno) {
+		this.resumenDiseno = resumenDiseno;
 	}
 
 	public Suscripcion getSuscripcion() {
@@ -100,5 +151,30 @@ public class Publicador implements Serializable{
 	public void setSuscripcion(Suscripcion suscripcion) {
 		this.suscripcion = suscripcion;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Publicador other = (Publicador) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+
 }

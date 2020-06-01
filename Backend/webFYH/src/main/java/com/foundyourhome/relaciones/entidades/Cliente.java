@@ -3,19 +3,22 @@ package com.foundyourhome.relaciones.entidades;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "TP_CLIENTE")
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 	/**
 	 * 
 	 */
@@ -25,25 +28,48 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO_CLIENTE")
 	private Long codigo;
-	
-	@Column(unique = true, length = 20)
-	private String usuario;
 	@Column(unique = true, length = 20)
 	private String contrasena;
 	@Column(length = 20)
 	private String nombre;
-	@Column(unique = true, length = 20)
-	private String numeroContacto;
+	@Column(length = 20)
+	private String apellido;
+	@Column(length = 20)
+	private String distrito;
 	@Column(unique = true, length = 20)
 	private String correo;
-	@Column(unique = true, length = 20)
-	private String ruc;
 	
-	@ManyToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "Cliente_ListaDeseo",
+			joinColumns = @JoinColumn(name = "FK_CLIENTE", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "FK_VIVIENDA", nullable = false)
+	)
+	
+	
+	@ManyToMany()
+	@JsonIgnoreProperties("cliente")
 	private List<Vivienda> listaDeseo;
-	
+
 	@OneToOne(mappedBy = "cliente")
 	private ResumenDiseno viviendaDiseno;
+
+	public Cliente(Long codigo, String contrasena, String nombre, String apellido, String distrito, String correo,
+			List<Vivienda> listaDeseo, ResumenDiseno viviendaDiseno) {
+		super();
+		this.codigo = codigo;
+		this.contrasena = contrasena;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.distrito = distrito;
+		this.correo = correo;
+		this.listaDeseo = listaDeseo;
+		this.viviendaDiseno = viviendaDiseno;
+	}
+
+	public Cliente() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -53,18 +79,13 @@ public class Cliente implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
 	public String getContrasena() {
 		return contrasena;
 	}
-	
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -74,16 +95,20 @@ public class Cliente implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public String getNumeroContacto() {
-		return numeroContacto;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public void setNumeroContacto(String numeroContacto) {
-		this.numeroContacto = numeroContacto;
+	public String getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
 	}
 
 	public String getCorreo() {
@@ -92,14 +117,6 @@ public class Cliente implements Serializable{
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-
-	public String getRuc() {
-		return ruc;
-	}
-
-	public void setRuc(String ruc) {
-		this.ruc = ruc;
 	}
 
 	public List<Vivienda> getListaDeseo() {
@@ -117,6 +134,30 @@ public class Cliente implements Serializable{
 	public void setViviendaDiseno(ResumenDiseno viviendaDiseno) {
 		this.viviendaDiseno = viviendaDiseno;
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+
 }
