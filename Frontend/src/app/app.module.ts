@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateClienteComponent } from './create-cliente/create-cliente.component';
@@ -17,7 +16,19 @@ import {FormsModule} from '@angular/forms';
 import { FiltrarViviendaComponent } from './filtrar-vivienda/filtrar-vivienda.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListaEntidadesComponent } from './components/lista-entidades/lista-entidades.component';
-import { RegistroEntidadesComponent } from './components/registro-entidades/registro-entidades.component'
+import { RegistroEntidadesComponent } from './components/registro-entidades/registro-entidades.component';
+import { EncuestaComponent } from './encuesta/encuesta.component';
+import { RegistroExitosoComponent } from './registro-exitoso/registro-exitoso.component';
+import { TipoPublicadorComponent } from './components/tipo-publicador/tipo-publicador.component';
+import { PublicarInmuebleComponent } from './components/publicar-inmueble/publicar-inmueble.component';
+import { SubirImagenComponent } from './components/subir-imagen/subir-imagen.component';
+import { ViviendaPublicadorComponent } from './components/vivienda-publicador/vivienda-publicador.component'
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-vivienda.component';
+import { ActualizarClienteComponent } from './actualizar-cliente/actualizar-cliente.component';
+import { ActualizarViviendaComponent } from './actualizar-vivienda/actualizar-vivienda.component';
 
 @NgModule({
   declarations: [
@@ -34,15 +45,27 @@ import { RegistroEntidadesComponent } from './components/registro-entidades/regi
     FiltrarViviendaComponent,
     HomeComponent,
     ListaEntidadesComponent,
-    RegistroEntidadesComponent
+    RegistroEntidadesComponent,
+    EncuestaComponent,
+    RegistroExitosoComponent,
+    TipoPublicadorComponent,
+    PublicarInmuebleComponent,
+    SubirImagenComponent,
+    ViviendaPublicadorComponent,
+    ImagenViviendaComponent,
+    ActualizarClienteComponent,
+    ActualizarViviendaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxDropzoneModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'es-PE'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,21 @@
 export class Vivienda {
     codigo: number;
-    plano: string;
-    dimension: string;
-    ubicacion: string;
+    tipoTerreno: String;      
+    precio: number;           
+    numHabitaciones: number;  
+    numBano: number;          
+    tieneGaraje: String;      
+    permiteMascota: String;   
+    tienecontrolRenta: String;
+    tipoPiso: String;         
+    tieneCalefaccion: String; 
+    tipoEstructura: String;   
+    tipoExterior: String;     
+    tipoHogar: String;        
+    base: String;             
+    techo: String;            
+    nuevaConstruccion: String;
+    anoConstruccion: String;  
+    dimension: String;        
+    ubicacion: String;
 }

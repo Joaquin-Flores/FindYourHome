@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Publicador } from './model/publicador';
+import { Vivienda } from './model/vivienda';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,12 @@ export class PublicadorService {
   createPublicador(publicador: object): Observable<Object>{
     console.log("Enviando rest create...")
     return this.http.post(this.urlBase + '/registrarpublicador', publicador, {headers:this.httpHeaders});
+  }
+
+  getViviendaList():Observable<any>{
+    return this.http.get(this.urlBase+"/viviendapublicador/1").pipe(
+      map(response => response as Vivienda[])
+    );
   }
 
   getPublicadorList(): Observable<any>{

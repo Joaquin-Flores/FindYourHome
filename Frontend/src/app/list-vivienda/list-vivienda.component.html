@@ -6,18 +6,49 @@
         <Table class = "table table-dark" >
             <thead>
                 <tr>
-                    <th>codigo</th>			
-                    <th>plano</th>
+                    <th>codigo</th>
+                    <th>tipoTerreno</th>
+                    <th>precio</th>
+                    <th>numHabitaciones</th>
+                    <th>numBano         </th>
+                    <th>tieneGaraje    </th>
+                    <th>permiteMascota </th>
+                    <th>tienecontrolRenta</th>
+                    <th>tipoPiso     </th>
+                    <th>tieneCalefaccion</th>
+                    <th>tipoEstructura   </th>
+                    <th>tipoExterior  </th>
+                    <th>tipoHogar     </th>
+                    <th>base       </th>
+                    <th>techo         </th>
+                    <th>nuevaConstruccion</th>
+                    <th>anoConstruccion </th>
                     <th>dimension</th>
-                    <th>ubicacion</th>
+                    <th>ubicacion</th>  	  
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor = "let p of viviendas"> 
-                        <th>{{p.codigo}}</th>
-                        <th>{{p.plano}}</th>	
-                        <th>{{p.dimension}}</th>
-                        <th>{{p.ubicacion}}</th>
+                    <th>{{p.codigo}}</th>
+                    <th>{{p.tipoTerreno}}</th>
+                    <th>{{p.precio}}</th>
+                    <th>{{p.numHabitaciones}}</th>
+                    <th>{{p.numBano}}        </th>
+                    <th>{{p.tieneGaraje}}   </th>
+                    <th>{{p.permiteMascota}}</th>
+                    <th>{{p.tienecontrolRenta}}</th>
+                    <th>{{p.tipoPiso}}</th>
+                    <th>{{p.tieneCalefaccion}}</th>
+                    <th>{{p.tipoEstructura}}   </th>
+                    <th>{{p.tipoExterior}}  </th>
+                    <th>{{p.tipoHogar}}    </th>
+                    <th>{{p.base}}     </th>
+                    <th>{{p.techo}}      </th>
+                    <th>{{p.nuevaConstruccion}}</th>
+                    <th>{{p.anoConstruccion}} </th>
+                    <th>{{p.dimension}}</th>
+                    <th>{{p.ubicacion}}</th>
+
                 </tr>
             </tbody>
         </Table>

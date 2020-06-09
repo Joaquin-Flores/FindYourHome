@@ -11,6 +11,5 @@ export class RegistroExitosoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
 
 }

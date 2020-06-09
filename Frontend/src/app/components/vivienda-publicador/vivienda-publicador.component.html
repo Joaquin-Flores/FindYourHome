@@ -1,0 +1,33 @@
+
+<div class='table-responsive'>
+    <div class="card-body text-black">
+        <h5 class="card-title">Viviendas</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>codigo</th>
+                    <th>Editar</th>
+                    <th>Imagen</th>
+                    <th>Mostrar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of viviendas">
+                    <th>{{p.codigo}}</th>
+                    <th><a class = "btn btn-sm text-white btn-success">Editar</a></th>
+                    <div  *ngIf = "!p.diseno">
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo]">Agregar imagenes</a></th>
+                    </div>
+                    <div  *ngIf = "p.diseno">
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo]">Editar Imagenes</a></th>
+                    </div>
+                    <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/imagenVivienda', p.codigo]">Ver imagen</a></th>
+                    <th><a class = "btn btn-sm text-white btn-danger" (click) = "eliminarVivienda(p.codigo); refresh()">Eliminar</a></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>  
+
+

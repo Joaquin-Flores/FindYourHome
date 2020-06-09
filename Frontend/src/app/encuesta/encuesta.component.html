@@ -1,21 +1,289 @@
 
+<div class="container">
+    <div class="row row-cols-1 bg-dark">
+            <label class="Titulo" align="center">Test de preferencias</label>
+    </div>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide mb-5" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" data-interval="9000"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1" data-interval="9000"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2" data-interval="9000"></li>
+      </ol>
+      
+      <div class="carousel-inner">
+        <!--ELEGIR ESTILOS-->
+        <div class="carousel-item active">
+          <div class="container" style="border:2px solid black">
+        
+         <div class="row row-cols-1 bg-dark" style="border: 1px solid black" >
+            <label class="Titulo" align="center">Elige estilos</label>
+        </div>
+               
+        <div class="row justify-content-center row-cols-3 bg-light" >
+               <!--ESTILO AQUA-->
+              <div class="col mb-5 align-self-center">  
+                <div class="card text-center border-dark " >
+                    <img src="https://imgur.com/u9TGoxr.png" class="card-img-top">
+                    <div class="card-body">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(1)">
+                    </div>
+                     <div class="card-footer border-dark bg-dark">
+                     </div>
+                </div>
+                <!--ESTILO MAJESTUOSO-->
+              </div>  
+               <div class="col mb-1 align-self-center">        
+                <div class="card text-center card border-dark " >
+                    <img src="https://imgur.com/hH3izw8.png" class="card-img-top" >
+                    <div class="card-body">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(2)">
+                    </div>
+                     <div class="card-footer border-dark bg-dark">
+                     </div>
+                </div>
+                </div>
+                <!--ESTILO ELEGANTE-->
+                <div class="col mb-1">  
+                    <div class="card text-center card border-dark " >
+                        <img src="https://imgur.com/ghGpkWX.png" class="card-img-top">
+                        <div class="card-body">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(3)">
+                    </div>
+                        <div class="card-footer border-dark bg-dark"></div> 
+                    </div>
+                </div>
+                <!--ESTILO SEDUCTOR-->
+                 <div class="col mb-5"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/vWFAH0t.png" class="card-img-top">
+               <div class="card-body">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(4)">
+                    </div>
+                     <div class="card-footer border-dark bg-dark">
+                     </div>
+                </div>
+                </div>
+                <!--ESTILO MONOCROMATICO-->
+                 <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/npp92oB.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(5)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div>
+                <!--ESTILO VIBRANTE-->
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/qwuspLW.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(6)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div>
+                <!--ESTILO MELANCÓLICO-->
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/E4Yx58k.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(7)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div>
+           
+                 <!--ESTILO MODERNO-->
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/eCw3PJf.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceEstilo(8)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div>
+        </div>
+    </div>  
+        </div>
 
-<div *ngIf = "isEncuestaRoute()" align="center" >
-    <h3 >Test de preferencias </h3>
-    <H5 >Elija texturas </H5>
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <IMG SRC="textura1" align:center WIDTH=272 HEIGHT=92 >
-    <nav>
-        <a routerLink="msgRegistro" class="btn btn-primary active">Finalizar</a>
-    </nav>
-</div>
-
-
+        
+        <!--ELEGIR colores-->
+        <div class="carousel-item">
+          <div class="container" style="border:2px solid black">
+         <div class="row row-cols-1 bg-dark" style="border: 1px solid black" >
+            <label class="Titulo" align="center">Elige colores</label>
+        </div>
+    
+        <div class="row justify-content-center row-cols-5 bg-light" >
+            <!--ROJO-->  
+             <div class="col mb-5"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/LRCovGQ.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(1)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+               
+                <!--MARRON-->  
+                <div class="col mb-1"> 
+                    <div class="card border-dark card text-center">
+                    <img src="https://imgur.com/yMSKHo6.png" class="card-img-top">
+                    <div class="card-body">
+                         <input type="checkbox" class="form-check-input" id="exampleCheck1" style="border: 1px solid black" (click) = "indiceColor(2)"> 
+                    </div>
+                    <div class="card-footer border-dark bg-dark"></div> 
+                    </div>
+                </div> 
+                <!--AZUL-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/F5O8L51.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" style="border: 2px solid black" (click) = "indiceColor(3)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--TURQUESA VERDOSO-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/d8XHzh1.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(4)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--NEGRO-->
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/X2AeAUI.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(5)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--ROJO2-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/ZBnHrnU.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(6)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--MARRON2-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/LJzAlA2.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(7)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--AZUL2-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/PeftSmW.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(8)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--TURQUESA VERDOSO2-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/ZHsNeqH.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(9)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--NEGRO2--> 
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/4eW2yYR.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(10)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div>            
+                <!--ROJO3-->
+                <div class="col mb-5"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/M8fUKhy.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(11)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--MARRON3-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/2JFfDNR.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(12)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--AZUL3-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/zJeBTqq.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(13)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--TURQUESA VERDOSO3-->  
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/wRwTQQ7.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(14)"> 
+                </div>
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+                <!--NEGRO3--> 
+                <div class="col mb-1"> 
+                <div class="card border-dark card text-center"  >
+                <img src="https://imgur.com/j1Nd0s7.png" class="card-img-top">
+                <div class="card-body">
+                     <input type="checkbox" class="form-check-input" id="exampleCheck1" (click) = "indiceColor(15)"> 
+                </div>
+    
+                 <div class="card-footer border-dark bg-dark"></div> 
+                </div>
+                </div> 
+    
+        </div>
+    </div>  
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div align="center"> 
+    <button type="submit"  class = "boton mb-5" (click) = "anadirColores();anadirEstilos()" [routerLink] = "['/encuesta/msgRegistro']">Siguiente</button>
+    </div>

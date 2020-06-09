@@ -1,9 +1,9 @@
 export class Cliente {
     codigo: number;
-    usuario: string;
-    contrasena: string;
     nombre: string;
-    numeroContacto: string;
+    apellido: string;
+    numero: string;
+    contrasena: string;
     correo: string;
-    ruc: string;
+    distrito:string;
 }
