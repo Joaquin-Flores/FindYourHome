@@ -14,8 +14,10 @@ export class PublicadorService {
 
   constructor(private http: HttpClient) { }
 
-  getPublicador(id:number):Observable<object>{
-    return this.http.get('${this.baseUrl}/${id}')
+  getPublicador(id:number):Observable<any>{
+    return this.http.get(this.urlBase + "/publicador/" + id).pipe(
+      map(response => response as Publicador)
+    );
   }
 
   createPublicador(publicador: object): Observable<Object>{

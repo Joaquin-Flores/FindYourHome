@@ -85,19 +85,19 @@
                     <h5 class="card-title">Viviendas</h5>
                     <table class="table">
                         <thead>
-                           
                             <tr>
-                                <th>codigo</th>
-                                <th>imagen</th>
-                                <th>precio</th>
-                                <th>dimension</th>
-                                <th>ubicacion</th>
+                                <th>Imagen</th>
+                                <th>Codigo</th>
+                                <th>Precio</th>
+                                <th>Dimension</th>
+                                <th>Ubicacion</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let p of viviendas"  #divClick (click)="fetchEvent(p.codigo)">
+                            <tr *ngFor="let p of viviendas;let index = index; let lastcall = last">
+                                <span *ngIf="compruebaIndice(index)">{{fetchEvent(p.codigo)}}</span>
+                                <a [routerLink] = "['/filtrarVivienda/showVivienda', p.codigo]"><td><img [src]="retrievedImage[index]" height="200px" width="200px" ></td></a>
                                 <th>{{p.codigo}}</th>
-                                <td><img [src]="retrievedImage" height="200px" width="200px"></td>
                                 <th>{{p.precio}}</th>
                                 <th>{{p.dimension}}</th>
                                 <th>{{p.ubicacion}}</th>

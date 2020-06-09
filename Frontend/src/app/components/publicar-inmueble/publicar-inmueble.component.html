@@ -1,3 +1,51 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+<!------ Include the above in your HEAD tag ---------->
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!--<img class="img_Logoizq-container " src="https://imgur.com/yzmpQ2X.png" >-->
+   
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/home" > 
+            <i class="fa fa-envelope-o"><img  src="https://imgur.com/UizFbwu.png" ></i>Inicio
+        </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link">
+          <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/vcisxpx.png" ></i>Comprar
+        </a>
+    </li>
+
+    
+      <li class="nav-item ">
+        <a class="nav-link" href="/home">
+          <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/ujsrMoi.png" ></i>Vender
+        </a>
+    </li>
+     
+      <li class="nav-item ">
+        <a class="nav-link" href="/home">
+          <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/1VAWRJI.png" ></i>Alquilar
+        </a>
+    </li>
+    </ul>
+    
+  </div>
+</nav>
+<div>
+
+
 <div>
     <body>
         <div class = "container labelHead-container">
@@ -9,21 +57,173 @@
     </body>
 </div>
 
-<div>
-    <div class = "container propiedadHead-container">
-        <h3>Detalles de la propiedad</h3>
-    </div>
-    <div class = "container edificioHead-container">
-        <h3>Detalles del edificio</h3>
-    </div>
-</div>
+<form (ngSubmit) = "registrarInmueble()">
+    <div class = "form-group">
+        <div class = "container propiedadHead-container">
+            <h3>Detalles de la propiedad</h3>
+            <h5>Precio</h5>
+            <form class="form-inline">
+                <h6>Precio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" id = "precio" [(ngModel)] = "vivienda.precio" name ="precio" placeholder="Soles">
+                </div>
+            </form>            
+            <h5>Estacionamiento</h5>
+            <div class = "form-inline">
+                <h6>Tiene Garaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" input type="text" id = "tieneGaraje" [(ngModel)] = "vivienda.tieneGaraje" name ="tieneGaraje">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <h5>Propiedad</h5>
+            <div class = "form-inline">
+                <h6>Exterior&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" input type="text" id = "tipoExterior" [(ngModel)] = "vivienda.tipoExterior" name ="tipoExterior">
+                    <option>Ceramica</option>
+                    <option>Madera</option>
+                    <option>Piedra natural</option>
+                    <option>Hormigón</option>
+                </select>
+            </div>
+            <h5>Lote</h5>
+            <form class="form-inline">
+                <h6>Tamaño&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" id = "dimension" [(ngModel)] = "vivienda.dimension" name ="dimension" placeholder="m2">
+                </div>
+            </form>              
+        </div>
 
-<div class = "form-group">
-    <div class = "container interiorHead-container">
-        <hr style="width:80%;border-color:black;margin-left:0">
-        <h3>Detalles del interior</h3>
+        <div class = "container edificioHead-container">
+            <h3>Detalles del edificio</h3>
+            <h5>Gestion</h5>
+            <div class = "form-inline">
+                <h6>Mascotas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" input type="text" id = "permiteMascota" [(ngModel)] = "vivienda.permiteMascota" name ="permiteMascota">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <br>
+            <div class = "form-inline">
+                <h6>Control de Renta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" input type="text" id = "tienecontrolRenta" [(ngModel)] = "vivienda.tienecontrolRenta" name ="tienecontrolRenta">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <br>
+            <h5>Información de construcción</h5>
+            <div class = "form-inline">
+                <h6>Tipo de estructura&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" input type="text" id = "tipoEstructura" [(ngModel)] = "vivienda.tipoEstructura" name ="tipoEstructura">
+                    <option>Acero</option>
+                    <option>Hormigón armado</option>
+                    <option>Ladrillo</option>
+                    <option>Madera</option>
+                    <option>Adobe</option>
+                    <option>Prefabricado</option>
+                </select>
+            </div>
+            <br>
+            <form class="form-inline">
+                <h6>Ubicacion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" id = "ubicacion" [(ngModel)] = "vivienda.ubicacion" name ="ubicacion" placeholder="Distrito">
+                </div>
+            </form>      
+        </div>
     </div>
-    <div class = "container construccionHead-container">
-        <h3>Detalles de construcción</h3>
+    
+    <div class = "form-group">
+        <div class = "container interiorHead-container">
+            <hr style="width:80%;border-color:black;margin-left:0">
+            <h3>Detalles del interior</h3>
+            <h5>Detalles</h5>
+            <form class="form-inline">
+                <h6>Habitaciones&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm"  id = "numHabitaciones" [(ngModel)] = "vivienda.numHabitaciones" name ="numHabitaciones">
+                </div>
+            </form>     
+            <br>
+            <form class="form-inline">
+                <h6>Baños&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm"  id = "numBano" [(ngModel)] = "vivienda.numBano" name ="numBano">
+                </div>
+            </form>
+            <br>
+            <div class = "form-inline">
+                <h6>Calefacción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm"  id = "tieneCalefaccion" [(ngModel)] = "vivienda.tieneCalefaccion" name ="tieneCalefaccion">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <br>
+            <h5>Piso</h5>   
+            <div class = "form-inline">
+                <h6>Piso&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" id = "tipoPiso" [(ngModel)] = "vivienda.tipoPiso" name ="tipoPiso">
+                    <option>Madera</option>
+                    <option>Cerámica</option>
+                    <option>Porcelanato</option>
+                    <option>Cemento y hormigón</option>
+                    <option>Vinílico</option>
+                </select>
+            </div>
+        </div>
+
+        <div class = "container construccionHead-container">
+            <h3>Detalles de construcción</h3>
+            <h5>Información</h5>
+            <div class = "form-inline">
+                <h6>Base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" id = "base" [(ngModel)] = "vivienda.base" name ="base">
+                    <option>Cimiento de piedra natural</option>
+                    <option>Cimiento de tierra apisonada</option>
+                    <option>Cimiento de ladrillos</option>
+                    <option>Cimiento de concreto</option>
+                    <option>Cimiento con poste de madera</option>
+                </select>
+            </div>
+            <br>
+            <div class = "form-inline">
+                <h6>Techo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" id = "techo" [(ngModel)] = "vivienda.techo" name ="techo">
+                    <option>Teja solar</option>
+                    <option>Teja asfáltica</option>
+                    <option>Techo de metal</option>
+                    <option>Acero revestido con piedra</option>
+                    <option>Pizarra</option>
+                    <option>Teja de arcilla y concreto</option>
+                </select>
+            </div>
+            <br>
+            <h5>Condición</h5>
+            <div class = "form-inline">
+                <h6>Nueva construcción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <select class="form-control form-control-sm" id = "nuevaConstruccion" [(ngModel)] = "vivienda.nuevaConstruccion" name ="nuevaConstruccion">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <br>
+            <form class="form-inline">
+                <h6>Año de construcción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" id = "anoConstruccion" [(ngModel)] = "vivienda.anoConstruccion" name ="anoConstruccion" placeholder="yyyy">
+                </div>
+            </form>   
+        </div>
     </div>
-</div>
+
+    <div class = "form-group">
+        <div class = "container buttonPublicar-container">
+            <button type = "submit" class = "btn btn-success">Publicar inmueble</button>
+        </div>
+    </div>
+</form>
+

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateClienteComponent } from './create-cliente/create-cliente.component';
@@ -27,8 +28,6 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-vivienda.component';
-import { ActualizarClienteComponent } from './actualizar-cliente/actualizar-cliente.component';
-import { ActualizarViviendaComponent } from './actualizar-vivienda/actualizar-vivienda.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +51,7 @@ import { ActualizarViviendaComponent } from './actualizar-vivienda/actualizar-vi
     PublicarInmuebleComponent,
     SubirImagenComponent,
     ViviendaPublicadorComponent,
-    ImagenViviendaComponent,
-    ActualizarClienteComponent,
-    ActualizarViviendaComponent
+    ImagenViviendaComponent
   ],
   imports: [
     BrowserModule,

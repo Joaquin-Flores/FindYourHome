@@ -9,6 +9,7 @@ import { Cliente } from './model/cliente';
   providedIn: 'root'
 })
 export class ClienteService {
+
   private urlBase = "http://localhost:8080/api";
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
@@ -31,14 +32,10 @@ export class ClienteService {
   }
 
   registrarEstilo(estilo: Object): Observable<any>{
-    return this.http.post(this.urlBase+"/registrarestilo/2", estilo, {headers:this.httpHeaders})
+    return this.http.post(this.urlBase+"/registrarestilo/1", estilo, {headers:this.httpHeaders})
   }
 
   registrarColor(color: Object): Observable<any>{
-    return this.http.post(this.urlBase+"/registrarcolor/2", color, {headers:this.httpHeaders})
+    return this.http.post(this.urlBase+"/registrarcolor/1", color, {headers:this.httpHeaders})
   }
-  actualizarCliente(cliente: Object): Observable<any>{
-    return this.http.put(this.urlBase+'/actualizarcliente/2',cliente,{headers:this.httpHeaders})
-  }
-
 }

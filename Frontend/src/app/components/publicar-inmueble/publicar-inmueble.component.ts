@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Vivienda } from 'src/app/model/vivienda';
+import { ViviendaService } from 'src/app/vivienda.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-publicar-inmueble',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicarInmuebleComponent implements OnInit {
 
-  constructor() { }
+  vivienda: Vivienda = new Vivienda();
 
+  constructor(private viviendaServicio: ViviendaService, private router: Router) { }
+  
   ngOnInit(): void {
+    
+  }
+
+  registrarInmueble(){
+    this.viviendaServicio.createVivienda(this.vivienda).subscribe(
+      data => this.router.navigate(['/registroEntidades/viviendapublicador'])
+    );
   }
 
 }
