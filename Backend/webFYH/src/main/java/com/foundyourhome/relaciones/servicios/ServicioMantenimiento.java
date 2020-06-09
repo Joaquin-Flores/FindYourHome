@@ -71,7 +71,6 @@ public class ServicioMantenimiento {
 		v.setPermiteMascota(vivienda.getPermiteMascota());
 		v.setTienecontrolRenta(vivienda.getTienecontrolRenta());
 		v.setTipoPiso(vivienda.getTipoPiso());     
-		v.setColorPiso(vivienda.getColorPiso()); 
 		v.setTieneCalefaccion(vivienda.getTieneCalefaccion());
 		v.setTipoEstructura(vivienda.getTipoEstructura());
 		v.setTipoExterior(vivienda.getTipoExterior());

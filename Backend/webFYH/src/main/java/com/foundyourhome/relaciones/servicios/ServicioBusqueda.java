@@ -85,4 +85,10 @@ public class ServicioBusqueda {
 	public List<Vivienda> filtrarViviendasNumBanos(Double numBanos){
 		return repositorioVivienda.filtrarViviendaBano(numBanos);
 	}
+	
+	public List<Vivienda> viviendaPublicador(Long codigo) throws Exception{
+		Publicador publicador = repositorioPublicador.findById(codigo).orElseThrow(() -> new Exception("No se encontro entidad"));
+
+		return publicador.getVivienda();
+	}
 }

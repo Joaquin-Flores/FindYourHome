@@ -21,5 +21,6 @@ public interface RepositorioVivienda extends JpaRepository<Vivienda, Long>{
 	
 	@Query ("select t from Vivienda t where t.numBano = :numBano")
 	List<Vivienda> filtrarViviendaBano (@Param("numBano") Double numBano);
+
 }
 

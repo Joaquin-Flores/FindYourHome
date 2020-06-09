@@ -5,15 +5,18 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -36,8 +39,11 @@ public class Cliente implements Serializable {
 	private String apellido;
 	@Column(length = 20)
 	private String distrito;
+	@Column(length = 20)
+	private String numero;
 	@Column(unique = true, length = 20)
 	private String correo;
+	
 	
 	@JoinTable(
 			name = "Cliente_ListaDeseo",
@@ -47,20 +53,31 @@ public class Cliente implements Serializable {
 	
 	
 	@ManyToMany()
-	@JsonIgnoreProperties("cliente")
+	@JsonIgnoreProperties("listaDeseo")
+	@JsonIgnore
 	private List<Vivienda> listaDeseo;
 
 	@OneToOne(mappedBy = "cliente")
 	private ResumenDiseno viviendaDiseno;
+	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	@JsonIgnore
+	List<Estilo> estilo;
+	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	@JsonIgnore
+	List<Color> color;
+	
 
-	public Cliente(Long codigo, String contrasena, String nombre, String apellido, String distrito, String correo,
-			List<Vivienda> listaDeseo, ResumenDiseno viviendaDiseno) {
+	public Cliente(Long codigo, String contrasena, String nombre, String apellido, String distrito, String numero,
+			String correo, List<Vivienda> listaDeseo, ResumenDiseno viviendaDiseno) {
 		super();
 		this.codigo = codigo;
 		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.distrito = distrito;
+		this.numero = numero;
 		this.correo = correo;
 		this.listaDeseo = listaDeseo;
 		this.viviendaDiseno = viviendaDiseno;
@@ -85,6 +102,14 @@ public class Cliente implements Serializable {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+	
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public String getNombre() {

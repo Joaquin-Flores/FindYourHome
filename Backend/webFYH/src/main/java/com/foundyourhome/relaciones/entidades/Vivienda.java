@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,7 +42,6 @@ public class Vivienda implements Serializable {
 	private String permiteMascota;
 	private String tienecontrolRenta;
 	private String tipoPiso;
-	private String colorPiso;
 	private String tieneCalefaccion;
 	private String tipoEstructura;
 	private String tipoExterior;
@@ -52,12 +53,9 @@ public class Vivienda implements Serializable {
 	private String dimension;
 	private String ubicacion;
 
-	// Diseno como plano son imagenes no se que variable ponerle
-	private byte[] imagenDiseno;
-	private byte[] imagenPlano;
-
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PUBLICADOR")
+	@JsonIgnore
 	private Publicador publicador;
 
 	// Lista deseos
@@ -69,12 +67,20 @@ public class Vivienda implements Serializable {
 	@JsonIgnore
 	private ResumenDiseno resumenDiseno;
 
+	@OneToMany(mappedBy = "vivienda", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Plano> listaPlano;
+
+	@OneToMany(mappedBy = "vivienda", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Diseno> listaDiseno;
+
 	public Vivienda(Long codigo, String tipoTerreno, Double precio, Double numHabitaciones, Double numBano,
-			String tieneGaraje, String permiteMascota, String tienecontrolRenta, String tipoPiso, String colorPiso,
+			String tieneGaraje, String permiteMascota, String tienecontrolRenta, String tipoPiso,
 			String tieneCalefaccion, String tipoEstructura, String tipoExterior, String tipoHogar, String base,
 			String techo, String nuevaConstruccion, String anoConstruccion, String dimension, String ubicacion,
-			byte[] imagenDiseno, byte[] imagenPlano, Publicador publicador, List<Cliente> cliente,
-			ResumenDiseno resumenDiseno) {
+			Publicador publicador, List<Cliente> cliente, ResumenDiseno resumenDiseno, List<Plano> listaPlano,
+			List<Diseno> listaDiseno) {
 		super();
 		this.codigo = codigo;
 		this.tipoTerreno = tipoTerreno;
@@ -85,7 +91,6 @@ public class Vivienda implements Serializable {
 		this.permiteMascota = permiteMascota;
 		this.tienecontrolRenta = tienecontrolRenta;
 		this.tipoPiso = tipoPiso;
-		this.colorPiso = colorPiso;
 		this.tieneCalefaccion = tieneCalefaccion;
 		this.tipoEstructura = tipoEstructura;
 		this.tipoExterior = tipoExterior;
@@ -96,11 +101,11 @@ public class Vivienda implements Serializable {
 		this.anoConstruccion = anoConstruccion;
 		this.dimension = dimension;
 		this.ubicacion = ubicacion;
-		this.imagenDiseno = imagenDiseno;
-		this.imagenPlano = imagenPlano;
 		this.publicador = publicador;
 		this.cliente = cliente;
 		this.resumenDiseno = resumenDiseno;
+		this.listaPlano = listaPlano;
+		this.listaDiseno = listaDiseno;
 	}
 
 	public Vivienda() {
@@ -114,6 +119,14 @@ public class Vivienda implements Serializable {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getTipoTerreno() {
+		return tipoTerreno;
+	}
+
+	public void setTipoTerreno(String tipoTerreno) {
+		this.tipoTerreno = tipoTerreno;
 	}
 
 	public Double getPrecio() {
@@ -160,14 +173,6 @@ public class Vivienda implements Serializable {
 		return tienecontrolRenta;
 	}
 
-	public String getTipoTerreno() {
-		return tipoTerreno;
-	}
-
-	public void setTipoTerreno(String tipoTerreno) {
-		this.tipoTerreno = tipoTerreno;
-	}
-
 	public void setTienecontrolRenta(String tienecontrolRenta) {
 		this.tienecontrolRenta = tienecontrolRenta;
 	}
@@ -178,14 +183,6 @@ public class Vivienda implements Serializable {
 
 	public void setTipoPiso(String tipoPiso) {
 		this.tipoPiso = tipoPiso;
-	}
-
-	public String getColorPiso() {
-		return colorPiso;
-	}
-
-	public void setColorPiso(String colorPiso) {
-		this.colorPiso = colorPiso;
 	}
 
 	public String getTieneCalefaccion() {
@@ -268,22 +265,6 @@ public class Vivienda implements Serializable {
 		this.ubicacion = ubicacion;
 	}
 
-	public byte[] getImagenDiseno() {
-		return imagenDiseno;
-	}
-
-	public void setImagenDiseno(byte[] imagenDiseno) {
-		this.imagenDiseno = imagenDiseno;
-	}
-
-	public byte[] getImagenPlano() {
-		return imagenPlano;
-	}
-
-	public void setImagenPlano(byte[] imagenPlano) {
-		this.imagenPlano = imagenPlano;
-	}
-
 	public Publicador getPublicador() {
 		return publicador;
 	}
@@ -306,6 +287,22 @@ public class Vivienda implements Serializable {
 
 	public void setResumenDiseno(ResumenDiseno resumenDiseno) {
 		this.resumenDiseno = resumenDiseno;
+	}
+
+	public List<Plano> getListaPlano() {
+		return listaPlano;
+	}
+
+	public void setListaPlano(List<Plano> listaPlano) {
+		this.listaPlano = listaPlano;
+	}
+
+	public List<Diseno> getListaDiseno() {
+		return listaDiseno;
+	}
+
+	public void setListaDiseno(List<Diseno> listaDiseno) {
+		this.listaDiseno = listaDiseno;
 	}
 
 	@Override
