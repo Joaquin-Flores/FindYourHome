@@ -1,24 +1,21 @@
 import { Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
-import { Observable } from 'rxjs';
-import { Vivienda } from '../model/vivienda';
-import { ViviendaService } from '../vivienda.service';
 import { ActivatedRoute } from '@angular/router';
-import { Publicador } from '../model/publicador';
-import { PublicadorService } from '../publicador.service';
+import { ViviendaService } from 'src/app/vivienda.service';
+
 
 declare const $:any;
 
 @Component({
-  selector: 'app-show-vivienda',
-  templateUrl: './show-vivienda.component.html',
-  styleUrls: ['./show-vivienda.component.css'],
+  selector: 'app-imagen-vivienda',
+  templateUrl: './imagen-vivienda.component.html',
+  styleUrls: ['./imagen-vivienda.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShowViviendaComponent implements OnInit {
 
-  vivienda:Vivienda;
-  publicador:Publicador;
-  codigoVivienda:any;
+
+export class ImagenViviendaComponent implements OnInit {
+
+  codigoVivienda:number;
 
   retrievedImage:any[]= [];
   base64Data: any[]= [];
@@ -31,22 +28,26 @@ export class ShowViviendaComponent implements OnInit {
   cargo: Boolean = false;
   cargo2: Boolean = false;
 
-  index: number = -1;
 
+  
 
-  constructor(private dataRoute: ActivatedRoute,private viviendaService: ViviendaService, private publicadorService: PublicadorService) { 
+  constructor(private dataRoute: ActivatedRoute, private viviendaService :ViviendaService) { 
     this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
   }
+
 
   ngOnInit(): void {
     this.fetchEvent().then(() => {this.cargo = true; console.log(this.cargo)});
     this.fetchEventDiseno().then(() => {this.cargo2 = true; console.log(this.cargo2)});
-    this.getVivienda();
-    this.getPublicador();
     
     setTimeout(() => {
       this.divClick.nativeElement.click();
     }, 200);
+    //console.log(this.base64Data);
+  }
+
+  ngAfterViewInit(){
+    $('#carouselExampleCaptions').carousel()
   }
 
   ngAfterViewInit2(){
@@ -76,25 +77,6 @@ export class ShowViviendaComponent implements OnInit {
         console.log(this.retrievedImage[i])
       }
   });
-}
-
-getVivienda(){
-  this.viviendaService.getVivienda(this.codigoVivienda).subscribe(vivienda => this.vivienda = vivienda);
-}
-
-getPublicador(){
-  this.publicadorService.getPublicador(1).subscribe(publicador => this.publicador = publicador);
-}
-
-devuelveImagen(){
-  if(this.index < 0)
-    return this.retrievedImage[0]
-  else
-    return this.retrievedImage[this.index]
-}
-
-cargaImagen(index:number){
-  this.index = index
 }
 
  @ViewChild('divClick') divClick: ElementRef;

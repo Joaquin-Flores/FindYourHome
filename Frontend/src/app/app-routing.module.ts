@@ -20,8 +20,6 @@ import { PublicarInmuebleComponent } from './components/publicar-inmueble/public
 import { SubirImagenComponent } from './components/subir-imagen/subir-imagen.component';
 import { ViviendaPublicadorComponent } from './components/vivienda-publicador/vivienda-publicador.component';
 import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-vivienda.component';
-import { ActualizarClienteComponent } from './actualizar-cliente/actualizar-cliente.component';
- import { ActualizarViviendaComponent } from './actualizar-vivienda/actualizar-vivienda.component';
 
 
 const routes: Routes = [
@@ -39,14 +37,12 @@ const routes: Routes = [
   {path: 'registroEntidades/viviendapublicador', component: ViviendaPublicadorComponent},
   {path: 'registroEntidades/subirImagen/:id', component: SubirImagenComponent},
   {path: 'registroEntidades/imagenVivienda/:id', component: ImagenViviendaComponent},
-  {path: 'filtrarVivienda/showVivienda', component: ShowViviendaComponent},
+  {path: 'filtrarVivienda/showVivienda/:id', component: ShowViviendaComponent},
   {path: 'filtrarVivienda', component: FiltrarViviendaComponent},
   {path: 'encuesta', component: EncuestaComponent},
   {path: 'encuesta/msgRegistro', component: RegistroExitosoComponent},
   {path: 'tipoPublicador', component: TipoPublicadorComponent},
   {path: 'tipoPublicador/publicarInmueble', component: PublicarInmuebleComponent},
-  {path: 'actualizarCliente', component: ActualizarClienteComponent },
-  {path: 'actualizarVivienda', component: ActualizarViviendaComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

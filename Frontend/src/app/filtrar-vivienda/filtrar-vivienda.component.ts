@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vivienda } from '../model/vivienda';
 import { ViviendaService } from '../vivienda.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -11,44 +12,57 @@ import { ViviendaService } from '../vivienda.service';
 })
 export class FiltrarViviendaComponent implements OnInit {
 
-  viviendas: Observable<Vivienda[]>
+  viviendas: Vivienda[] = []
   ubicacion: "";
   idVivienda: number;
 
-  retrievedImage:any;
-  base64Data: any;
-  imagen: any;
+  retrievedImage:any[]= [];
+  base64Data: any[]= [];
+  imagen: any[] = [];
+  indice: number = 0;
+  condicion:Boolean = false;
+  i: number = -1;
 
-  constructor(private viviendaService: ViviendaService) { }
+  constructor(private domSanitizer: DomSanitizer,private viviendaService: ViviendaService) { }
 
   ngOnInit(): void {
   }
   
   filtrarVivienda(){
-    console.log("he")
     this.viviendaService.filtrarVivienda(this.ubicacion).subscribe(
       viviendas => this.viviendas = viviendas
     );
-    setTimeout(() => {
-      this.divClick.nativeElement.click();
-    },15);
   }
 
   fetchEvent(codigoVivienda:any){
-    console.log("bienenen")
-    this.viviendaService.getImagen(codigoVivienda).subscribe(event => {
-        this.imagen = event;
-        console.log(this.imagen);
+    if (this.indice<this.viviendas.length){
+      console.log("bienenen")
+      console.log(codigoVivienda)
+      this.viviendaService.getImagen(codigoVivienda).subscribe(event => {
+        if(this.imagen.length<this.viviendas.length){
+          this.imagen[this.indice] = event;
+          console.log(this.imagen);
         
-        this.base64Data = this.imagen.picByte;
-        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        console.log(this.retrievedImage);
-    });
+          this.base64Data[this.indice] = this.imagen[this.indice].picByte;
+          this.retrievedImage[this.indice] = 'data:image/jpeg;base64,' + (this.domSanitizer.bypassSecurityTrustResourceUrl(this.base64Data[this.indice]) as any).changingThisBreaksApplicationSecurity;
+          console.log(this.retrievedImage);
+          this.indice += 1;
+        }
+      });
+    }
  }
 
-  setidVivienda(id:number){
-    this.idVivienda = id;
+
+ compruebaIndice(indice:any){
+  if(this.i != indice){
+    return true;
+  }
+  else
+    return false;
+ }
+
+  he(){
+    console.log(this.retrievedImage)
   }
 
-  @ViewChild('divClick') divClick: ElementRef;
 }

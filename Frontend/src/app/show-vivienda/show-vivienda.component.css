@@ -1,3 +1,208 @@
+.img_Logoizq-container{
+    margin-left: 75px;
+    margin-top: 25px;
+    width:200px; 
+    height:200px;
+  }
+  nav li {
+     float: right;
+  }
+  
+  .Cuadrito{
+    margin-left: -15px;
+  }
+  .mapa_Logo{
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 50px;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .brandInicio-container{
+      position: absolute;
+      margin-top: 30px;
+      margin-left: 1050px;
+  }
+  
+  .searchVivienda-container{
+      position: absolute;
+      margin-top: 200px;
+      margin-left: 400px;
+  }
+  
+  .listadoVivienda-container{
+      position: absolute;
+      margin-top: 250px;
+      margin-left: 400px;
+      height: 200px;
+      width: 65%;
+  }
+  
+  
+  
+  .guardarBusqueda-container{
+      position: absolute;
+      margin-top: 70px;
+      margin-left: 600px;
+  }
+  
+  .visualizarMapa-container{
+      position: absolute;
+      margin-top: 525px;
+      margin-left: 65px;
+  }
+  
+  .dropDown-container{
+      position: absolute;
+      margin-top: 580px;
+      margin-left: 50px;
+  }
+  
+  .dropDownPrecio-container{
+      position: absolute;
+      margin-top: 70px;
+      margin-left: 400px;
+  }
+  
+  .dropDownCamas-container{
+      position: absolute;
+      margin-top: 130px;
+      margin-left: 400px;
+  }
+  
+  .dropDownBanos-container{
+      position: absolute;
+      margin-top: 70px;
+      margin-left: 500px;
+  }
+  
+  .misGustos-container{
+      position: absolute;
+      margin-top: 130px;
+      margin-left: 500px;
+      background-color: #e74c3c;
+  }
+  
+  .lf{
+    position: absolute;
+    margin-top: 135px;
+    margin-left: 725px;  
+    border-radius: 10px;
+    background: red;
+    border-color: black;
+  }
+  .cardLogo-container{
+      position: absolute;
+      margin-top: 100px;
+      margin-left: 20px;
+  }
+  @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+  
+  .navbar-icon-top .navbar-nav .nav-link > .fa {
+    position: relative;
+  }
+  
+  .navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+   
+    position: absolute;
+    right: 50px;
+    font-family: sans-serif;
+    
+  }
+  
+  
+  @media (min-width: 992px) {
+    .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+      text-align: center;
+      display: table-cell;
+      height: 70px;
+      vertical-align: middle;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  
+    .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
+      display: block;
+      width: 48px;
+      margin: 2px auto 4px auto;
+      top: 0;
+  
+    }
+  
+    .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
+      top: -35px;
+    }
+  }
+  .ojo{
+    width:35px;
+    height: 35px;
+  }
+  .img_Perfil{
+    position: absolute;
+    margin-left: 1000px;
+    margin-top: -65px;
+    width: 50px;
+    height: 50px;
+  }
+  /*body,html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #e74c3c !important;
+  }
+  */
+  
+  .nombre{
+    position: absolute;
+    margin-top: 180px;
+    margin-left: 400px;
+  }
+    .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+  
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+  
+  .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+  
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+  
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+
 .brandComprar-container{
     position:fixed;
     margin-top: 30px;
@@ -24,13 +229,13 @@
 
 .descripcionBox-container{
     position:fixed;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 1100px;
 }
 
 .detalleBox-container{
     position:fixed;
-    margin-top: 350px;
+    margin-top: 290px;
     margin-left: 1130px;
     border-top-style: none;
     border-right-style: none;
@@ -40,19 +245,19 @@
 
 .detalleInmobiliaria-container{
     position:fixed;
-    margin-top: 650px;
+    margin-top: 590px;
     margin-left: 1130px;
 }
 
 .contactarInmobiliaria-container{
     position:fixed;
-    margin-top: 710px;
+    margin-top: 660px;
     margin-left: 1130px;
 }
 
 .cardLogo-container{
     position: fixed;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 370px;
 }
 
@@ -87,14 +292,15 @@
 
 .cardTour1-container{
     position: fixed;
-    margin-top: 680px;
+    margin-top: 700px;
     margin-left: 370px;
 }
 
 .cardTour2-container{
     position: fixed;
-    margin-top: 680px;
-    margin-left: 590px;
+    margin-top: 630px;
+    margin-left: 370px;
+    max-width: 600px;
 }
 
 .cardTour3-container{
@@ -108,3 +314,25 @@
     margin-top: 840px;
     margin-left: 500px;
 }
+
+.diseno{
+  max-width: 300px;
+}
+
+.pic{
+  height: 220px ;
+  width:300px
+}
+
+.picbig{
+  position: absolute;
+  width: 0px;
+  -webkit-animation: width 0.3s linear 0s;
+  transition:width 0.3s linear 0;
+  z-index: 10;
+}
+
+.pic:hover + .picbig{
+  width: 200px;
+}
+

@@ -59,7 +59,7 @@ export class ViviendaService {
   }
 
  
-  getImagen(eventId: any): Observable<File>{
+  getImagen(eventId: any): Observable<any>{
     return this.http.get<File>(this.urlBase + '/obtenerprimerimagen/' + eventId).pipe(map( 
       res => res as File
     ));
@@ -71,7 +71,4 @@ export class ViviendaService {
       map(response =>response as Vivienda[])
     );
   } 
-  actualizarVivienda(vivienda: Object): Observable<any>{
-    return this.http.put(this.urlBase+'/actualizarvivienda/1',vivienda,{headers:this.httpHeaders})
-  }
 }
