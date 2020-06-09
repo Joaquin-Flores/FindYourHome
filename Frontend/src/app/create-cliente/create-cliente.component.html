@@ -1,38 +1,85 @@
- <h3>Registro de cliente</h3>
-<div *ngIf = "isRClienteRoute()">
-   
-    <form (ngSubmit) = "save()">
-        
-        <div class = "form-group">
-            <label for = "usuario">Usuario</label>
-            <input type = "text" class = "form-control" id = "usuario" [(ngModel)] = "cliente.usuario" name ="usuario">
-        </div>
-        <div class = "form-group">
-            <label for = "contrasena">Contraseña</label>
-            <input type = "text" class = "form-control" id = "contrasena" [(ngModel)] = "cliente.contrasena" name ="contrasena">
-        </div>
-        <div class = "form-group">
-            <label for = "nombre">Nombre</label>
-            <input type = "text" class = "form-control" id = "nombre" [(ngModel)] = "cliente.nombre" name ="nombre">
-        </div>
-        <div class = "form-group">
-            <label for = "numeroContacto">Numero Contacto</label>
-            <input type = "text" class = "form-control" id = "numeroContacto" [(ngModel)] = "cliente.numeroContacto" name ="numeroContacto">
-        </div>
-        <div class = "form-group">
-            <label for = "correo">Correo</label>
-            <input type = "text" class = "form-control" id = "correo" [(ngModel)] = "cliente.correo" name ="correo">
-        </div>
-        <div class = "form-group">
-            <label for = "ruc">Ruc</label>
-            <input type = "text" class = "form-control" id = "ruc" [(ngModel)] = "cliente.ruc" name ="ruc">
-        </div>
-         <div class = "form-group">
-            <button type="submit"   class = "btn btn-success">Registro</button>
-        </div>
-        <div class = "form-group" align="right">
-            <button (click)="submit()"  >Siguiente</button>
-        </div>
-        
-    </form>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<a href="javascript:history.back()"><img class="botonAtras" src="https://imgur.com/8kOJdC9.png"></a>
+<img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >
+<img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png" >
+
+<div class="Titulo">
+<label > Registrarse</label>
 </div>
+<div>
+
+<div class="container">
+        <div class="row"> 
+            <div class="col-md-6 col-md-offset-3">
+                <div class="well well-sm">
+                <form class="form-horizontal"  action="" method="post">
+                    <fieldset>
+                    <form (ngSubmit) = "save()" #registrarForm="ngForm" > 
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "nombre">Nombre</label>
+                        <div class="col-md-9">
+                        <input type = "text" class = "form-control" id = "nombre" [(ngModel)] = "cliente.nombre" name ="nombre"
+                        placeholder="Mínimo 6 caracteres, máximo 20" required minlength="6" maxlength="20">
+                        </div>
+                    </div>
+                    
+                    <div class = "form-group">  
+                        <label class="col-md-3 control-label" for = "apellido" >Apellido</label>
+                        <div class="col-md-9"> 
+                            <input type = "text" class = "form-control" id = "apellido" [(ngModel)] = "cliente.apellido" name ="apellido" placeholder
+                            ="Mín 6 caracteres" required minlength="6"/>
+                        </div >
+                    </div>
+                    
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "correo">Correo</label>
+                        <div class="col-md-9">
+                        <span class="form-hint">Proper format "name@something.com"</span>
+                        
+                        <input type = "email" class = "form-control" id = "correo" [(ngModel)] = "cliente.correo" 
+                        name ="correo" placeholder="jo@example.com" required
+                         pattern="([a-zA-Z0-9_])*@(hotmail|gmail|outlook)(.com)">
+                        </div>                   
+                    </div>
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "contrasena">Contraseña</label>
+                        <div class="col-md-9">
+                            <input type = "password" class = "form-control" id = "contrasena" [(ngModel)] = "cliente.contrasena" name ="contrasena"
+                            placeholder="mínimo 8 caracteres" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required on="dsf">
+                        </div>                   
+                    </div>
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "numeroContacto">Numero Contacto</label>
+                        <div class="col-md-9">
+                        <input type = "tel" class = "form-control" id = "numeroContacto" [(ngModel)] = "cliente.numero" 
+                        name ="numeroContacto" placeholder="987 654 321" required pattern="[0-9]{3} [0-9]{3} [0-9]{3}">
+                        </div>
+                    </div>
+       
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "distrito">Distrito</label>
+                        <div class="col-md-9">
+                        <input type = "text" class = "form-control" id = "distrito" [(ngModel)] = "cliente.distrito" name ="distrito" placeholder="Escribe un distrito válido" required
+                        pattern="[a-zA-Z]+"
+                         >
+                        </div>
+                    </div>
+         
+                    <div class = "form-group" align="center">
+                        <button type="submit" class = "btn btn-success" onclick="location.href='/encuesta'" [disabled]="registrarForm.form.invalid">Registrar</button>
+                    </div>  
+                    </form>  
+                </fieldset>
+                </form>
+            </div>                  
+            </div>
+            </div>
+    </div>    
+    
+</div>
+

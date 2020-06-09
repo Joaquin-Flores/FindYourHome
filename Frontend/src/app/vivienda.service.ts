@@ -18,11 +18,13 @@ export class ViviendaService {
       map(response => response as Vivienda)
     );
   }
+  
 
   createVivienda(vivienda: object): Observable<Object>{
     console.log("Enviando rest create...")
-    return this.http.post(this.urlBase + '/registrarvivienda', vivienda, {headers:this.httpHeaders});
+    return this.http.post(this.urlBase + '/registrarvivienda/1', vivienda, {headers:this.httpHeaders});
   }
+
 
   getViviendaList(): Observable<any>{
     console.log("llamanado rest: " + this.urlBase + "/viviendas")
@@ -30,10 +32,46 @@ export class ViviendaService {
       map(response => response as Vivienda[])
     );
   }
+  
+  eliminarVivienda(codigo:number): Observable<any>{
+    console.log(codigo)
+    return this.http.delete(this.urlBase+"/eliminarvivienda/" + codigo).pipe(
+      map(response => response as Vivienda)
+    );
+  }
+  
+  get = {
+    event: (eventId: any): Promise<any[]> => {
+      return this.http.get<File[]>(this.urlBase + '/obtenerimagenplano/' + eventId).pipe(map( 
+        res => {return res}
+        
+      )).toPromise();
+    }
+  }
 
+  getDiseno = {
+    event: (eventId: any): Promise<any[]> => {
+      return this.http.get<File[]>(this.urlBase + '/obtenerimagendiseno/' + eventId).pipe(map( 
+        res => {return res}
+        
+      )).toPromise();
+    }
+  }
+
+ 
+  getImagen(eventId: any): Observable<File>{
+    return this.http.get<File>(this.urlBase + '/obtenerprimerimagen/' + eventId).pipe(map( 
+      res => res as File
+    ));
+  }
+  
+  
   filtrarVivienda (ubicacion: String): Observable<any>{
     return this.http.get(this.urlBase+"/filtrarVivienda/" + ubicacion).pipe(
       map(response =>response as Vivienda[])
     );
   } 
+  actualizarVivienda(vivienda: Object): Observable<any>{
+    return this.http.put(this.urlBase+'/actualizarvivienda/1',vivienda,{headers:this.httpHeaders})
+  }
 }
