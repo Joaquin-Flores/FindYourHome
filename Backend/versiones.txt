@@ -2,6 +2,28 @@ Backend
 
 ---------------------------------------
 
+Version: 0.3
+Fecha: 07/06/2020  20:45
+Descripcion:
+ + Agrega Color.java
+ + Agrega Plano.java
+ + Agrega Estilo.java
+ + Agrega Diseno.java
+
+ + Agrega RepositorioColor.java
+ + Agrega RepositorioPlano.java
+ + Agrega RepositorioEstilo.java
+ + Agrega RepositorioDiseno.java
+
+ * Modifica BusquedaRest.java
+ * Modifica RegistroRest.java
+ * Modifica ServicioBusqueda.java
+ * Modifica ServicioRegistro.java
+
+ * Modifica application.properties
+
+---------------------------------------
+
 Version: 0.2
 Fecha: 27/05/2020  21:30
 Descripcion:
