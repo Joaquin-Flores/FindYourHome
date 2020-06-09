@@ -1,6 +1,11 @@
 package com.foundyourhome.relaciones.rest;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,17 +17,29 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.foundyourhome.relaciones.entidades.Cliente;
 import com.foundyourhome.relaciones.entidades.Contacto;
+import com.foundyourhome.relaciones.entidades.Diseno;
+import com.foundyourhome.relaciones.entidades.Plano;
 import com.foundyourhome.relaciones.entidades.Publicador;
 import com.foundyourhome.relaciones.entidades.ResumenDiseno;
 import com.foundyourhome.relaciones.entidades.Suscripcion;
 import com.foundyourhome.relaciones.entidades.Vivienda;
+import com.foundyourhome.relaciones.repositorios.RepositorioDiseno;
+import com.foundyourhome.relaciones.repositorios.RepositorioPlano;
 import com.foundyourhome.relaciones.servicios.ServicioBusqueda;
+
+
 @RestController
 @RequestMapping("/api")
 public class BusquedaRest {
 	
 	@Autowired
 	ServicioBusqueda servicioBusqueda;
+	
+	@Autowired
+	RepositorioPlano repositorioPlano;
+	
+	@Autowired
+	RepositorioDiseno repositorioDiseno;
 	
 	//FILTRADO
 	@GetMapping("/cliente/{codigo}")
@@ -91,6 +108,89 @@ public class BusquedaRest {
 		return c;
 	}
 	
+	
+	@SuppressWarnings("null")
+	@GetMapping("/obtenerimagenplano/{codigo}")
+	public List<Plano> getImagePlano(@PathVariable(value = "codigo") Long codigo) throws InterruptedException {
+		Vivienda vivienda = null;
+		try {
+			vivienda = servicioBusqueda.mostrarVivienda(codigo);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+			
+		List<Plano> plano = new ArrayList<Plano>();	
+		
+		for(Plano p : vivienda.getListaPlano()) {
+		  Plano p2 = new Plano(p.getName(), p.getType(), decompressBytes(p.getPicByte()), vivienda);
+		  plano.add(p2);
+		}
+				
+		return (List<Plano>) plano;
+	}
+	
+	@SuppressWarnings("null")
+	@GetMapping("/obtenerimagendiseno/{codigo}")
+	public List<Diseno> getImageDiseno(@PathVariable(value = "codigo") Long codigo) throws InterruptedException {
+		Vivienda vivienda = null;
+		try {
+			vivienda = servicioBusqueda.mostrarVivienda(codigo);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+			
+		List<Diseno> diseno = new ArrayList<Diseno>();	
+		
+		for(Diseno p : vivienda.getListaDiseno()) {
+		  Diseno p2 = new Diseno(p.getName(), p.getType(), decompressBytes(p.getPicByte()), vivienda);
+		  diseno.add(p2);
+		}
+				
+		return (List<Diseno>) diseno;
+	}
+	
+	@SuppressWarnings("null")
+	@GetMapping("/obtenerprimerimagen/{codigo}")
+	public Diseno getPrimerImage(@PathVariable(value = "codigo") Long codigo) throws InterruptedException {
+		Vivienda vivienda = null;
+		try {
+			vivienda = servicioBusqueda.mostrarVivienda(codigo);
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+		
+		Diseno p = vivienda.getListaDiseno().get(0);
+			
+		Diseno diseno = new Diseno(p.getName(), p.getType(), decompressBytes(p.getPicByte()), vivienda);	
+		
+		//diseno = vivienda.getListaDiseno().get(0);
+		/*for(Diseno p : vivienda.getListaDiseno()) {
+		  Diseno p2 = new Diseno(p.getName(), p.getType(), decompressBytes(p.getPicByte()), vivienda);
+		  diseno.add(p2);
+		}*/
+				
+		return diseno;
+	}
+	
+	public static byte[] decompressBytes(byte[] data) {
+	     Inflater inflater = new Inflater();
+	     inflater.setInput(data);
+	     ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+	     byte[] buffer = new byte[1024];
+	
+	     try {
+	         while (!inflater.finished()) {
+	             int count = inflater.inflate(buffer);
+	             outputStream.write(buffer, 0, count);
+	         }
+	         outputStream.close();
+	     } catch (IOException ioe) {}
+	     
+	     catch (DataFormatException e) {}
+	     return outputStream.toByteArray();
+	}
+	
+	//FILTROS PERSONALIZADOS
 	@GetMapping("/filtrarVivienda/{ubicacion}")
 	public List<Vivienda> filtrarViviendas(@PathVariable(value = "ubicacion") String ubicacion) {
 		return servicioBusqueda.filtrarViviendas(ubicacion);
@@ -109,5 +209,10 @@ public class BusquedaRest {
 	@GetMapping("/filtrarviviendabano/{numBanos}")
 	public List<Vivienda> filtrarViviendaBano(@PathVariable(value = "numBanos") Double numBanos) {
 		return servicioBusqueda.filtrarViviendasNumBanos(numBanos);
+	}
+	
+	@GetMapping("/viviendapublicador/{codigo}")
+	public List<Vivienda> viviendaPublicador(@PathVariable(value = "codigo") Long codigo) throws Exception {
+		return servicioBusqueda.viviendaPublicador(codigo);
 	}
 }
