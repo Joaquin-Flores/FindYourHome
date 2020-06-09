@@ -2,6 +2,90 @@ Frontend
 
 ---------------------------------------
 
+Version: 0.7
+Fecha: 09/06/2020  03:25
+Descripcion:
+ + Agrega actualizar-cliente:
+   - component.css
+   - component.html
+   - component.ts
+
+ + Agrega actualizar-vivienda:
+   - component.css
+   - component.html
+   - component.ts
+
+ * Modifica filtrar-vivienda:
+   - component.css
+   - component.html
+   - component.ts
+
+ * Modifica model/publicador.ts
+ * Modifica publicador.service.ts
+ * Modifica cliente.service.ts
+ * Modifica publicador.service.ts
+ * Modifica vivenda.service.ts
+
+ * Modifica app-routing.module.ts
+
+---------------------------------------
+
+Version: 0.6
+Fecha: 08/06/2020  22:20
+Descripcion:
+ * Modifica publicar-inmueble:
+   - component.html
+   - component.css
+
+ * Modifica imagen-vivienda:
+   - component.html
+   - component.css
+
+ * Modifica vivienda-publicador: 
+   - component.html
+   - component.css
+
+ * Modifica show-vivienda:
+   - component.css
+   - component.html
+   - component.ts
+
+ + Agrega subir-imagen:
+   - component.css
+   - component.html
+   - component.ts
+
+ * Modifica app-routing.module.ts
+ * Modifica app.component.css
+ * Modifica app.component.html
+ * Modifica app.module.ts
+
+---------------------------------------
+
+Version: 0.5
+Fecha: 05/06/2020  09:05
+Descripcion:
+
+ * Modifica encuesta:
+   - component.css
+   - component.html
+   - component.ts
+
+ * Modifica filtrar-vivienda:
+   - component.css
+   - component.html
+   - component.ts
+
+ * Modifica list-vivienda:
+   - component.html
+
+ * Modifica app-routing.module.ts
+ * Modifica app.component.css
+ * Modifica app.component.html
+ * Modifica app.module.ts
+
+---------------------------------------
+
 Version: 0.4
 Fecha: 19/05/2020  02:50
 Descripcion:
