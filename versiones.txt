@@ -2,6 +2,20 @@ FindYourHome
 
 ---------------------------------------
 
+Version: 0.4.0
+Fecha: 09/02/2020  03:30
+Descripción: 
+ - Actualiza el Frontend a la version 0.7
+   -- Añade la encuesta al registrar un cliente
+   -- Se visualizan las imagenes de las viviendas al listarlas
+
+   -- Ajusta cambios en archivos comunes
+
+ - Actualiza el Backend a la version 0.3
+   -- Añade clases para el buen funcionamiento de la pagina
+
+---------------------------------------
+
 Version: 0.3.1
 Fecha: 18/05/2020  15:00
 Descripción: 
