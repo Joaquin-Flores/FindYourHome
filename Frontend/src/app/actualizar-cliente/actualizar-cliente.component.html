@@ -1,0 +1,61 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<a href="javascript:history.back()"><img class="botonAtras" src="https://imgur.com/8kOJdC9.png"></a>
+<img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >
+<img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png" >
+
+<div class="Titulo">
+<label > Registrarse</label>
+</div>
+<div>
+
+<div class="container">
+    <div class="row"> 
+        <div class="col-md-6 col-md-offset-3">
+            <div class="well well-sm">
+                <form class="form-horizontal"  action="" method="post">
+                    <fieldset>
+                    <form (ngSubmit) = "actualizar()" #registrarForm="ngForm" > 
+                                       
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "correo">Correo</label>
+                        <div class="col-md-9">
+                        <span class="form-hint">Proper format "name@something.com"</span>
+                        
+                        <input type = "email" class = "form-control" id = "correo" [(ngModel)] = "cliente.correo" 
+                        name ="correo" placeholder="jo@example.com" required
+                         pattern="([a-zA-Z0-9_])*@(hotmail|gmail|outlook)(.com)">
+                        </div>                   
+                    </div>
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "contrasena">Contraseña</label>
+                        <div class="col-md-9">
+                            <input type = "password" class = "form-control" id = "contrasena" [(ngModel)] = "cliente.contrasena" name ="contrasena"
+                            placeholder="mínimo 8 caracteres" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required on="dsf">
+                        </div>                   
+                    </div>
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "numeroContacto">Numero Contacto</label>
+                        <div class="col-md-9">
+                        <input type = "tel" class = "form-control" id = "numeroContacto" [(ngModel)] = "cliente.numero" 
+                        name ="numeroContacto" placeholder="987 654 321" required pattern="[0-9]{3} [0-9]{3} [0-9]{3}">
+                        </div>
+                    </div>
+         
+                    <div class = "form-group" align="center">
+                        <button type="submit" class = "btn btn-success" onclick="location.href='/home'" [disabled]="registrarForm.form.invalid">Actualizar</button>
+                    </div>  
+                    </form>  
+                </fieldset>
+                </form>
+            </div>                  
+            </div>
+        </div>
+    </div>    
+    
+</div>
+
