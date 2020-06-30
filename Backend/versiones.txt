@@ -2,6 +2,52 @@ Backend
 
 ---------------------------------------
 
+Version: 0.5
+Fecha: 29/06/2020  23:50
+Descripcion:
+ + Agrega MicoservicioAuspiciadores/.
+ + Agrega eurekaserver/.
+ + Agrega zuul/.
+
+ + Agrega LoginRest.java
+ + Agrega ServicioBusqueda.java
+ + Agrega ServicioLogin.java
+ + Agrega ServicioRegistro.java
+
+ * Modifica Cliente.java
+ * Modifica Publicador.java
+ * Modifica Vivienda.java
+ * Modifica ReposoitorioCliente.java
+ * Modifica ReposoitorioPublicador.java
+
+ * Modifica application.properties
+ * Modifica pom.properties
+
+---------------------------------------
+
+Version: 0.4
+Fecha: 28/06/2020  21:30
+Descripcion:
+--Mantenimiento de las calses para soportar nuevas funciones del Frontend
+ * Modifica Cliente.java
+ * Modifica Contacto.java
+ * Modifica Publicador.java
+ * Modifica Vivienda.java
+ * Modifica RepositorioResumenDiseno.java
+ * Modifica RepositorioVivienda.java
+ * Modifica BusquedaRest.java
+ * Modifica RegistroRest.java
+
+ * Modifica ServicioBusqueda.java
+ * Modifica ServicioListado.java
+ * Modifica ServicioMantenimiento.java
+ * Modifica ServicioRegistro.java
+
+ * Modifica application.properties
+ * Modifica pom.properties
+
+---------------------------------------
+
 Version: 0.3
 Fecha: 07/06/2020  20:45
 Descripcion:
