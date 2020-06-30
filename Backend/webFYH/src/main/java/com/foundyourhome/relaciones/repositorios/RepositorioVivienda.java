@@ -10,8 +10,8 @@ import com.foundyourhome.relaciones.entidades.Vivienda;
 
 
 public interface RepositorioVivienda extends JpaRepository<Vivienda, Long>{
-	@Query ("select t from Vivienda t where t.ubicacion =:ubicacion")
-	List<Vivienda> filtrarVivienda (@Param("ubicacion") String ubicacion);
+	@Query ("select t from Vivienda t where t.direccion =:direccion")
+	List<Vivienda> filtrarVivienda (@Param("direccion") String direccion);
 	
 	@Query ("select t from Vivienda t where t.precio <= :precio")
 	List<Vivienda> filtrarViviendaPrecio (@Param("precio") Double precio);
@@ -21,6 +21,6 @@ public interface RepositorioVivienda extends JpaRepository<Vivienda, Long>{
 	
 	@Query ("select t from Vivienda t where t.numBano = :numBano")
 	List<Vivienda> filtrarViviendaBano (@Param("numBano") Double numBano);
-
+	
 }
 

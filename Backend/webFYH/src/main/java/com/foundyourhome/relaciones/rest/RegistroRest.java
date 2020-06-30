@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,13 +19,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.foundyourhome.relaciones.entidades.Cliente;
 import com.foundyourhome.relaciones.entidades.Color;
-import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Diseno;
 import com.foundyourhome.relaciones.entidades.Estilo;
+import com.foundyourhome.relaciones.entidades.ListaDeseo;
 import com.foundyourhome.relaciones.entidades.Plano;
 //import com.foundyourhome.relaciones.entidades.Diseno;
 import com.foundyourhome.relaciones.entidades.Publicador;
-import com.foundyourhome.relaciones.entidades.ResumenDiseno;
+import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Suscripcion;
 import com.foundyourhome.relaciones.entidades.Vivienda;
 import com.foundyourhome.relaciones.repositorios.RepositorioDiseno;
@@ -172,15 +171,15 @@ public class RegistroRest {
 		return v;
 	}
 	
-	@PutMapping("registrarlistadeseocliente/{codigo}")
-	public Cliente registrarListaDeseoVivienda(@RequestBody Cliente cliente,@PathVariable(value = "codigo") Long codigo) {
-		Cliente c = null;
+	@PostMapping("registrarlistadeseocliente/{CCliente}/{CVivienda}")
+	public ListaDeseo registrarListaDeseoVivienda(@PathVariable(value = "CCliente") Long CCliente,@PathVariable(value = "CVivienda") Long CVivienda, @RequestBody ListaDeseo listaDeseo) {
+		ListaDeseo lD = null;
 		try {
-			c = servicioRegistro.registrarListaDeseoCliente(cliente, codigo);
+			lD = servicioRegistro.registrarListaDeseo(CCliente, CVivienda, listaDeseo);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
 		}
-		return c;
+		return lD;
 	}
 	
 	@PostMapping("/registrarsuscripcion")
@@ -194,25 +193,15 @@ public class RegistroRest {
 		return s;
 	}
 	
-	@PostMapping("/registrarresumendiseno")
-	public ResumenDiseno registrarResumenDiseno(@RequestBody ResumenDiseno resumenDiseno){
-		ResumenDiseno rD = null;
+	@PostMapping("/registrarcontacto/{CCliente}/{CVivienda}")
+	public Contacto registrarResumenDiseno(@RequestBody Contacto contacto, @PathVariable(value = "CCliente") Long CCliente, @PathVariable(value = "CVivienda") Long CVivienda){
+		Contacto rD = null;
 		try {
-			rD = servicioRegistro.registrarResumenDiseno(resumenDiseno);
+			rD = servicioRegistro.registrarContacto(contacto, CCliente, CVivienda);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
 		}
 		return rD;
 	}
 	
-	@PostMapping("/registrarcontacto")
-	public Contacto registrarContacto(@RequestBody Contacto contacto){
-		Contacto c = null;
-		try {
-			c = servicioRegistro.registrarContacto(contacto);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Imposible de concretar");
-		}
-		return c;
-	}	
 }

@@ -2,14 +2,18 @@ package com.foundyourhome.relaciones.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "TP_CONTACTO")
@@ -24,19 +28,31 @@ public class Contacto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO_CONTACTO")
 	private Long codigo;
-
 	@Column(length = 20)
 	private String fecha;
 
-	@OneToOne
-	@JoinColumn(name = "CODIGO_RESUMENDISENO")
-	private ResumenDiseno resumenDiseno;
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_CLIENTE")
+	@JsonIgnore
+	private Cliente cliente;
 
-	public Contacto(Long codigo, String fecha, ResumenDiseno resumenDiseno) {
+	@ManyToOne
+	@JoinColumn(name = "CODIGO_PUBLICADOR")
+	@JsonIgnore
+	private Publicador publicador;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CODIGO_VIVIENDA")
+	@JsonIgnore
+	private Vivienda vivienda;
+
+	public Contacto(Long codigo, String fecha, Cliente cliente, Publicador publicador, Vivienda vivienda) {
 		super();
 		this.codigo = codigo;
 		this.fecha = fecha;
-		this.resumenDiseno = resumenDiseno;
+		this.cliente = cliente;
+		this.publicador = publicador;
+		this.vivienda = vivienda;
 	}
 
 	public Contacto() {
@@ -48,10 +64,6 @@ public class Contacto implements Serializable {
 		return codigo;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
 	public String getFecha() {
 		return fecha;
 	}
@@ -60,13 +72,34 @@ public class Contacto implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public ResumenDiseno getResumenDiseno() {
-		return resumenDiseno;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
-	public void setResumenDiseno(ResumenDiseno resumenDiseno) {
-		this.resumenDiseno = resumenDiseno;
+	public Cliente getCliente() {
+		return cliente;
 	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Publicador getPublicador() {
+		return publicador;
+	}
+
+	public void setPublicador(Publicador publicador) {
+		this.publicador = publicador;
+	}
+
+	public Vivienda getVivienda() {
+		return vivienda;
+	}
+
+	public void setVivienda(Vivienda vivienda) {
+		this.vivienda = vivienda;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -92,5 +125,4 @@ public class Contacto implements Serializable {
 			return false;
 		return true;
 	}
-
 }

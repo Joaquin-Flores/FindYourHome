@@ -9,15 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "TP_CLIENTE")
@@ -43,34 +38,26 @@ public class Cliente implements Serializable {
 	private String numero;
 	@Column(unique = true, length = 20)
 	private String correo;
-	
-	
-	@JoinTable(
-			name = "Cliente_ListaDeseo",
-			joinColumns = @JoinColumn(name = "FK_CLIENTE", nullable = false),
-			inverseJoinColumns = @JoinColumn(name = "FK_VIVIENDA", nullable = false)
-	)
-	
-	
-	@ManyToMany()
-	@JsonIgnoreProperties("listaDeseo")
-	@JsonIgnore
-	private List<Vivienda> listaDeseo;
 
-	@OneToOne(mappedBy = "cliente")
-	private ResumenDiseno viviendaDiseno;
-	
+	@OneToMany(mappedBy = "cliente")
+	@JsonIgnore
+	private List<ListaDeseo> listaDeseo;
+
+	@OneToMany(mappedBy = "cliente")
+	@JsonIgnore
+	private List<Contacto> contacto;
+
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	@JsonIgnore
 	List<Estilo> estilo;
-	
+
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	@JsonIgnore
 	List<Color> color;
-	
 
 	public Cliente(Long codigo, String contrasena, String nombre, String apellido, String distrito, String numero,
-			String correo, List<Vivienda> listaDeseo, ResumenDiseno viviendaDiseno) {
+			String correo, List<ListaDeseo> listaDeseo, List<Contacto> contacto, List<Estilo> estilo,
+			List<Color> color) {
 		super();
 		this.codigo = codigo;
 		this.contrasena = contrasena;
@@ -80,7 +67,9 @@ public class Cliente implements Serializable {
 		this.numero = numero;
 		this.correo = correo;
 		this.listaDeseo = listaDeseo;
-		this.viviendaDiseno = viviendaDiseno;
+		this.contacto = contacto;
+		this.estilo = estilo;
+		this.color = color;
 	}
 
 	public Cliente() {
@@ -102,14 +91,6 @@ public class Cliente implements Serializable {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
-	}
-	
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
 	}
 
 	public String getNombre() {
@@ -136,6 +117,14 @@ public class Cliente implements Serializable {
 		this.distrito = distrito;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 	public String getCorreo() {
 		return correo;
 	}
@@ -144,20 +133,36 @@ public class Cliente implements Serializable {
 		this.correo = correo;
 	}
 
-	public List<Vivienda> getListaDeseo() {
+	public List<ListaDeseo> getListaDeseo() {
 		return listaDeseo;
 	}
 
-	public void setListaDeseo(List<Vivienda> listaDeseo) {
+	public void setListaDeseo(List<ListaDeseo> listaDeseo) {
 		this.listaDeseo = listaDeseo;
 	}
 
-	public ResumenDiseno getViviendaDiseno() {
-		return viviendaDiseno;
+	public List<Contacto> getContacto() {
+		return contacto;
 	}
 
-	public void setViviendaDiseno(ResumenDiseno viviendaDiseno) {
-		this.viviendaDiseno = viviendaDiseno;
+	public void setContacto(List<Contacto> contacto) {
+		this.contacto = contacto;
+	}
+
+	public List<Estilo> getEstilo() {
+		return estilo;
+	}
+
+	public void setEstilo(List<Estilo> estilo) {
+		this.estilo = estilo;
+	}
+
+	public List<Color> getColor() {
+		return color;
+	}
+
+	public void setColor(List<Color> color) {
+		this.color = color;
 	}
 
 	@Override

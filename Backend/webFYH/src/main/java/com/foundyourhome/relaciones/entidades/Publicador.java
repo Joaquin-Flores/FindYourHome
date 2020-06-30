@@ -29,7 +29,7 @@ public class Publicador implements Serializable {
 	@Column(name = "CODIGO_PUBLICADOR")
 	private Long codigo;
 
-	@Column(unique = true, length = 20)
+	@Column(unique = true)
 	private String razonSocial;
 	@Column(unique = true, length = 20)
 	private String ruc;
@@ -40,20 +40,22 @@ public class Publicador implements Serializable {
 	@Column(unique = true, length = 20)
 	private String correo;
 	@Column(unique = true)
-	private String contacto;
+	private String numero;
 
 	@OneToMany(mappedBy = "publicador", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Vivienda> vivienda;
 
-	@OneToOne(mappedBy = "publicador")
-	private ResumenDiseno resumenDiseno;
+	@OneToMany(mappedBy = "publicador")
+	@JsonIgnore
+	private List<Contacto> contacto;
 
 	@OneToOne(mappedBy = "publicador")
+	@JsonIgnore
 	private Suscripcion suscripcion;
 
 	public Publicador(Long codigo, String razonSocial, String ruc, String nombre, String apellido, String correo,
-			String contacto, List<Vivienda> vivienda, ResumenDiseno viviendaDiseno, Suscripcion suscripcion) {
+			String numero, List<Vivienda> vivienda, List<Contacto> contacto, Suscripcion suscripcion) {
 		super();
 		this.codigo = codigo;
 		this.razonSocial = razonSocial;
@@ -61,9 +63,9 @@ public class Publicador implements Serializable {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
-		this.contacto = contacto;
+		this.numero = numero;
 		this.vivienda = vivienda;
-		this.resumenDiseno = viviendaDiseno;
+		this.contacto = contacto;
 		this.suscripcion = suscripcion;
 	}
 
@@ -78,14 +80,6 @@ public class Publicador implements Serializable {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getContacto() {
-		return contacto;
-	}
-
-	public void setContacto(String contacto) {
-		this.contacto = contacto;
 	}
 
 	public String getRazonSocial() {
@@ -128,6 +122,14 @@ public class Publicador implements Serializable {
 		this.correo = correo;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 	public List<Vivienda> getVivienda() {
 		return vivienda;
 	}
@@ -136,12 +138,12 @@ public class Publicador implements Serializable {
 		this.vivienda = vivienda;
 	}
 
-	public ResumenDiseno getViviendaDiseno() {
-		return resumenDiseno;
+	public List<Contacto> getContacto() {
+		return contacto;
 	}
 
-	public void setViviendaDiseno(ResumenDiseno resumenDiseno) {
-		this.resumenDiseno = resumenDiseno;
+	public void setContacto(List<Contacto> contacto) {
+		this.contacto = contacto;
 	}
 
 	public Suscripcion getSuscripcion() {

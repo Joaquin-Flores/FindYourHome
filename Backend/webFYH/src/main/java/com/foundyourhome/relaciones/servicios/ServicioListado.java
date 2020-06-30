@@ -10,7 +10,6 @@ import com.foundyourhome.relaciones.entidades.Publicador;
 import com.foundyourhome.relaciones.entidades.Suscripcion;
 import com.foundyourhome.relaciones.entidades.Vivienda;
 import com.foundyourhome.relaciones.repositorios.RepositorioCliente;
-import com.foundyourhome.relaciones.repositorios.RepositorioContacto;
 import com.foundyourhome.relaciones.repositorios.RepositorioPublicador;
 import com.foundyourhome.relaciones.repositorios.RepositorioResumenDiseno;
 import com.foundyourhome.relaciones.repositorios.RepositorioSuscripcion;
@@ -30,9 +29,6 @@ public class ServicioListado {
 	
 	@Autowired
 	RepositorioResumenDiseno resumenDiseno;
-	
-	@Autowired
-	RepositorioContacto repositorioContacto;
 	
 	@Autowired
 	RepositorioSuscripcion repositorioSuscripcion;
