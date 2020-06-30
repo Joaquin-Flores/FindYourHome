@@ -1,3 +1,4 @@
+import { Publicador } from './publicador';
 export class Vivienda {
     codigo: number;
     tipoTerreno: String;      
@@ -17,5 +18,10 @@ export class Vivienda {
     nuevaConstruccion: String;
     anoConstruccion: String;  
     dimension: String;        
-    ubicacion: String;
+    distrito: String;
+    numero: String;
+    direccion: String;
+    ciudad: String;
+    fueContactado: number;
+    publicador: Publicador;
 }

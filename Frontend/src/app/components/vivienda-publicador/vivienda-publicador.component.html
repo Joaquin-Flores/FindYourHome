@@ -65,10 +65,10 @@
                     <th>{{p.codigo}}</th>
                     <th><a class = "btn btn-sm text-white btn-success">Editar</a></th>
                     <div  *ngIf = "!p.diseno">
-                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo]">Agregar imagenes</a></th>
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo, codigoPublicador]">Agregar imagenes</a></th>
                     </div>
                     <div  *ngIf = "p.diseno">
-                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo]">Editar Imagenes</a></th>
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo, codigoPublicador]">Editar Imagenes</a></th>
                     </div>
                     <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/imagenVivienda', p.codigo]">Ver imagen</a></th>
                     <th><a class = "btn btn-sm text-white btn-danger" (click) = "eliminarVivienda(p.codigo); refresh()">Eliminar</a></th>

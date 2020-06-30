@@ -1,46 +1,106 @@
-<nav class ="navbar navbar-expand-lg navbar-light bg-light">
-    <div class = "container brandComprar-container">
-        <a class="navbar-brand" href="#">comprar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!--<a href="javascript:history.back()"><img class="botonAtras" src="https://imgur.com/8kOJdC9.png"></a>
+-->
+<div class="container">
+            <div class="row" align="center">
+            <div class="col" >
+
+          <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+      <div class="col Titulo">
+          <label class="label">Registrarse como publicador</label>
+      </div>
+      <div class="col">
+        <img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
     </div>
-    <div class = "container brandVender-container">
-        <a class="navbar-brand" href="#">vender</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </div>
-    <div class = "container brandAlquilar-container">
-        <a class="navbar-brand" href="#">alquilar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </div>
-    <div class = "container brandInicio-container">
-        <a class="navbar-brand" href="#">inicio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </div>
-</nav>
-<div>
-    <br>
-    <hr style="width:100%;border-color:black;">
+<hr style="border:20px;" style="width:100%" style="border-color:black;">
+  
+
+    
+    
+<div class="container contenedor" align="center" >
+        <div class="row "> 
+            <div class="col-md-6 col-md-offset-3 ">
+                <div class="well well-sm contenedora" >
+                <form class="form-horizontal"  action="" method="post">
+                    <fieldset>
+                    <form (ngSubmit) = "save()" #registrarForm="ngForm" > 
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "nombre">Nombre</label>
+                        <div class="col-md-9">
+                        <input type = "text" class = "form-control" id = "nombre" [(ngModel)] = "publicador.nombre" name ="nombre"
+                        placeholder="Máximo 20 caracteres" required  minlength="2" maxlength="20">
+                        </div>
+                    </div>
+                    
+                    <div class = "form-group">  
+                        <label class="col-md-3 control-label" for = "apellido" >Apellido</label>
+                        <div class="col-md-9"> 
+                            <input type = "text" class = "form-control" id = "apellido" [(ngModel)] = "publicador.apellido" name ="apellido" placeholder
+                            ="Máximo 20 caracteres" required minlength="2" maxlength="20">
+                        </div >
+                    </div>
+                    
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "correo">Correo</label>
+                        <div class="col-md-9">
+                                    
+                        <input type = "email" class = "form-control" id = "correo" [(ngModel)] = "publicador.correo"
+                        name ="correo" placeholder="name@something.com" required
+                         pattern="([a-zA-Z0-9_])*@(hotmail|gmail|outlook)(.com)">
+                        </div>                   
+                    </div>
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "contrasena">Contraseña</label>
+                        <div class="col-md-9">
+                            <input type = "password" class = "form-control" id = "contrasena" [(ngModel)] = "publicador.contrasena" name ="contrasena" 
+                            placeholder="mín 8 caracteres (combinar: mayúsculas, mínusculas,números)" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required on="dsf">
+                        </div>                   
+                    </div>
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "numeroContacto">Numero Contacto</label>
+                        <div class="col-md-9">
+                        <input type = "tel" class = "form-control" id = "numeroContacto" [(ngModel)] = "publicador.numero" 
+                        name ="numeroContacto" placeholder="Formato: ### ### ###" required pattern="[0-9]{3} [0-9]{3} [0-9]{3}">
+                        </div>
+                    </div>
+       
+                   
+
+                    <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "razonSocial">Razón Social</label>
+                        <div class="col-md-9">
+                        <input type = "text" class = "form-control" id = "razonSocial" [(ngModel)] = "publicador.razonSocial" name ="razonSocial" placeholder="Formato: ########### (11 dígitos)" required pattern="[0-9]{11}"
+                         ></div>
+                    </div>
+                      <div class = "form-group">
+                        <label class="col-md-3 control-label" for = "ruc">RUC</label>
+                        <div class="col-md-9">
+                        <input type = "text" class = "form-control" id = "ruc"  [(ngModel)] = "publicador.ruc"  name ="ruc" placeholder="Formato: ########### (11 dígitos)" required pattern="[0-9]{11}"
+                         >
+                    </div>
+
+                    </div>
+         
+                    <div class = "form-group" align="center">
+                        <button type="submit" class = "btn btn-success" onclick="location.href='tipoPublicador'" [disabled]="registrarForm.form.invalid">Registrar</button>
+                    </div>  
+                    </form>  
+                </fieldset>
+                </form>
+            </div>                  
+          
+    </div>    
+    
 </div>
 
-<div class = "container labelHead-container">
-    <h1>Dinos quién eres</h1>
+  </div>
 </div>
 
-<div class = "container independienteButton-container">
-    <nav>
-      <a routerLink = "showVivienda" class = "btn btn-primary active">Independiente</a>
-    </nav>
-</div>
 
-<div class = "container inmobiliariaButton-container">
-    <nav>
-      <a routerLink = "showVivienda" class = "btn btn-primary active">Empresa inmobiliaria</a>
-    </nav>
-</div>

@@ -2,16 +2,24 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<a href="javascript:history.back()"><img class="botonAtras" src="https://imgur.com/8kOJdC9.png"></a>
-<img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >
-<img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png" >
-
-<div class="Titulo">
-<label > Registrarse</label>
-</div>
-<div>
-
+<!--<a href="javascript:history.back()"><img class="botonAtras" src="https://imgur.com/8kOJdC9.png"></a>
+-->
 <div class="container">
+    <div class="row" align="center">
+        <div class="col">
+            <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >  
+        </div>
+        <div class="col Titulo">
+            <label class="label ">Registrarse como comprador</label>
+        </div>
+        <div class="col">
+            <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >  
+        </div>
+    </div>
+
+    
+    
+<div class="container contenedor" align="center" >
         <div class="row"> 
             <div class="col-md-6 col-md-offset-3">
                 <div class="well well-sm">
@@ -22,7 +30,7 @@
                         <label class="col-md-3 control-label" for = "nombre">Nombre</label>
                         <div class="col-md-9">
                         <input type = "text" class = "form-control" id = "nombre" [(ngModel)] = "cliente.nombre" name ="nombre"
-                        placeholder="Mínimo 6 caracteres, máximo 20" required minlength="6" maxlength="20">
+                        placeholder="Máximo 20 caracteres" required  minlength="2" maxlength="20">
                         </div>
                     </div>
                     
@@ -30,17 +38,16 @@
                         <label class="col-md-3 control-label" for = "apellido" >Apellido</label>
                         <div class="col-md-9"> 
                             <input type = "text" class = "form-control" id = "apellido" [(ngModel)] = "cliente.apellido" name ="apellido" placeholder
-                            ="Mín 6 caracteres" required minlength="6"/>
+                            ="Máximo 20 caracteres" required minlength="2" maxlength="20">
                         </div >
                     </div>
                     
                     <div class = "form-group">
                         <label class="col-md-3 control-label" for = "correo">Correo</label>
                         <div class="col-md-9">
-                        <span class="form-hint">Proper format "name@something.com"</span>
-                        
+                                    
                         <input type = "email" class = "form-control" id = "correo" [(ngModel)] = "cliente.correo" 
-                        name ="correo" placeholder="jo@example.com" required
+                        name ="correo" placeholder="name@something.com" required
                          pattern="([a-zA-Z0-9_])*@(hotmail|gmail|outlook)(.com)">
                         </div>                   
                     </div>
@@ -49,7 +56,7 @@
                         <label class="col-md-3 control-label" for = "contrasena">Contraseña</label>
                         <div class="col-md-9">
                             <input type = "password" class = "form-control" id = "contrasena" [(ngModel)] = "cliente.contrasena" name ="contrasena"
-                            placeholder="mínimo 8 caracteres" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required on="dsf">
+                            placeholder="mín 8 caracteres (combinar: mayúsculas, mínusculas,números)" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" required on="dsf">
                         </div>                   
                     </div>
 
@@ -57,7 +64,7 @@
                         <label class="col-md-3 control-label" for = "numeroContacto">Numero Contacto</label>
                         <div class="col-md-9">
                         <input type = "tel" class = "form-control" id = "numeroContacto" [(ngModel)] = "cliente.numero" 
-                        name ="numeroContacto" placeholder="987 654 321" required pattern="[0-9]{9}">
+                        name ="numeroContacto" placeholder="Formato: ### ### ###" required pattern="[0-9]{3} [0-9]{3} [0-9]{3}">
                         </div>
                     </div>
        
@@ -77,9 +84,11 @@
                 </fieldset>
                 </form>
             </div>                  
-            </div>
-            </div>
+          
     </div>    
     
 </div>
 
+  </div>
+</div>
+<br>

@@ -15,16 +15,21 @@ export class SubirImagenComponent implements OnInit {
   message: string;
 
   codigoVivienda:number;
+  codigoPublicador: number;
 
   ngOnInit(): void {
-    this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
+    //this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
+    this.dataRoute.paramMap.subscribe(params =>{
+      this.codigoVivienda = parseInt(params.get('id1'));
+      this.codigoPublicador = parseInt(params.get('id2'));
+    })
     console.log(this.codigoVivienda)
   }
 
 
 
 //DROPZONE----------------------------
-  files: File[] = [];
+  files: File[] = [];  
 
   filesDiseno: File[] = [];
 

@@ -1,46 +1,58 @@
-<nav class ="navbar navbar-expand-lg navbar-light bg-light">
-    <div class = "container brandComprar-container">
-        <a class="navbar-brand" href="#">comprar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+<!------ Include the above in your HEAD tag ---------->
+
+    <!--<img class="img_Logoizq-container " src="https://imgur.com/yzmpQ2X.png" >-->
+   
+     <div class="container">
+            <div class="row" align="center">
+            <div class="col" >
+
+          <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+      <div class="col ">
+        <div  class="Titulo-container">
+          <h1>FindYourHome</h1>
+       
+        </div>
+      </div>
+      <div class="col">
+        <img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
     </div>
-    <div class = "container brandVender-container">
-        <a class="navbar-brand" href="#">vender</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<hr style="border:20px;" style="width:100%" style="border-color:black;">
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class = "container labelHead-container" align="center">
+        <h2>Dinos quién eres</h2>
     </div>
-    <div class = "container brandAlquilar-container">
-        <a class="navbar-brand" href="#">alquilar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </div>
-    <div class = "container brandInicio-container">
-        <a class="navbar-brand" href="#">inicio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </div>
-</nav>
-<div>
-    <br>
-    <hr style="width:100%;border-color:black;">
+  </div>
 </div>
 
-<div class = "container labelHead-container">
-    <h1>Dinos quién eres</h1>
+<div class="row" align="center">
+   <div class="col">
+       <div class="card Card">
+          <img  src="https://imgur.com/NT1FfIy.png" style="width:100%">
+           <br>
+          <div class="container Publicador" >         
+            <a onclick="location.href='tipoPublicador/publicarInmueble'" class = "btn">Empresa Inmobiliaria</a>
+        </div>
+    </div>
 </div>
-
-<div class = "container independienteButton-container">
-    <nav>
-      <a routerLink = "publicarInmueble" class = "btn btn-primary active">Independiente</a>
-    </nav>
-</div>
-
-<div class = "container inmobiliariaButton-container">
-    <nav>
-      <a routerLink = "publicarInmueble" class = "btn btn-primary active">Empresa inmobiliaria</a>
-    </nav>
+   <div class="col">
+        <div class="card Card">
+            <img class="imgPublicador" src="https://imgur.com/wxjYdmy.png" style="width:100%">
+            <br>
+            <div class="container Publicador" >         
+                <button onclick="location.href='tipoPublicador/publicarInmueble'" class = "btn">Publicador Independiente</button>
+            </div>
+        </div>
+   </div>
 </div>

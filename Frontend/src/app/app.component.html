@@ -1,56 +1,71 @@
-<div   *ngIf = "isHomeRoute()">
-  <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >
-  <img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png" >
-  <div align="center" class="Titutlo-container">
-    <H1 style="color:black"  >FindYourHome</H1> 
-    <h5  >¿Buscas una vivienda con diseño basado en tus gustos?</h5 >
-    <h5  >!Estás en el sitio correcto!</h5 >
+<div *ngIf="isHomeRoute()">
+  <div class="container">
+    <div class="row" align="center">
+      <div class="col">
+
+        <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+      <div class="col ">
+        <div align="center" class="Titutlo-container">
+
+          <H1 class="primero(Hola)" style="color:black"></H1>
+          <h5>¿Buscas una vivienda con diseño basado en tus gustos?</h5>
+          <h5>!Estás en el sitio correcto!</h5>
+        </div>
+      </div>
+      <div class="col">
+        <img class="img_Logoder-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+    </div>
   </div>
-  <hr style="border:20px;" style="width:100%"  style="border-color:black;" >
+  <hr style="border:20px;" style="width:100%" style="border-color:black;">
 </div>
 
-<div class="Pic_Btn-container" *ngIf = "isHomeRoute()">
-   
-   <img class="img_Comprar-container" src="https://imgur.com/s45ztQ5.png" >
-   <img class="img_Vender-container" src="https://imgur.com/RZvtKJD.png" >
-   <img class="img_Alquilar-container" src="https://imgur.com/uzCDh4Y.png"  >
-    <nav >
-      <a class="btn_Comprar-container" routerLink="filtrarVivienda">Comprar inmueble</a>
-      <a class="btn_Vender-container" routerLink="tipoPublicador" >Vender Inmueble</a>
-      <a class="btn_Alquilar-container" routerLink="filtrarVivienda">Alquilar Inmueble</a>
-    </nav>           
-       
-      
+<div class="Pic_Btn-container" *ngIf="isHomeRoute()">
+  <div class="container">
+    <div class="row" align="center">
+      <div class="col">
+        <img class="img_Comprar-container" src="https://imgur.com/s45ztQ5.png">
+        <a class="btn btn_Comprar-container" routerLink="filtrarVivienda">Comprar inmueble</a>
+      </div>
+      <div class="col">
+        <img class="img_Vender-container" src="https://imgur.com/RZvtKJD.png">
+        <a class="btn btn_Vender-container" routerLink="tipoPublicador">Vender Inmueble</a>
+      </div>
+      <div class="col">
+        <img class="img_Alquilar-container" src="https://imgur.com/uzCDh4Y.png">
+        <nav>
+          <a class="btn btn_Alquilar-container" routerLink="filtrarVivienda">Alquilar Inmueble</a>
+        </nav>
+      </div>
+
+    </div>    
+ 
+  </div>
+    
+  <div class="table-reponsive">
+  <hr style="border:20px;" style="width:100%" style="border-color:black;">
+    <div class="card-body text-black">
+        <table class="table" >
+            <tbody align="center">
+                <th *ngFor="let a of auspiciador" >
+                    <img class="images" src="{{a.logo}}" >
+                </th>
+            </tbody>
+        </table>
+    </div>    
+</div> 
 </div>
+
+<!--<div  id="mapa1-mapbox" ></div>-->
+
+
 
 <!--IMAGEN CON LINK
   <a title="Los Tejos" href="http://www.lostejos.com"><img src="casarural.jpg" alt="Los Tejos" /></a>
 -->
 
-<div class="Inicio_sesion-container" *ngIf = "isHomeRoute()">
-  <h5 class="icon" style="color:Black" >Iniciar sesión</h5>
-  <input placeholder="Nombre de usuario" type="text" class="form-control" id="n_usuario" style="width:300px; border-radius: 6px">
-  <h3></h3>
-  <input placeholder="Contraseña" type="password"  id="c_usuario" style="width:300px; border-radius: 6px">
-  <h3></h3>
-  <nav align="right">
-  <button type="submit" class="btn-success" >Ingresar</button>
-  </nav>
-  <h1></h1> 
-  <H5 style="color:Black" align="center">¿Eres nuevo aquí?</H5>
-  <nav class="btn_Registrar" align="center">
-    <a routerLink="registroEntidades/newCliente"  class="btn btn-primary active">Regístrate gratis</a>
-  </nav>
-</div>
-<div class="Mapa" *ngIf = "isHomeRoute()">
-  <iframe  width="850" height="400" frameborder="0" scrolling="no"
-  src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Padre%20Giner%20Requena+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-  </iframe> 
 
-  <a href='http://maps-generator.com/es'>Maps Generator ES</a> 
-</div>
-<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=7a4f606b444afb7b19e2bec43018597ef0974467'>
-</script>
 <!--
 <div class = "container searchVivienda-container" *ngIf = "isHomeRoute()">
   <label>Buscar Vivienda por ubicacion</label>
@@ -62,6 +77,3 @@
 -->
 
 <router-outlet></router-outlet>
-
-
-

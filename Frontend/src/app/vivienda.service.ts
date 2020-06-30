@@ -42,7 +42,7 @@ export class ViviendaService {
   
   get = {
     event: (eventId: any): Promise<any[]> => {
-      return this.http.get<File[]>(this.urlBase + '/obtenerimagenplano/' + eventId).pipe(map( 
+      return this.http.get<any[]>(this.urlBase + '/obtenerimagenplano/' + eventId).pipe(map( 
         res => {return res}
         
       )).toPromise();
@@ -51,7 +51,7 @@ export class ViviendaService {
 
   getDiseno = {
     event: (eventId: any): Promise<any[]> => {
-      return this.http.get<File[]>(this.urlBase + '/obtenerimagendiseno/' + eventId).pipe(map( 
+      return this.http.get<any[]>(this.urlBase + '/obtenerimagendiseno/' + eventId).pipe(map( 
         res => {return res}
         
       )).toPromise();
@@ -60,15 +60,23 @@ export class ViviendaService {
 
  
   getImagen(eventId: any): Observable<any>{
-    return this.http.get<File>(this.urlBase + '/obtenerprimerimagen/' + eventId).pipe(map( 
+    return this.http.get<any>(this.urlBase + '/obtenerprimerimagen/' + eventId).pipe(map( 
       res => res as File
     ));
   }
-  
   
   filtrarVivienda (ubicacion: String): Observable<any>{
     return this.http.get(this.urlBase+"/filtrarVivienda/" + ubicacion).pipe(
       map(response =>response as Vivienda[])
     );
   } 
+  actualizarVivienda(vivienda: Object): Observable<any>{
+    return this.http.put(this.urlBase+'/actualizarvivienda/1',vivienda,{headers:this.httpHeaders})
+  }
+  filtradoGeneral(ubicacion: String[], pmin: number, pmax:number, numHabitacion: number, numBano:number): Observable<any>{
+    console.log("llamanado rest: " + this.urlBase + "/filtradoGeneral/" + ubicacion+ "/" + pmin + "/"+ pmax)
+    return this.http.get(this.urlBase + "/filtradogeneral/" +ubicacion + "/" + pmin + "/"+ pmax + "/" + numHabitacion + "/" + numBano ).pipe(
+      map(response =>response as Vivienda[])
+    );
+  }
 }
