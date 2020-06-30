@@ -41,6 +41,8 @@ public class Publicador implements Serializable {
 	private String correo;
 	@Column(unique = true)
 	private String numero;
+	@Column(unique = true, length = 20)
+	private String contrasena;
 
 	@OneToMany(mappedBy = "publicador", fetch = FetchType.LAZY)
 	@JsonIgnore
@@ -55,7 +57,8 @@ public class Publicador implements Serializable {
 	private Suscripcion suscripcion;
 
 	public Publicador(Long codigo, String razonSocial, String ruc, String nombre, String apellido, String correo,
-			String numero, List<Vivienda> vivienda, List<Contacto> contacto, Suscripcion suscripcion) {
+			String numero, String contrasena, List<Vivienda> vivienda, List<Contacto> contacto,
+			Suscripcion suscripcion) {
 		super();
 		this.codigo = codigo;
 		this.razonSocial = razonSocial;
@@ -64,6 +67,7 @@ public class Publicador implements Serializable {
 		this.apellido = apellido;
 		this.correo = correo;
 		this.numero = numero;
+		this.contrasena = contrasena;
 		this.vivienda = vivienda;
 		this.contacto = contacto;
 		this.suscripcion = suscripcion;
@@ -108,6 +112,14 @@ public class Publicador implements Serializable {
 
 	public String getApellido() {
 		return apellido;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public void setApellido(String apellido) {
