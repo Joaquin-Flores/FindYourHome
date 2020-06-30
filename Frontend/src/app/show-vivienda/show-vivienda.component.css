@@ -84,6 +84,17 @@
       background-color: #e74c3c;
   }
   
+  .imagenes{
+    box-shadow: 0 5px 8px 1px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5%;
+  }
+  .imagenes:hover {
+    box-shadow: 0 8px 8px 0 #080c0b;
+  }
+  .carrosl{
+    border-radius: 5%;
+  }
   .lf{
     position: absolute;
     margin-top: 135px;
@@ -92,11 +103,7 @@
     background: red;
     border-color: black;
   }
-  .cardLogo-container{
-      position: absolute;
-      margin-top: 100px;
-      margin-left: 20px;
-  }
+  
   @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
   
   .navbar-icon-top .navbar-nav .nav-link > .fa {
@@ -336,3 +343,86 @@
   width: 200px;
 }
 
+.overlay{
+  background: rgba(0,0,0,.2);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.overlay.active{
+  visibility: visible;
+}
+
+.popup{
+  background: #f8f8f8; 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+  text-align: center;
+  width: 600px;
+
+
+}
+
+.popup .btn-cerrar-popup{
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  text-align: right;
+  color: #bbbbbb;
+  transition: .3s ease all;
+
+}
+
+.popup .btn-cerrar-popup:hover{
+  color:#000;
+}
+
+.popup h3{
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  /*opacity: 0;*/
+}
+
+.popup h5{
+  font-size: 26px;
+  font-weight: 300;
+  margin-bottom: 40px;
+  /*opacity: 0;*/
+}
+
+.img_Logoizq-container{
+    
+  width:100px; 
+  height:100px;
+
+}
+.Titulo{
+  margin-top: 10%;
+}
+.popup form .btn-submit{
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  color: #fff;
+  background: #5e7de3;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.popup form .btn-submit:hover{
+  background: rgba(94,125,227, .9);
+}

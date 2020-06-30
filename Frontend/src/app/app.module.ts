@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AgmCoreModule } from '@agm/core';
 import { CreateClienteComponent } from './create-cliente/create-cliente.component';
 import { CreatePublicadorComponent } from './create-publicador/create-publicador.component';
 import { CreateViviendaComponent } from './create-vivienda/create-vivienda.component';
@@ -28,6 +28,30 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-vivienda.component';
+import { ActualizarClienteComponent } from './actualizar-cliente/actualizar-cliente.component';
+import { ActualizarViviendaComponent } from './actualizar-vivienda/actualizar-vivienda.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { DirectivaComponent } from './directiva/directiva.component';
+import { AuspiciadorComponent } from './auspiciador/auspiciador.component';
+import { PrincipalComponent } from './principal/principal.component';
+import { EleccionComponent } from './eleccion/eleccion.component';
+import { DatePipe } from '@angular/common';
+import { FavoritosComponent } from './usuario/favoritos/favoritos.component';
+import { ComprasComponent } from './usuario/compras/compras.component';
+import { ConfigurarComponent } from './usuario/configurar/configurar.component';
+import { VentasComponent } from './publicador/ventas/ventas.component';
+import { ReputacionComponent } from './publicador/reputacion/reputacion.component';
+import { HistorialComponent } from './publicador/historial/historial.component';
+import { ConfigurarPublicadorComponent } from './publicador/configurar-publicador/configurar-publicador.component';
+import { PerfilpublicadorComponent } from './components/perfil-publicador/perfil-publicador.component';
+import { PerfilusuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+import { LoginCompradorComponent } from './login-comprador/login-comprador.component';
+import { LoginPublicadorComponent } from './login-publicador/login-publicador.component';
+import { EleccionCompradorComponent } from './eleccion-comprador/eleccion-comprador.component';
+import { EleccionPublicadorComponent } from './eleccion-publicador/eleccion-publicador.component';
+
+
 
 @NgModule({
   declarations: [
@@ -51,7 +75,30 @@ import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-viv
     PublicarInmuebleComponent,
     SubirImagenComponent,
     ViviendaPublicadorComponent,
-    ImagenViviendaComponent
+    ImagenViviendaComponent,
+    ActualizarClienteComponent,
+    ActualizarViviendaComponent,
+    UsuariosComponent,
+    PaginatorComponent,
+    DirectivaComponent,
+    AuspiciadorComponent,
+    PrincipalComponent,
+    EleccionComponent,
+ 
+    FavoritosComponent,
+    ComprasComponent,
+    ConfigurarComponent,
+
+    VentasComponent,
+    ReputacionComponent,
+    HistorialComponent,
+    ConfigurarPublicadorComponent,
+    PerfilpublicadorComponent,
+    PerfilusuarioComponent,
+    LoginCompradorComponent,
+    LoginPublicadorComponent,
+    EleccionCompradorComponent,
+    EleccionPublicadorComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +107,10 @@ import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-viv
     NgxDropzoneModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBigtXRIe8TfStJYbeijp-yRX6f7wpzrOE'
+    })
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'es-PE'}],
   bootstrap: [AppComponent]

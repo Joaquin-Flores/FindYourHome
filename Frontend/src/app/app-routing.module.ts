@@ -20,7 +20,21 @@ import { PublicarInmuebleComponent } from './components/publicar-inmueble/public
 import { SubirImagenComponent } from './components/subir-imagen/subir-imagen.component';
 import { ViviendaPublicadorComponent } from './components/vivienda-publicador/vivienda-publicador.component';
 import { ImagenViviendaComponent } from './components/imagen-vivienda/imagen-vivienda.component';
-
+import { ActualizarClienteComponent } from './actualizar-cliente/actualizar-cliente.component';
+ import { ActualizarViviendaComponent } from './actualizar-vivienda/actualizar-vivienda.component';
+ import { AuspiciadorComponent } from './auspiciador/auspiciador.component'; 
+ import {PrincipalComponent } from './principal/principal.component'; 
+ import { PerfilusuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+ import { ComprasComponent } from './usuario/compras/compras.component';
+import { ConfigurarComponent } from './usuario/configurar/configurar.component';
+import { PerfilpublicadorComponent } from './components/perfil-publicador/perfil-publicador.component';
+import { VentasComponent } from './publicador/ventas/ventas.component';
+import { ConfigurarPublicadorComponent } from './publicador/configurar-publicador/configurar-publicador.component';
+import { EleccionComponent } from './eleccion/eleccion.component';
+import { EleccionCompradorComponent} from './eleccion-comprador/eleccion-comprador.component';
+import { EleccionPublicadorComponent} from './eleccion-publicador/eleccion-publicador.component';
+import { LoginCompradorComponent} from './login-comprador/login-comprador.component';
+import { LoginPublicadorComponent} from './login-publicador/login-publicador.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -35,15 +49,43 @@ const routes: Routes = [
   {path: 'listaEntidades/listVivienda', component: ListViviendaComponent},
   {path: 'registroEntidades/newVivienda', component: CreateViviendaComponent},
   {path: 'registroEntidades/viviendapublicador', component: ViviendaPublicadorComponent},
+  {path: 'registroEntidades/viviendapublicador/:id', component: ViviendaPublicadorComponent},
   {path: 'registroEntidades/subirImagen/:id', component: SubirImagenComponent},
   {path: 'registroEntidades/imagenVivienda/:id', component: ImagenViviendaComponent},
-  {path: 'filtrarVivienda/showVivienda/:id', component: ShowViviendaComponent},
+  {path: 'filtrarVivienda/showVivienda', component: ShowViviendaComponent},
   {path: 'filtrarVivienda', component: FiltrarViviendaComponent},
   {path: 'encuesta', component: EncuestaComponent},
   {path: 'encuesta/msgRegistro', component: RegistroExitosoComponent},
   {path: 'tipoPublicador', component: TipoPublicadorComponent},
   {path: 'tipoPublicador/publicarInmueble', component: PublicarInmuebleComponent},
-  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+  {path: 'actualizarCliente', component: ActualizarClienteComponent },
+  {path: 'actualizarVivienda', component: ActualizarViviendaComponent},
+  {path: 'registrarAuspiciador', component: AuspiciadorComponent},
+  {path: 'principal', component: PrincipalComponent},
+
+  {path: 'registroEntidades/viviendapublicador/:id', component: ViviendaPublicadorComponent},
+  {path: 'registroEntidades/subirImagen/:id1/:id2', component: SubirImagenComponent},
+  {path: 'registroEntidades/imagenVivienda/:id', component: ImagenViviendaComponent},
+  {path: 'filtrarVivienda/showVivienda/:id1/:id2', component: ShowViviendaComponent},
+  {path: 'filtrarVivienda/:id', component: FiltrarViviendaComponent},
+  {path: 'encuesta', component: EncuestaComponent},
+  {path: 'encuesta/msgRegistro', component: RegistroExitosoComponent},
+  {path: 'tipoPublicador/:id', component: TipoPublicadorComponent},
+  {path: 'tipoPublicador/publicarInmueble', component: PublicarInmuebleComponent},
+  {path: 'perfilusuario/:id', component: PerfilusuarioComponent},
+  {path: 'perfilusuario/compras/:id', component: ComprasComponent},
+  {path: 'perfilusuario/configurar/:id', component: ConfigurarComponent},
+  {path: 'perfilpublicador/:id', component: PerfilpublicadorComponent},
+  {path: 'perfilpublicador/ventas/:id', component: VentasComponent},
+  {path: 'perfilpublicador/configurar/:id', component: ConfigurarPublicadorComponent},
+  {path: 'eleccion',component:EleccionComponent},
+  {path: 'eleccionComprador',component:EleccionCompradorComponent},
+  {path: 'eleccionPublicador',component:EleccionPublicadorComponent},
+  {path: 'loginComprador',component:LoginCompradorComponent},
+  {path: 'loginPublicador',component:LoginPublicadorComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'eleccion'}
+
+
 ];
 
 @NgModule({

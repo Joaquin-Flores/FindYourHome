@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Vivienda } from 'src/app/model/vivienda';
 import { PublicadorService } from 'src/app/publicador.service';
 import { ViviendaService } from 'src/app/vivienda.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vivienda-publicador',
@@ -13,22 +13,25 @@ import { Router } from '@angular/router';
 export class ViviendaPublicadorComponent implements OnInit {
 
   viviendas: Observable<Vivienda[]>
+  codigoPublicador: number;
 
-  constructor(private publicadorServicio: PublicadorService, private servicioVivienda: ViviendaService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.viviendaPublicadorList();
+  constructor(private publicadorServicio: PublicadorService, private servicioVivienda: ViviendaService, private router: Router, private dataRoute: ActivatedRoute) { 
+    this.codigoPublicador = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
   }
 
-  viviendaPublicadorList(){
-    this.publicadorServicio.getViviendaList().subscribe(
+  ngOnInit(): void {
+    this.viviendaPublicadorLista(this.codigoPublicador);
+  }
+
+  viviendaPublicadorLista(codigo:number){
+    this.publicadorServicio.getViviendaLista(codigo).subscribe(
       viviendas => this.viviendas = viviendas
     );
   }
 
   eliminarVivienda(codigo:number){
     this.servicioVivienda.eliminarVivienda(codigo).subscribe(
-      data => this.router.navigate(['/registroEntidades/newVivienda/viviendapublicador'])
+      data => this.router.navigate(['/registroEntidades/newVivienda/viviendapublicador/', this.codigoPublicador])
     );
   }
 

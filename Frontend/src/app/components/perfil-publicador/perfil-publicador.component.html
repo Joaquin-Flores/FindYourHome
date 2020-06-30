@@ -1,0 +1,88 @@
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!--<img class="img_Logoizq-container " src="https://imgur.com/yzmpQ2X.png" >-->
+     
+      <ul class="navbar-nav mr-auto">
+        
+      </ul>
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/home" > 
+              <i class="fa fa-envelope-o"><img  src="https://imgur.com/UizFbwu.png" ></i>Inicio
+          </a>
+        </li>
+  
+        <li class="nav-item active">
+          <a class="nav-link">
+            <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/vcisxpx.png" ></i>Comprar
+          </a>
+      </li>
+  
+      
+        <li class="nav-item ">
+          <a class="nav-link" href="/home">
+            <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/ujsrMoi.png" ></i>Vender
+          </a>
+      </li>
+       
+        <li class="nav-item ">
+          <a class="nav-link" href="/home">
+            <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/1VAWRJI.png" ></i>Alquilar
+          </a>
+      </li>
+      </ul>
+      
+    </div>
+  </nav>
+  <div>
+<a href="/home"><img class="img_Perfil " src="https://imgur.com/Ptsg9hx.png"></a>
+
+
+<div class = "margen-izq">
+    <h2>¡Hola, {{publicador.nombre}} {{publicador.apellido}}! </h2>
+    <div class = "contenedor-accion">
+      <a><h3>Historial</h3></a>
+      <a><h3>Reputacion</h3></a>
+      <form action="">
+        <a class = "ventas" [routerLink] = "['/perfilpublicador/ventas', codigoPublicador]"><h3>Mis ventas</h3></a>
+        <a class = "configurar" [routerLink] = "['/perfilpublicador/configurar', codigoPublicador]"><h3>Configurar</h3></a>
+        <a class = "cerrar-sesion" [routerLink] = "['/home']"><h3>Cerrar sesión</h3></a>
+      </form>
+    </div>
+</div>  
+
+
+<div class='table-responsive'>
+    <div class="card-body text-black">
+        <h5 class="card-title">Viviendas</h5>
+
+        <h1>Publicados</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Vivienda</th>
+                    <th>Editar</th>
+                    <th>Imagen</th>
+                    <th>Mostrar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of viviendas">
+                    <th>{{p.codigo}}</th>
+                    <th><a class = "btn btn-sm text-white btn-success">Editar</a></th>
+                    <div  *ngIf = "!p.diseno">
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo, codigoPublicador]">Agregar imagenes</a></th>
+                    </div>
+                    <div  *ngIf = "p.diseno">
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo, codigoPublicador]">Editar Imagenes</a></th>
+                    </div>
+                    <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/imagenVivienda', p.codigo]">Ver imagen</a></th>
+                    <th><a class = "btn btn-sm text-white btn-danger" (click) = "eliminarVivienda(p.codigo); refresh()">Eliminar</a></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>  

@@ -5,5 +5,6 @@ export class Publicador {
     nombre: string;
     apellido:string;
     correo: string;
-    contacto: string;
+    numero: string;
+    contrasena: string;
 }

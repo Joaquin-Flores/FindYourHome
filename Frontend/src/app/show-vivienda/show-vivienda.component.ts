@@ -1,10 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
-import { Observable } from 'rxjs';
 import { Vivienda } from '../model/vivienda';
 import { ViviendaService } from '../vivienda.service';
 import { ActivatedRoute } from '@angular/router';
 import { Publicador } from '../model/publicador';
 import { PublicadorService } from '../publicador.service';
+import { ContactoService } from '../contacto.service';
+import { Contacto } from '../model/contacto';
+import { DatePipe } from '@angular/common';
 
 declare const $:any;
 
@@ -19,6 +21,10 @@ export class ShowViviendaComponent implements OnInit {
   vivienda:Vivienda;
   publicador:Publicador;
   codigoVivienda:any;
+  codigoCliente:any;
+  currDate = new Date();
+  dt: string;
+  contacto: Contacto = new Contacto();
 
   retrievedImage:any[]= [];
   base64Data: any[]= [];
@@ -32,10 +38,14 @@ export class ShowViviendaComponent implements OnInit {
   cargo2: Boolean = false;
 
   index: number = -1;
+  cont:number = 0;
 
-
-  constructor(private dataRoute: ActivatedRoute,private viviendaService: ViviendaService, private publicadorService: PublicadorService) { 
-    this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
+  constructor(private dataRoute: ActivatedRoute,private viviendaService: ViviendaService, 
+              private publicadorService: PublicadorService, private contactoService:ContactoService) { 
+                this.dataRoute.paramMap.subscribe(params =>{
+                  this.codigoCliente = parseInt(params.get('id1'));
+                  this.codigoVivienda = parseInt(params.get('id2'));
+                })
   }
 
   ngOnInit(): void {
@@ -51,6 +61,24 @@ export class ShowViviendaComponent implements OnInit {
 
   ngAfterViewInit2(){
     $('#carouselExampleCaptions2').carousel()
+  }
+
+  mostrarPopup(){
+    if(this.cont == 0){
+      this.dt = this.currDate.getFullYear() + '-' + ('0' + (this.currDate.getMonth() + 1)).slice(-2) + '-' + ('0' + this.currDate.getDate()).slice(-2);
+      this.contacto.fecha = this.dt;
+      this.contactoService.nuevoContacto(this.contacto, this.codigoVivienda, this.codigoCliente).subscribe(res => console.log("bien"));
+    }
+
+    var btnAbrirPopup = document.getElementById('btn-abrir-popup')
+    var overlay = document.getElementById('overlay')
+    var popup = document.getElementById('popup')
+
+    btnAbrirPopup.addEventListener('click', function(){
+      overlay.classList.add('active');
+      popup.classList.add('active');
+    });
+    this.cont +=1;
   }
 
   fetchEvent(){
@@ -83,7 +111,7 @@ getVivienda(){
 }
 
 getPublicador(){
-  this.publicadorService.getPublicador(1).subscribe(publicador => this.publicador = publicador);
+  this.publicadorService.getPublicadorByVivienda(this.codigoVivienda).subscribe(publicador => this.publicador = publicador);
 }
 
 devuelveImagen(){
