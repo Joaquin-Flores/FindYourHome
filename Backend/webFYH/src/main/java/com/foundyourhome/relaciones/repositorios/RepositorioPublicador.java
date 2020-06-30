@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.foundyourhome.relaciones.entidades.Publicador;
 
 public interface RepositorioPublicador extends JpaRepository<Publicador, Long>{
-	/*@Query("select t from Publicador t where t.codigo =:codigo")
-	List<Vivienda> viviendaPublicador (@Param("codigo") Long codigo);*/
+	public Publicador findByCorreo(String correo);
+	public Publicador findByContrasena(String contrasena);
+	public Publicador findByCorreoAndContrasena(String correo, String contrasena);
 }

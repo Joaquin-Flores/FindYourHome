@@ -25,9 +25,11 @@
   filter: grayscale(100%);
 }
 .brrr{
-background-color: rgb(192, 190, 190);
 box-shadow: 0 5px 8px 1px rgba(0,0,0,0.2);
 border-radius: 5%;
+}
+.brrr:hover {
+  box-shadow: 0 8px 8px 0 #080c0b;
 }
 .tablita:hover {
   box-shadow: 0 8px 8px 0 #080c0b;
@@ -176,9 +178,7 @@ border-radius: 5%;
     height: 35px;
   }
   .img_Perfil{
-    position: absolute;
-    margin-left: 1000px;
-    margin-top: -65px;
+  
     width: 50px;
     height: 50px;
   }
@@ -206,7 +206,7 @@ border-radius: 5%;
       margin-top: 25px;
       width: 15px;
       height: 15px;
-      background-color: white;
+      background-color: black;
       outline: none;
       transform:rotate(45deg);
       -webkit-appearance: none;
@@ -216,7 +216,7 @@ border-radius: 5%;
     .contenedor-check .checkbox::before{
       position: absolute;
       content: "";
-      background-color:  white;
+      background-color:  black;
       height: 70%;
       width: 100%;
       top:-59%;
@@ -226,7 +226,7 @@ border-radius: 5%;
     .contenedor-check .checkbox::after{
       position: absolute;
       content: "";
-      background-color: white;
+      background-color: black;
       height: 60%;
       width: 100%;
       transform: rotate(-90deg);

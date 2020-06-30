@@ -61,12 +61,40 @@ public class ServicioRegistro {
 
 	//REGISTRO DE LAS ENTIDADES
 	@Transactional(rollbackFor = Exception.class)
-	public Cliente registrarCliente(Cliente cliente) {
+	public Cliente registrarCliente(Cliente cliente) throws Exception {
+		String email = cliente.getCorreo();
+		String pass = cliente.getContrasena();
+		if(email != null && !"".equals(email)) {
+			Cliente objCliente = repositorioCliente.findByCorreo(email);
+			if(objCliente != null) {
+				throw new Exception("El correo " + email + " ya está en uso");
+			}
+		}
+		if(pass != null && !"".equals(pass)) {
+			Cliente objCliente = repositorioCliente.findByContrasena(pass);
+			if(objCliente != null) {
+				throw new Exception("La contraseña ya está en uso");
+			}
+		}
 		return repositorioCliente.save(cliente);
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
-	public Publicador registrarPublicador(Publicador publicador) {
+	public Publicador registrarPublicador(Publicador publicador) throws Exception {
+		String email = publicador.getCorreo();
+		String pass = publicador.getContrasena();
+		if(email != null && !"".equals(email)) {
+			Publicador objPublicador = repositorioPublicador.findByCorreo(email);
+			if(objPublicador != null) {
+				throw new Exception("El correo " + email + " ya está en uso");
+			}
+		}
+		if(pass != null && !"".equals(pass)) {
+			Publicador objPublicador = repositorioPublicador.findByContrasena(pass);
+			if(objPublicador != null) {
+				throw new Exception("La contraseña ya está en uso");
+			}
+		}
 		return repositorioPublicador.save(publicador);
 	}
 	

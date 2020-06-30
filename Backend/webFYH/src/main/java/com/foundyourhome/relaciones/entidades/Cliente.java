@@ -30,7 +30,7 @@ public class Cliente implements Serializable {
 	private String contrasena;
 	@Column(length = 20)
 	private String nombre;
-	@Column(length = 20)
+	@Column(length = 20)	
 	private String apellido;
 	@Column(length = 20)
 	private String distrito;

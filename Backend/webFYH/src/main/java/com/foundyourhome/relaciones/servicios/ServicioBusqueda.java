@@ -173,4 +173,28 @@ public class ServicioBusqueda {
 		}
 		return vivienda;
 	}
+	
+	public Cliente getUserByEmail(String correo) {
+		return repositorioCliente.findByCorreo(correo);
+	}
+	
+	public Cliente getUserByPassword(String contrasena) {
+		return repositorioCliente.findByContrasena(contrasena);
+	}
+	
+	public Publicador getPublicadorByEmail(String correo) {
+		return repositorioPublicador.findByCorreo(correo);
+	}
+	
+	public Publicador getPublicadorByPassword(String contrasena) {
+		return repositorioPublicador.findByContrasena(contrasena);
+	}
+	
+	public Cliente getUserByEmailPassword(String correo, String contrasena) {
+		return repositorioCliente.findByCorreoAndContrasena(correo, contrasena);
+	}
+	
+	public Publicador getPublicadorByEmailPassword(String correo, String contrasena) {
+		return repositorioPublicador.findByCorreoAndContrasena(correo, contrasena);
+	}
 }

@@ -1,5 +1,4 @@
 package com.foundyourhome.relaciones.entidades;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -53,6 +52,7 @@ public class Vivienda implements Serializable {
 	private String numero;
 	private String ciudad;
 	private Integer fueContactado;
+	private String distrito;
 
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PUBLICADOR")
@@ -80,7 +80,7 @@ public class Vivienda implements Serializable {
 			String tieneCalefaccion, String tipoEstructura, String tipoExterior, String tipoHogar, String base,
 			String techo, String nuevaConstruccion, String anoConstruccion, String dimension, String direccion,
 			String numero, String ciudad, Integer fueContactado, Publicador publicador, List<ListaDeseo> listaDeseo,
-			Contacto contacto, List<Plano> listaPlano, List<Diseno> listaDiseno) {
+			Contacto contacto, List<Plano> listaPlano, List<Diseno> listaDiseno, String distrito) {
 		super();
 		this.codigo = codigo;
 		this.tipoTerreno = tipoTerreno;
@@ -109,6 +109,7 @@ public class Vivienda implements Serializable {
 		this.contacto = contacto;
 		this.listaPlano = listaPlano;
 		this.listaDiseno = listaDiseno;
+		this.distrito=distrito;
 	}
 
 	public Vivienda() {
@@ -278,6 +279,14 @@ public class Vivienda implements Serializable {
 
 	public String getDimension() {
 		return dimension;
+	}
+
+	public String getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
 	}
 
 	public void setDimension(String dimension) {

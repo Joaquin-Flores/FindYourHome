@@ -29,7 +29,8 @@ export class FiltrarViviendaComponent implements OnInit {
   publicador: Observable<Publicador>
   auspiciador: Observable<Auspiciador[]>;;
   codigoCliente:number;
-  viviendas: Vivienda[] = []
+  viviendas: Vivienda[] = [];
+  viviendas2:Vivienda[]=[ ]
   listaUbicacion: any[] = [];
   ubicacion: String = "";
   nBano: number = null;
@@ -38,7 +39,6 @@ export class FiltrarViviendaComponent implements OnInit {
   pMax: number = null;
   indice: number = 0;
   cond : Boolean = false;
-  viviendas: Vivienda[];
   auspiciador: Observable<Auspiciador[]>;;
   title = 'TrabajoWeb';
   latitud: any={};
@@ -49,52 +49,55 @@ export class FiltrarViviendaComponent implements OnInit {
   coorde:any={};
   mapa: Mapboxgl.Map; 
   marker: Mapboxgl.Marker;
-
+  currentMarkers=[];
   constructor(private auspiciadorServicio: AuspiciadorService,private domSanitizer: DomSanitizer,private viviendaService: ViviendaService, private publicadorServicio:PublicadorService, private clienteService:ClienteService, private listaDeseoService: ListadeseoService,private dataRoute: ActivatedRoute) { 
     this.codigoCliente = parseInt(this.dataRoute.snapshot.paramMap.get('id'))}
   
-    viviendaPublicadorList(): any{
+
+registrarMarcadores(vivi: Vivienda[]){   
+  for (let index of this.viviendas){ 
+    this.getO(index.ciudad,index.numero,index.distrito,index.direccion)}
+}  
+viviendaPublicadorList(): any{
       return this.publicadorServicio.getViviendaList().subscribe(
         data => {
           this.viviendas = data
-          this.registrarMarcadores();
+          this.registrarMarcadores(this.viviendas);
         }
       );
     }
+    crearMarcador(lng:number, lat:number){
+      console.info("ENtro a crear marcador");
+       var marker = new Mapboxgl.Marker({draggable: false}).setLngLat([lng, lat]).addTo(this.mapa); 
+       marker.on('drag',()=> {console.log(marker.getLngLat()) }) 
+       this.currentMarkers.push(marker);
+     
+     }
+     
                 
   ngOnInit(): void {
     Mapboxgl.accessToken = environment.mapboxKey; 
-    this.mapa = new Mapboxgl.Map({
-    container: 'mapa1-mapbox', // container id
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [this.lon1,this.lat1], // starting position  //LNG,LAT
-    zoom: 10 // starting zoom
-    });    
-    var nav = new Mapboxgl.NavigationControl();
-    this.mapa.addControl(nav,"top-left"); 
-    this.viviendaPublicadorList();
+    this.mapa = new Mapboxgl.Map({container: 'mapa1-mapbox',  style: 'mapbox://styles/mapbox/streets-v11',center: [this.lon1,this.lat1], zoom: 10 });    
     
+    var nav = new Mapboxgl.NavigationControl();
+    this.mapa.addControl(nav,"top-left");     
     console.log(this.codigoCliente)
+   
     this.clienteService.getCliente(1).subscribe(res => {this.cliente = res; console.log(res)});
     this.viviendaService.getViviendaList().subscribe(
-      res => {
-        this.viviendasInicial = res
-      },
-      err =>{
-        console.log(err);
-      },
-      () => {
-        this.fetchEvent(this.indice)
-      }
+      res => {this.viviendasInicial = res },
+      err =>{ console.log(err); }, () => { this.fetchEvent(this.indice) }
     );
+    this.viviendaPublicadorList();
     this.auspiciadorList();
+    this.filtradoMapa(this.ubicacion);
   }
   auspiciadorList(){
     this.auspiciadorServicio.getAuspiciadorist().subscribe(
       auspiciador => this.auspiciador=auspiciador
     );
   }
-  getO(direccion: String, ciudad:String, numero:String, distrito:String){
+getO(direccion: String, ciudad:String, numero:String, distrito:String){
     return this.publicadorServicio.getJson('https://maps.googleapis.com/maps/api/geocode/json?address='
     +direccion+ciudad+numero+distrito+'&key=AIzaSyBigtXRIe8TfStJYbeijp-yRX6f7wpzrOE').subscribe(res=> { 
     //this.latitud=res+".results[0].geometry.location.lat";
@@ -114,29 +117,22 @@ export class FiltrarViviendaComponent implements OnInit {
   console.log(this.longitud.results[0].geometry.location.lng); 
   this.lon1=this.longitud.results[0].geometry.location.lng;
   this.lat1=this.latitud.results[0].geometry.location.lat;
+
   this.crearMarcador(this.lon1,this.lat1);
   });
   
   }
-  
-  registrarMarcadores(){
-    for (let index of this.viviendas){
-       this.getO(index.ciudad,index.numero,index.distrito,index.direccion)
-     }
+
+filtradoMapa(ubicacion:String){
+  for (let index of this.viviendas){ 
+    if (index.distrito=ubicacion){
+    this.getO(index.ciudad,index.numero,index.distrito,index.direccion)
+  }
    }
+
+}
  
-   crearMarcador(lng:number, lat:number){
-     console.info("ENtro a crear marcador");
-     var marker = new Mapboxgl.Marker({
-       
-       draggable: false
-       })
-       .setLngLat([lng, lat]).addTo(this.mapa);
-       marker.on('drag',()=> {
-       console.log(marker.getLngLat())
-       })
-     }
-  fetchEvent(indice){
+fetchEvent(indice){
     if(indice<this.viviendasInicial.length){
       console.log(this.viviendasInicial[indice].fueContactado)
       this.viviendaService.getImagen(indice+1).subscribe(event => {
@@ -152,7 +148,11 @@ export class FiltrarViviendaComponent implements OnInit {
     }
  }
 
+
+ 
+
  filtrarVivienda(){
+  
   console.log(this.listaUbicacion.length)
   if(this.listaUbicacion.length == 0){
     this.listaUbicacion.push("a")
@@ -160,6 +160,14 @@ export class FiltrarViviendaComponent implements OnInit {
   this.viviendaService.filtradoGeneral(this.listaUbicacion, this.pMin, this.pMax, this.nHabitacion, this.nBano).subscribe(
     viviendas => this.viviendas = viviendas
   );
+  if (this.currentMarkers!==null) {
+    for (var i = this.currentMarkers.length - 1; i >= 0; i--) {
+      this.currentMarkers[i].remove();
+    }
+}
+ this.registrarMarcadores(this.viviendas);
+
+
 }
 
 encontroResultado(){
@@ -216,4 +224,6 @@ buscarGeneral(){
    console.log(this.listaUbicacion)
    this.listaUbicacion.push(ubicacion)
  }
+
+
 }

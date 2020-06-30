@@ -62,7 +62,15 @@ const routes: Routes = [
   {path: 'actualizarVivienda', component: ActualizarViviendaComponent},
   {path: 'registrarAuspiciador', component: AuspiciadorComponent},
   {path: 'principal', component: PrincipalComponent},
-
+ 
+  {path: 'listaEntidades/listCliente', component: ListClienteComponent},
+  {path: 'registroEntidades/newCliente', component: CreateClienteComponent},
+  {path: 'showCliente', component: ShowClienteComponent},
+  {path: 'listaEntidades/listPublicador', component: ListPublicadorComponent},
+  {path: 'registroEntidades/newPublicador', component: CreatePublicadorComponent},
+  {path: 'showPublicador', component: ShowPublicadorComponent},
+  {path: 'listaEntidades/listVivienda', component: ListViviendaComponent},
+  {path: 'registroEntidades/newVivienda', component: CreateViviendaComponent},
   {path: 'registroEntidades/viviendapublicador/:id', component: ViviendaPublicadorComponent},
   {path: 'registroEntidades/subirImagen/:id1/:id2', component: SubirImagenComponent},
   {path: 'registroEntidades/imagenVivienda/:id', component: ImagenViviendaComponent},
