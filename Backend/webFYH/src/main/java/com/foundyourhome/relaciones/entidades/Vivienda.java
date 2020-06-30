@@ -10,14 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "TP_VIVIENDA")
@@ -51,21 +49,23 @@ public class Vivienda implements Serializable {
 	private String nuevaConstruccion;
 	private String anoConstruccion;
 	private String dimension;
-	private String ubicacion;
+	private String direccion;
+	private String numero;
+	private String ciudad;
+	private Integer fueContactado;
 
 	@ManyToOne
 	@JoinColumn(name = "CODIGO_PUBLICADOR")
 	@JsonIgnore
 	private Publicador publicador;
-
-	// Lista deseos
-	@ManyToMany(mappedBy = "listaDeseo")
-	@JsonIgnoreProperties("cliente")
-	private List<Cliente> cliente;
-
+	
+	@OneToMany(mappedBy = "vivienda")
+	@JsonIgnore
+	private List<ListaDeseo> listaDeseo;
+	
 	@OneToOne(mappedBy = "vivienda")
 	@JsonIgnore
-	private ResumenDiseno resumenDiseno;
+	private Contacto contacto;
 
 	@OneToMany(mappedBy = "vivienda", fetch = FetchType.LAZY)
 	@JsonIgnore
@@ -78,9 +78,9 @@ public class Vivienda implements Serializable {
 	public Vivienda(Long codigo, String tipoTerreno, Double precio, Double numHabitaciones, Double numBano,
 			String tieneGaraje, String permiteMascota, String tienecontrolRenta, String tipoPiso,
 			String tieneCalefaccion, String tipoEstructura, String tipoExterior, String tipoHogar, String base,
-			String techo, String nuevaConstruccion, String anoConstruccion, String dimension, String ubicacion,
-			Publicador publicador, List<Cliente> cliente, ResumenDiseno resumenDiseno, List<Plano> listaPlano,
-			List<Diseno> listaDiseno) {
+			String techo, String nuevaConstruccion, String anoConstruccion, String dimension, String direccion,
+			String numero, String ciudad, Integer fueContactado, Publicador publicador, List<ListaDeseo> listaDeseo,
+			Contacto contacto, List<Plano> listaPlano, List<Diseno> listaDiseno) {
 		super();
 		this.codigo = codigo;
 		this.tipoTerreno = tipoTerreno;
@@ -100,10 +100,13 @@ public class Vivienda implements Serializable {
 		this.nuevaConstruccion = nuevaConstruccion;
 		this.anoConstruccion = anoConstruccion;
 		this.dimension = dimension;
-		this.ubicacion = ubicacion;
+		this.direccion = direccion;
+		this.numero = numero;
+		this.ciudad = ciudad;
+		this.fueContactado = fueContactado;
 		this.publicador = publicador;
-		this.cliente = cliente;
-		this.resumenDiseno = resumenDiseno;
+		this.listaDeseo = listaDeseo;
+		this.contacto = contacto;
 		this.listaPlano = listaPlano;
 		this.listaDiseno = listaDiseno;
 	}
@@ -193,6 +196,14 @@ public class Vivienda implements Serializable {
 		this.tieneCalefaccion = tieneCalefaccion;
 	}
 
+	public Integer getFueContactado() {
+		return fueContactado;
+	}
+
+	public void setFueContactado(Integer fueContactado) {
+		this.fueContactado = fueContactado;
+	}
+
 	public String getTipoEstructura() {
 		return tipoEstructura;
 	}
@@ -229,6 +240,22 @@ public class Vivienda implements Serializable {
 		return techo;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
 	public void setTecho(String techo) {
 		this.techo = techo;
 	}
@@ -257,12 +284,12 @@ public class Vivienda implements Serializable {
 		this.dimension = dimension;
 	}
 
-	public String getUbicacion() {
-		return ubicacion;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public Publicador getPublicador() {
@@ -273,20 +300,20 @@ public class Vivienda implements Serializable {
 		this.publicador = publicador;
 	}
 
-	public List<Cliente> getCliente() {
-		return cliente;
+	public List<ListaDeseo> getListaDeseo() {
+		return listaDeseo;
 	}
 
-	public void setCliente(List<Cliente> cliente) {
-		this.cliente = cliente;
+	public void setListaDeseo(List<ListaDeseo> listaDeseo) {
+		this.listaDeseo = listaDeseo;
 	}
 
-	public ResumenDiseno getResumenDiseno() {
-		return resumenDiseno;
+	public Contacto getContacto() {
+		return contacto;
 	}
 
-	public void setResumenDiseno(ResumenDiseno resumenDiseno) {
-		this.resumenDiseno = resumenDiseno;
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
 	}
 
 	public List<Plano> getListaPlano() {

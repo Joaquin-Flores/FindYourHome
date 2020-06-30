@@ -1,22 +1,24 @@
 package com.foundyourhome.relaciones.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.foundyourhome.relaciones.entidades.Cliente;
 import com.foundyourhome.relaciones.entidades.Color;
-import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Estilo;
+import com.foundyourhome.relaciones.entidades.ListaDeseo;
 //import com.foundyourhome.relaciones.entidades.Diseno;
 import com.foundyourhome.relaciones.entidades.Publicador;
-import com.foundyourhome.relaciones.entidades.ResumenDiseno;
+import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Suscripcion;
 import com.foundyourhome.relaciones.entidades.Vivienda;
 import com.foundyourhome.relaciones.repositorios.RepositorioCliente;
 import com.foundyourhome.relaciones.repositorios.RepositorioColor;
-import com.foundyourhome.relaciones.repositorios.RepositorioContacto;
 import com.foundyourhome.relaciones.repositorios.RepositorioEstilo;
+import com.foundyourhome.relaciones.repositorios.RepositorioListaDeseo;
 import com.foundyourhome.relaciones.repositorios.RepositorioPublicador;
 import com.foundyourhome.relaciones.repositorios.RepositorioResumenDiseno;
 import com.foundyourhome.relaciones.repositorios.RepositorioSuscripcion;
@@ -38,9 +40,6 @@ public class ServicioRegistro {
 	RepositorioResumenDiseno repositorioResumenDiseno;
 	
 	@Autowired
-	RepositorioContacto repositorioContacto;
-	
-	@Autowired
 	RepositorioSuscripcion repositorioSuscripcion;
 	
 	@Autowired
@@ -49,10 +48,14 @@ public class ServicioRegistro {
 	@Autowired
 	RepositorioColor repositorioColor;
 	
+	@Autowired
+	RepositorioListaDeseo repositorioListaDeseo;
+	
 	@Transactional(rollbackFor = Exception.class)
 	public Vivienda registrarVivienda(Long codigo, Vivienda vivienda)  throws Exception {
 		Publicador publicador = repositorioPublicador.findById(codigo).orElseThrow(() -> new Exception("No se encontro entidad"));
 		vivienda.setPublicador(publicador);
+		vivienda.setFueContactado(0);
 		return repositorioVivienda.save(vivienda);
 	}
 
@@ -80,25 +83,38 @@ public class ServicioRegistro {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public Cliente registrarListaDeseoCliente(Cliente cliente, Long codigo) throws Exception {
-		Vivienda vivienda = repositorioVivienda.findById(codigo).orElseThrow(() -> new Exception("No se encontro entidad"));
-		cliente.getListaDeseo().add(vivienda);
-		vivienda.getCliente().add(cliente);
-		return repositorioCliente.save(cliente);
+	public ListaDeseo registrarListaDeseo(Long CCliente, Long CVivienda, ListaDeseo listaDeseo) throws Exception {
+		Vivienda vivienda = repositorioVivienda.findById(CVivienda).orElseThrow(() -> new Exception("No se encontro entidad"));
+		Cliente cliente = repositorioCliente.findById(CCliente).orElseThrow(() -> new Exception("No se encontro entidad"));
+
+		List<ListaDeseo> lD = repositorioListaDeseo.findAll();
+		for(ListaDeseo l: lD) {
+			if(l.getCliente().getCodigo() == CCliente && l.getVivienda().getCodigo() == CVivienda) {
+				return null;
+			}
+		}
+		
+		listaDeseo.setCliente(cliente);
+		listaDeseo.setVivienda(vivienda);
+		return repositorioListaDeseo.save(listaDeseo);
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
-	public ResumenDiseno registrarResumenDiseno(ResumenDiseno resumenDiseno){
-		return repositorioResumenDiseno.save(resumenDiseno);
+	public Contacto registrarContacto(Contacto contacto, Long CCliente, Long CVivienda) throws Exception{
+		Vivienda vivienda = repositorioVivienda.findById(CVivienda).orElseThrow(() -> new Exception("No se encontro entidad"));
+		Cliente cliente = repositorioCliente.findById(CCliente).orElseThrow(() -> new Exception("No se encontro entidad"));
+		Publicador publicador = vivienda.getPublicador();
+		
+		vivienda.setFueContactado(1);;
+		contacto.setCliente(cliente);
+		contacto.setPublicador(publicador);
+		contacto.setVivienda(vivienda);
+		
+		return repositorioResumenDiseno.save(contacto);
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
 	public Suscripcion registrarSuscripcion(Suscripcion suscripcion){
 		return repositorioSuscripcion.save(suscripcion);
-	}
-	
-	@Transactional(rollbackFor = Exception.class)
-	public Contacto registrarContacto(Contacto contacto){
-		return repositorioContacto.save(contacto);
 	}
 }	

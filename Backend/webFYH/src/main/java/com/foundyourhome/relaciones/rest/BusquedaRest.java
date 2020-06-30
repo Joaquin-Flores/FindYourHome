@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.foundyourhome.relaciones.entidades.Cliente;
-import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Diseno;
 import com.foundyourhome.relaciones.entidades.Plano;
 import com.foundyourhome.relaciones.entidades.Publicador;
-import com.foundyourhome.relaciones.entidades.ResumenDiseno;
+import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Suscripcion;
 import com.foundyourhome.relaciones.entidades.Vivienda;
 import com.foundyourhome.relaciones.repositorios.RepositorioDiseno;
@@ -87,25 +86,14 @@ public class BusquedaRest {
 	}
 	
 	@GetMapping("/resumendiseno/{codigo}")
-	public ResumenDiseno mostrarResumenDiseno(@PathVariable(value = "codigo") Long codigo) throws Exception{
-		ResumenDiseno rD = null;
+	public Contacto mostrarResumenDiseno(@PathVariable(value = "codigo") Long codigo) throws Exception{
+		Contacto rD = null;
 		try {
 			rD = servicioBusqueda.mostrarResumenDiseno(codigo);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro entidad");
 		}
 		return rD;
-	}
-	
-	@GetMapping("/contacto/{codigo}")
-	public Contacto mostrarContacto(@PathVariable(value = "codigo") Long codigo) throws Exception{
-		Contacto c = null;
-		try {
-			c = servicioBusqueda.mostrarContacto(codigo);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro entidad");
-		}
-		return c;
 	}
 	
 	
@@ -155,20 +143,13 @@ public class BusquedaRest {
 		Vivienda vivienda = null;
 		try {
 			vivienda = servicioBusqueda.mostrarVivienda(codigo);
+			System.out.println(vivienda);
 		} catch (Exception e) {
 		  e.printStackTrace();
 		}
-		
-		Diseno p = vivienda.getListaDiseno().get(0);
-			
+		Diseno p = vivienda.getListaDiseno().get(0);	
 		Diseno diseno = new Diseno(p.getName(), p.getType(), decompressBytes(p.getPicByte()), vivienda);	
 		
-		//diseno = vivienda.getListaDiseno().get(0);
-		/*for(Diseno p : vivienda.getListaDiseno()) {
-		  Diseno p2 = new Diseno(p.getName(), p.getType(), decompressBytes(p.getPicByte()), vivienda);
-		  diseno.add(p2);
-		}*/
-				
 		return diseno;
 	}
 	
@@ -215,4 +196,30 @@ public class BusquedaRest {
 	public List<Vivienda> viviendaPublicador(@PathVariable(value = "codigo") Long codigo) throws Exception {
 		return servicioBusqueda.viviendaPublicador(codigo);
 	}
+	
+	@GetMapping("/publicadorvivienda/{codigo}")
+	public Publicador publicadorByVivienda(@PathVariable(value = "codigo") Long codigo) throws Exception {
+		return servicioBusqueda.publicadorByVivienda(codigo);
+	}
+	
+	@GetMapping("/clientevivienda/{codigo}")
+	public List<Vivienda> viviendaByCliente(@PathVariable(value = "codigo") Long codigo) throws Exception {
+		return servicioBusqueda.viviendaByCliente(codigo);
+	}
+	
+	@GetMapping("/viviendabypublicador/{codigo}")
+	public List<Vivienda> viviendaByPublicador(@PathVariable(value = "codigo") Long codigo) throws Exception {
+		return servicioBusqueda.viviendasByPublicador(codigo);
+	}
+	
+	@GetMapping("/filtradogeneral/{ubicacion}/{min}/{max}/{numHabitaciones}/{numBanos}")
+	public List<Vivienda> filtradoGeneral(@PathVariable(value = "ubicacion") ArrayList<String> ubicacion,
+											@PathVariable(value = "min") Double min, 
+											@PathVariable(value = "max") Double max,
+											@PathVariable(value = "numHabitaciones") Double numHabitaciones,	
+											@PathVariable(value = "numBanos") Double numBanos){
+		return servicioBusqueda.filtradoGeneral(ubicacion, min, max, numHabitaciones, numBanos);
+	}
+	
+	
 }
