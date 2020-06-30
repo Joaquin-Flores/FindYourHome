@@ -1,5 +1,185 @@
 Frontend
 
+Version: 0.9
+Fecha: 29/06/2020  23:50
+Descripcion:
+ * Modifica filtrar-vivienda
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ * Modifica publicador.service.ts
+
+---------------------------------------
+
+Version: 0.8
+Fecha: 28/06/2020  17:30
+Descripcion:
+ + Agrega auspiciador
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+   -- .service.ts
+
+ + Agrega perfil-publicador
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega perfil-usuario
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega directiva
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega eleccion-comprador
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega eleccion-publicador
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega eleccion
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega home2
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega login-comprador
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega login-publicador
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+
+ + Agrega paginator
+   -- .component.html
+   -- .component.ts
+
+ + Agrega principal
+   -- .component.css
+   -- .component.ts
+
+ + Agrega model/
+   -- auspiciador.ts
+   -- contacto.ts
+   -- listadeseo.ts
+
+ + Agrega publicador/
+   - configurar-publicador/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+   - historial/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+   - reputacion/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+   - ventas/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+
+ + Agrega usuarios/
+   -- auth.service.ts
+   -- login.component.html
+   -- login.component.ts
+   -- usuario.ts
+   -- usuarios.component.html
+   -- usuarios.component.ts
+   - compras/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+   - configurar/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+   - favoritos/
+     -- .component.css
+     -- .component.html
+     -- .component.ts
+   - guards/
+     -- auth.guard.ts
+     -- role.guard.ts
+
+
+ + Agrega contacto.service.ts
+ + Agrega listadeseo.service.ts
+ + Agrega login.service.ts
+
+ * Modifica actualizar-vivienda.component.html
+ * Modifica cliente.service.ts
+ * Modifica vivienda.service.ts
+
+ * Modifica model/
+   -- publicador.ts
+   -- vivienda.ts
+
+ * Modifica filtrar-vivienda
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+ * Modifica publicador-inmueble
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+ * Modifica subir-imagen
+   -- .component.html
+   -- .component.ts
+ * Modifica tipo-publicador
+   -- .component.css
+   -- .component.html
+ * Modifica vivienda-publicador
+   -- .component.html
+   -- .component.ts
+ * Modifica create-cliente
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+ * Modifica create-publicador
+   -- .component.css
+   -- .component.html
+ * Modifica registro-exitoso
+   -- .component.css
+   -- .component.html
+ * Modifica show-cliente
+   -- .component.html
+ * Modifica show-vivienda
+   -- .component.css
+   -- .component.html
+   -- .component.ts
+ * Modifica enviroments
+   -- .component.prod.ts
+   -- .component.ts
+
+
+ * Modifica publicador.ts
+
+ * Modifica app-routinf.module.ts
+ * Modifica app.component.css
+ * Modifica app.component.html
+ * Modifica app.component.ts
+ * Modifica app.module.ts
+ * Modifica index.html
+
 ---------------------------------------
 
 Version: 0.7
