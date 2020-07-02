@@ -46,6 +46,7 @@ public class ServicioMantenimiento {
 		p.setCodigo(codigo);
 		p.setContacto(publicador.getContacto());
 		p.setCorreo(publicador.getCorreo());
+		p.setContrasena(publicador.getContrasena());
 		return repositorioPublicador.save(p);
 	}
 	

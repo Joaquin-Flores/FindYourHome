@@ -1,6 +1,8 @@
 package com.foundyourhome.relaciones.entidades;
 
 import java.io.Serializable;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -43,7 +45,10 @@ public class Publicador implements Serializable {
 	private String numero;
 	@Column(unique = true, length = 20)
 	private String contrasena;
-
+	private boolean active;
+	private String role; 
+	private Date createdDate;
+	
 	@OneToMany(mappedBy = "publicador", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Vivienda> vivienda;
@@ -55,10 +60,14 @@ public class Publicador implements Serializable {
 	@OneToOne(mappedBy = "publicador")
 	@JsonIgnore
 	private Suscripcion suscripcion;
+	
+	@OneToOne(mappedBy = "publicador")
+	@JsonIgnore
+	private Usuario usuario;
 
 	public Publicador(Long codigo, String razonSocial, String ruc, String nombre, String apellido, String correo,
 			String numero, String contrasena, List<Vivienda> vivienda, List<Contacto> contacto,
-			Suscripcion suscripcion) {
+			Suscripcion suscripcion,boolean active, String role, Date createdDate,Usuario usuario) {
 		super();
 		this.codigo = codigo;
 		this.razonSocial = razonSocial;
@@ -68,14 +77,51 @@ public class Publicador implements Serializable {
 		this.correo = correo;
 		this.numero = numero;
 		this.contrasena = contrasena;
+		this.active=active;
+		this.role = role;
+		this.createdDate = createdDate;
 		this.vivienda = vivienda;
 		this.contacto = contacto;
-		this.suscripcion = suscripcion;
+		this.suscripcion = suscripcion;	
+		this.usuario = usuario;
 	}
 
 	public Publicador() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Long getCodigo() {

@@ -50,6 +50,8 @@ import { LoginCompradorComponent } from './login-comprador/login-comprador.compo
 import { LoginPublicadorComponent } from './login-publicador/login-publicador.component';
 import { EleccionCompradorComponent } from './eleccion-comprador/eleccion-comprador.component';
 import { EleccionPublicadorComponent } from './eleccion-publicador/eleccion-publicador.component';
+import { ActualizarPublicadorComponent } from './actualizar-publicador/actualizar-publicador.component';
+import { CreateAuspiciadorComponent } from './create-auspiciador/create-auspiciador.component';
 
 
 
@@ -84,11 +86,9 @@ import { EleccionPublicadorComponent } from './eleccion-publicador/eleccion-publ
     AuspiciadorComponent,
     PrincipalComponent,
     EleccionComponent,
- 
     FavoritosComponent,
     ComprasComponent,
     ConfigurarComponent,
-
     VentasComponent,
     ReputacionComponent,
     HistorialComponent,
@@ -98,7 +98,9 @@ import { EleccionPublicadorComponent } from './eleccion-publicador/eleccion-publ
     LoginCompradorComponent,
     LoginPublicadorComponent,
     EleccionCompradorComponent,
-    EleccionPublicadorComponent
+    EleccionPublicadorComponent,
+    ActualizarPublicadorComponent,
+    CreateAuspiciadorComponent
   ],
   imports: [
     BrowserModule,

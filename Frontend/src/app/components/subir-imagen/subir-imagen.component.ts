@@ -1,6 +1,8 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import {  ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpUploadProgressEvent } from '@angular/common/http';
+import { Usuario } from 'src/app/model/usuario';
+import { AuthService } from 'src/app/auth.service';
 
 
 @Component({
@@ -11,18 +13,16 @@ import { HttpClient, HttpHeaders, HttpUploadProgressEvent } from '@angular/commo
 export class SubirImagenComponent implements OnInit {
   private urlBase = "http://localhost:8080/api";
 
-  constructor( private dataRoute: ActivatedRoute,private httpClient: HttpClient) {}
+  constructor( private dataRoute: ActivatedRoute,private httpClient: HttpClient, public authService:AuthService) {}
   message: string;
 
   codigoVivienda:number;
-  codigoPublicador: number;
+  usuario:Usuario;
+  
 
   ngOnInit(): void {
-    //this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
-    this.dataRoute.paramMap.subscribe(params =>{
-      this.codigoVivienda = parseInt(params.get('id1'));
-      this.codigoPublicador = parseInt(params.get('id2'));
-    })
+    this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
+
     console.log(this.codigoVivienda)
   }
 
@@ -63,21 +63,6 @@ export class SubirImagenComponent implements OnInit {
       this.onUploadDiseno(diseno)
     }  
   }
-
-  /*agregarImagenesDiseno()
-  {
-    console.log("bien");
-    for (var diseno of this.filesDiseno){
-      this.onUploadDiseno(diseno)
-    }   
-  }*/
-//---------------------------------
-
-
-  /*public onFileChanged(event) {
-    //Select File
-    this.selectedFile = event.target.files[0];
-  }*/
 
   onUpload(plano:File) {
     

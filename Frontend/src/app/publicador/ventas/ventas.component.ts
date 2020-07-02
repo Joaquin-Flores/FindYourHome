@@ -6,6 +6,8 @@ import { PublicadorService } from 'src/app/publicador.service';
 import { Vivienda } from 'src/app/model/vivienda';
 import { ViviendaService } from 'src/app/vivienda.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from 'src/app/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 
 
 @Component({
@@ -14,22 +16,17 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent implements OnInit {
-  codigoPublicador: number;
-  publicador: any={};
   viviendas: Vivienda[] = [];
   retrievedImage: any[] = [];
   index:number = 0;
+  usuario:Usuario;
 
-  constructor(private domSanitizer: DomSanitizer,private dataRoute: ActivatedRoute, private publicadorService: PublicadorService,private viviendaService: ViviendaService) { }
+  constructor(private domSanitizer: DomSanitizer,private dataRoute: ActivatedRoute, private publicadorService: PublicadorService,private viviendaService: ViviendaService,
+    public authService:AuthService) { }
 
   ngOnInit(): void {
-    this.codigoPublicador = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
-    this.publicadorService.getPublicador(this.codigoPublicador).subscribe(res => {
-        this.publicador = res;
-        console.log(this.publicador);
-      });
-
-    this.publicadorService.getViviendaByPublicador(this.codigoPublicador).subscribe(res =>{
+    this.usuario = this.authService.usuario;
+    this.publicadorService.getViviendaByPublicador(this.usuario.publicador.codigo).subscribe(res =>{
       this.viviendas = res;
       console.log(res);
     },
@@ -54,5 +51,9 @@ export class VentasComponent implements OnInit {
         this.obtenerImagen(vivienda, length, indice+=1)
       });
     }
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 }

@@ -1,54 +1,41 @@
+      <div class="container">
+            <div class="row" align="center">
+            <div class="col" >
 
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!--<img class="img_Logoizq-container " src="https://imgur.com/yzmpQ2X.png" >-->
-     
-      <ul class="navbar-nav mr-auto">
-        
-      </ul>
-       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/home" > 
-              <i class="fa fa-envelope-o"><img  src="https://imgur.com/UizFbwu.png" ></i>Inicio
-          </a>
-        </li>
-  
-        <li class="nav-item active">
-          <a class="nav-link">
-            <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/vcisxpx.png" ></i>Comprar
-          </a>
-      </li>
-  
-      
-        <li class="nav-item ">
-          <a class="nav-link" href="/home">
-            <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/ujsrMoi.png" ></i>Vender
-          </a>
-      </li>
-       
-        <li class="nav-item ">
-          <a class="nav-link" href="/home">
-            <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/1VAWRJI.png" ></i>Alquilar
-          </a>
-      </li>
-      </ul>
-      
+          <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+      <div class="col ">
+        <div  class="Titutlo-container">
+        <br><br>
+          <h1>FindYourHome</h1>
+        </div>
+      </div>
+      <div class="col">
+        <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
     </div>
-  </nav>
-  <div>
-<a href="/home"><img class="img_Perfil " src="https://imgur.com/Ptsg9hx.png"></a>
+<hr style="border:20px;" style="width:100%" style="border-color:black;">
+  </div>
 
-
+<div class="container">
+<div class="row">
+<div class="col-3">
 <div class = "margen-izq">
-    <h2>¡Hola, {{cliente.nombre}} {{cliente.apellido}}! </h2>
+    <h2 align="center">¡Hola, {{usuario.cliente.nombre}}! </h2>
     <div class = "contenedor-accion">
-      <a><h3>Mis favoritos</h3></a>
-      <a><h3>Historial</h3></a>
       <form action="">
-        <a class = "compras" [routerLink] = "['/perfilusuario/compras', codigoCliente]"><h3>Mis compras</h3></a>
-        <a class = "configurar" [routerLink] = "['/perfilusuario/configurar', codigoCliente]"><h3>Configurar</h3></a>
-        <a class = "cerrar-sesion" [routerLink] = "['/home']"><h3>Cerrar sesión</h3></a>
+      <h3>&nbsp; &nbsp;Mis compras</h3>
+          <a class = "configurar" [routerLink] = "['/perfilusuario/compras']"><label>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mis favoritos</label></a>
+          <br>
+          <a class = "configurar" [routerLink] = "['/perfilusuario/compras']"><label>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contactados</label></a>
+
+      <h3>&nbsp; &nbsp;Configurar</h3>
+          <a class = "configurar" [routerLink] = "['/actualizarCliente']"><label>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actualizar mis datos</label></a>
+       <a class = "ce" [routerLink] = "['/filtrarVivienda']"><h3>&nbsp; &nbsp;Buscar vivienda</h3></a>
+      <a class = "cerrar-sesion" (click) = "logOut()"[routerLink] = "['/eleccion']"><h3>&nbsp; &nbsp;Cerrar sesión</h3></a>
       </form>
     </div>
 </div>  
+</div>
+</div>
+</div>

@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import * as Mapboxgl from 'mapbox-gl';
 import { PublicadorService } from 'src/app/publicador.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-publicar-inmueble',
@@ -14,6 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PublicarInmuebleComponent implements OnInit {
 
+  usuario:Usuario;
   vivienda: Vivienda = new Vivienda();
   latitud: any={};
   longitud: any={};
@@ -24,13 +27,12 @@ export class PublicarInmuebleComponent implements OnInit {
   map_general: Mapboxgl.Map; 
   marker: Mapboxgl.Marker;
 
-  constructor(private viviendaServicio: ViviendaService, private publicadorServicio: PublicadorService, private router: Router,private http: HttpClient) { }
+  constructor(private viviendaServicio: ViviendaService, private publicadorServicio: PublicadorService, private router: Router,private http: HttpClient,
+    public authService:AuthService) { }
   
   getO(direcccion:String,numero:String, distrito:String,ciudad:String){
     return this.publicadorServicio.getJson('https://maps.googleapis.com/maps/api/geocode/json?address='
     +direcccion+numero+distrito+ciudad+'&key=AIzaSyBigtXRIe8TfStJYbeijp-yRX6f7wpzrOE').subscribe(res=> { 
-    //this.latitud=res+".results[0].geometry.location.lat";
-    //this.longitud=res+".results[0].geometry.location.lng";
     if (res==Array(0)){
       this.latitud="";
       this.longitud="";
@@ -52,6 +54,7 @@ export class PublicarInmuebleComponent implements OnInit {
     }
     
   ngOnInit(): void {
+    this.usuario = this.authService.usuario;
     Mapboxgl.accessToken = environment.mapboxKey; 
     this.mapa = new Mapboxgl.Map({
     container: 'mapa2-mapbox', // container id
@@ -81,7 +84,7 @@ export class PublicarInmuebleComponent implements OnInit {
     }
 
   registrarInmueble(){
-    this.viviendaServicio.createVivienda(this.vivienda).subscribe(
+    this.viviendaServicio.createVivienda(this.vivienda, this.usuario.publicador.codigo).subscribe(
       data => this.router.navigate(['/registroEntidades/viviendapublicador'])
     );
   }

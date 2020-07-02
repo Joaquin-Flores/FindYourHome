@@ -9,6 +9,7 @@
         <div  class="Titutlo-container">
         <br>
           <h1>FindYourHome</h1>
+          
         </div>
       </div>
       <div class="col">
@@ -26,27 +27,27 @@
 
 
 <head><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/></head>
+
+
 <div class="container contenedor">
-	<div class="row fila">
-		 <h1><i class="fa fa-lock" aria-hidden="true"></i> Login-Publicador</h1>
-       
-        </div><br /><br />
-         
-        
-                	<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-								</div>
-								<input type="text" name="" class="form-control" placeholder="Usuario"/>
-							</div><br />
-         
-                	<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fa fa-key icon"></i></span>
-								</div>
-									<input type="Password" name="" class="form-control" placeholder="Contraseña"/>
-							</div><br />
-            
-              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>Iniciar Sesión</button>
-        
-	</div>
+  <form method = "post">
+    <div class="row fila">
+      <h1><i class="fa fa-lock" aria-hidden="true"></i> Login-Publicador</h1>
+         </div><br /><br />
+                   <div class="input-group">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                 </div>
+                 <input type="text" class="form-control" [(ngModel)] = "usuario.username" id = "username" name="username" placeholder="Username" autofocus required/>
+               </div><br />
+          
+                   <div class="input-group">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="fa fa-key icon"></i></span>
+                 </div>
+                   <input type="Password" class="form-control"[(ngModel)] = "usuario.password " id = "password" name = "password" placeholder="password" required/>
+               </div><br />
+             
+               <button type="submit" (click) = "loginPublicador()" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>Iniciar Sesión</button>
+  </form>
+</div>

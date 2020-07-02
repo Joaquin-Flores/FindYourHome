@@ -1,6 +1,7 @@
 package com.foundyourhome.relaciones.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,7 +40,9 @@ public class Cliente implements Serializable {
 	private String numero;
 	@Column(unique = true, length = 20)
 	private String correo;
-
+	private String role;
+	private Date createdDate; 
+	
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnore
 	private List<ListaDeseo> listaDeseo;
@@ -55,9 +59,13 @@ public class Cliente implements Serializable {
 	@JsonIgnore
 	List<Color> color;
 
+	@OneToOne(mappedBy = "cliente")
+	@JsonIgnore
+	private Usuario usuario;
+	
 	public Cliente(Long codigo, String contrasena, String nombre, String apellido, String distrito, String numero,
 			String correo, List<ListaDeseo> listaDeseo, List<Contacto> contacto, List<Estilo> estilo,
-			List<Color> color) {
+			List<Color> color,Usuario usuario, Date createdDate,String role ) {
 		super();
 		this.codigo = codigo;
 		this.contrasena = contrasena;
@@ -70,6 +78,33 @@ public class Cliente implements Serializable {
 		this.contacto = contacto;
 		this.estilo = estilo;
 		this.color = color;
+		this.createdDate = createdDate;
+		this.role = role;
+		this.usuario = usuario;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Cliente() {

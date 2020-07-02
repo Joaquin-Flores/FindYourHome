@@ -23,17 +23,11 @@ export class AuspiciadorService {
       map(response => response as Auspiciador[])
     );
   }
-  createCliente(cliente: object): Observable<Object>{
+  createAuspiciador(auspiciador: object): Observable<Object>{
     console.log("Enviando rest create...")
-    return this.http.post(this.urlBase + '/registrarAuspiciador', cliente, {headers:this.httpHeaders});
+    return this.http.post(this.urlBase + '/registrarAuspiciador', auspiciador, {headers:this.httpHeaders});
   }
 
-  getClienteList(): Observable<any>{
-    console.log("llamanado rest: " + this.urlBase + "/clientes")
-    return this.http.get(this.urlBase+"/clientes").pipe(
-      map(response => response as Auspiciador[])
-    );
-  }
 
 
 }

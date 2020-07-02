@@ -27,7 +27,10 @@ text-decoration: none;
   background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
   text-decoration: none;
 }
-
+.perfil{
+  width: 50px;
+  height: 50px;
+}
 .images{
   width: 100px;
   height: 100px;

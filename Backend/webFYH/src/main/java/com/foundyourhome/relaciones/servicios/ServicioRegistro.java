@@ -1,19 +1,24 @@
 package com.foundyourhome.relaciones.servicios;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.foundyourhome.relaciones.auth.SpringSecurityConfig;
 import com.foundyourhome.relaciones.entidades.Cliente;
 import com.foundyourhome.relaciones.entidades.Color;
 import com.foundyourhome.relaciones.entidades.Estilo;
 import com.foundyourhome.relaciones.entidades.ListaDeseo;
 //import com.foundyourhome.relaciones.entidades.Diseno;
 import com.foundyourhome.relaciones.entidades.Publicador;
+import com.foundyourhome.relaciones.entidades.Role;
 import com.foundyourhome.relaciones.entidades.Contacto;
 import com.foundyourhome.relaciones.entidades.Suscripcion;
+import com.foundyourhome.relaciones.entidades.Usuario;
 import com.foundyourhome.relaciones.entidades.Vivienda;
 import com.foundyourhome.relaciones.repositorios.RepositorioCliente;
 import com.foundyourhome.relaciones.repositorios.RepositorioColor;
@@ -21,7 +26,9 @@ import com.foundyourhome.relaciones.repositorios.RepositorioEstilo;
 import com.foundyourhome.relaciones.repositorios.RepositorioListaDeseo;
 import com.foundyourhome.relaciones.repositorios.RepositorioPublicador;
 import com.foundyourhome.relaciones.repositorios.RepositorioResumenDiseno;
+import com.foundyourhome.relaciones.repositorios.RepositorioRole;
 import com.foundyourhome.relaciones.repositorios.RepositorioSuscripcion;
+import com.foundyourhome.relaciones.repositorios.RepositorioUsuario;
 import com.foundyourhome.relaciones.repositorios.RepositorioVivienda;
 
 @Service
@@ -50,6 +57,14 @@ public class ServicioRegistro {
 	
 	@Autowired
 	RepositorioListaDeseo repositorioListaDeseo;
+	@Autowired
+	RepositorioUsuario repositorioUsuario;
+	
+	@Autowired
+	RepositorioRole repositorioRole;
+	
+	@Autowired
+	SpringSecurityConfig passwordEncoder;
 	
 	@Transactional(rollbackFor = Exception.class)
 	public Vivienda registrarVivienda(Long codigo, Vivienda vivienda)  throws Exception {
@@ -62,39 +77,26 @@ public class ServicioRegistro {
 	//REGISTRO DE LAS ENTIDADES
 	@Transactional(rollbackFor = Exception.class)
 	public Cliente registrarCliente(Cliente cliente) throws Exception {
-		String email = cliente.getCorreo();
-		String pass = cliente.getContrasena();
-		if(email != null && !"".equals(email)) {
-			Cliente objCliente = repositorioCliente.findByCorreo(email);
-			if(objCliente != null) {
-				throw new Exception("El correo " + email + " ya está en uso");
-			}
-		}
-		if(pass != null && !"".equals(pass)) {
-			Cliente objCliente = repositorioCliente.findByContrasena(pass);
-			if(objCliente != null) {
-				throw new Exception("La contraseña ya está en uso");
-			}
-		}
+		cliente.setRole("ROLE_CLIENTE");
+		Role role = repositorioRole.findByNombre(cliente.getRole());
+		List<Role> r = new ArrayList<>();
+		r.add(role);
+		Usuario usuario = new Usuario(cliente.getCorreo(), passwordEncoder.passwordEncoder().encode(cliente.getContrasena()), true, r, cliente, null);
+		repositorioUsuario.save(usuario);
+		cliente.setCreatedDate( new Date());
 		return repositorioCliente.save(cliente);
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
 	public Publicador registrarPublicador(Publicador publicador) throws Exception {
-		String email = publicador.getCorreo();
-		String pass = publicador.getContrasena();
-		if(email != null && !"".equals(email)) {
-			Publicador objPublicador = repositorioPublicador.findByCorreo(email);
-			if(objPublicador != null) {
-				throw new Exception("El correo " + email + " ya está en uso");
-			}
-		}
-		if(pass != null && !"".equals(pass)) {
-			Publicador objPublicador = repositorioPublicador.findByContrasena(pass);
-			if(objPublicador != null) {
-				throw new Exception("La contraseña ya está en uso");
-			}
-		}
+		publicador.setRole("ROLE_PUBLICADOR");
+		System.out.println("aqui");
+		Role role = repositorioRole.findByNombre(publicador.getRole());
+		List<Role> r = new ArrayList<>();
+		r.add(role);
+		Usuario usuario = new Usuario(publicador.getCorreo(), passwordEncoder.passwordEncoder().encode(publicador.getContrasena()), true, r, null, publicador);
+		repositorioUsuario.save(usuario);
+		publicador.setCreatedDate(new Date());
 		return repositorioPublicador.save(publicador);
 	}
 	
