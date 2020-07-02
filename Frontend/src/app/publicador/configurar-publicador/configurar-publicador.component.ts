@@ -3,6 +3,8 @@ import { Publicador } from 'src/app/model/publicador';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PublicadorService } from 'src/app/publicador.service';
+import { Usuario } from 'src/app/model/usuario';
+import { AuthService } from 'src/app/auth.service';
 @Component({
   selector: 'app-configurar-publicador',
   templateUrl: './configurar-publicador.component.html',
@@ -10,17 +12,15 @@ import { PublicadorService } from 'src/app/publicador.service';
 })
 export class ConfigurarPublicadorComponent implements OnInit {
 
-  codigoPublicador: number;
-  publicador: any={};
+  usuario:Usuario;
 
-  constructor(private dataRoute: ActivatedRoute, private publicadorService: PublicadorService) { }
+  constructor(private dataRoute: ActivatedRoute, private publicadorService: PublicadorService, public authService:AuthService) { }
 
   ngOnInit(): void {
-    this.codigoPublicador = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
-    this.publicadorService.getPublicador(this.codigoPublicador).subscribe(res => {
-        this.publicador = res;
-        console.log(this.publicador);
-      });
+    this.usuario = this.authService.usuario;
   }
 
+  logOut(){
+    this.authService.logout();
+  }
 }

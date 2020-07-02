@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import {Http,Response} from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 import { Publicador } from './model/publicador';
 import { Vivienda } from './model/vivienda';
 import 'rxjs/Rx';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +18,37 @@ export class PublicadorService {
   private urlBase = "http://localhost:8080/api";
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public authService: AuthService,private router: Router) { }
 
+  private agregarAuthorizationHeader() {
+    let token = this.authService.token;
+    if (token != null) {
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
+  }
 
+  private isNoAutorizado(e): boolean {
+    if (e.status == 401) {
+
+      if (this.authService.isAuthenticated()) {
+        this.authService.logout();
+      }
+      this.router.navigate(['/eleccion']);
+      return true;
+    }
+
+    if (e.status == 403) {
+      Swal.fire('Acceso denegado', `Hola ${this.authService.usuario.username} no tienes acceso a este recurso!`, 'warning');
+      this.router.navigate(['/home']);
+      return true;
+    }
+    return false;
+  }
+
+  actualizarPublicador(publicador: Object): Observable<any>{
+    return this.http.put(this.urlBase+'/actualizarpublicador/1',publicador,{headers:this.httpHeaders})
+  }
   getJson (url: string){
     return  this.http.get(url) ;
   }
@@ -31,10 +62,23 @@ export class PublicadorService {
     return this.http.post(this.urlBase + '/registrarpublicador', publicador, {headers:this.httpHeaders});
   }
 
-  getViviendaList():Observable<any>{
-    return this.http.get(this.urlBase+"/viviendapublicador/1").pipe(
-      map(response => response as Vivienda[])
-    );
+  getViviendaList(codigo:number):Observable<any>{
+    return this.http.get(this.urlBase+"/viviendapublicador/" + codigo, {headers: this.agregarAuthorizationHeader()}).pipe(
+      map((response: any) => response as Vivienda[]),
+        catchError(e => {
+          if (this.isNoAutorizado(e)) {
+            return throwError(e);
+          }
+
+          if (e.status == 400) {
+            return throwError(e);
+          }
+
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+    );  
   }
 
   getPublicadorList(): Observable<any>{
@@ -62,16 +106,41 @@ export class PublicadorService {
   }
 
   getPublicadorByVivienda(id:number):Observable<any>{
-    return this.http.get(this.urlBase + "/publicadorvivienda/" + id).pipe(
-      map(response => response as Publicador)
-    );
-  }
+    return this.http.get(this.urlBase + "/publicadorvivienda/" + id, {headers: this.agregarAuthorizationHeader()}).pipe(
+      map((response: any) => response as Publicador),
+        catchError(e => {
+          if (this.isNoAutorizado(e)) {
+            return throwError(e);
+          }
 
+          if (e.status == 400) {
+            return throwError(e);
+          }
+
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+    );  
+  }
   //FALTA CAMBIAR A LISTA DE VIVIENDAS MANY TO ONE CON CONTACTO
   getViviendaByPublicador(id:number):Observable<any>{
-    return this.http.get(this.urlBase + "/viviendabypublicador/" + id).pipe(
-      map(response => response as Vivienda[])
-    );
+    return this.http.get(this.urlBase + "/viviendabypublicador/" + id, {headers: this.agregarAuthorizationHeader()}).pipe(
+      map((response: any) => response as Vivienda[]),
+        catchError(e => {
+          if (this.isNoAutorizado(e)) {
+            return throwError(e);
+          }
+
+          if (e.status == 400) {
+            return throwError(e);
+          }
+
+          console.error(e.error.mensaje);
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+    );  
   }
   getViviendaLista(codigo:number):Observable<any>{
     return this.http.get(this.urlBase+"/viviendapublicador/" + codigo).pipe(

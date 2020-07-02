@@ -23,38 +23,46 @@
 
 <div class="Pic_Btn-container" *ngIf="isHomeRoute()">
   <div class="container">
+  <div class="row">
+    <div class="col" align="left">
+   <td *ngIf = "authService.hasRole('ROLE_PUBLICADOR')">
+      <div class="row">
+      <img  class="perfil"  onclick="location.href='/perfilpublicador'" src="https://imgur.com/uNLp8O8.png">
+      <h3>Mi perfil</h3>  
+      </div>
+    </td>
+  
+    </div>
+    <div class="col" align="right">
+    <td *ngIf = "authService.hasRole('ROLE_CLIENTE')">
+          <img  class="perfil"  onclick="location.href='/perfilusuario'" src="https://imgur.com/uNLp8O8.png">
+    </td>
+   
+    </div>
+  </div>
     <div class="row" align="center">
       <div class="col">
+        
         <img class="img_Comprar-container" src="https://imgur.com/s45ztQ5.png">
-        <a class="btn btn_Comprar-container" routerLink="filtrarVivienda">Comprar inmueble</a>
+        <td *ngIf = "authService.hasRole('ROLE_CLIENTE')">
+          <a class="btn btn_Comprar-container" routerLink="filtrarVivienda">Comprar inmueble</a>
+        </td>
+  
       </div>
       <div class="col">
         <img class="img_Vender-container" src="https://imgur.com/RZvtKJD.png">
-        <a class="btn btn_Vender-container" routerLink="tipoPublicador">Vender Inmueble</a>
+
+        <td *ngIf = "authService.hasRole('ROLE_PUBLICADOR')">
+          <a class="btn btn_Vender-container" routerLink="tipoPublicador">Vender Inmueble</a>
+        </td>
+
       </div>
       <div class="col">
-        <img class="img_Alquilar-container" src="https://imgur.com/uzCDh4Y.png">
-        <nav>
-          <a class="btn btn_Alquilar-container" routerLink="filtrarVivienda">Alquilar Inmueble</a>
-        </nav>
-      </div>
-      <div class="col">
-        <div *ngIf="isHomeRoute()">
-          <h5 class="icon" style="color:Black">Iniciar sesión</h5>
-          <input placeholder="Nombre de usuario" type="text" class="form-control" id="n_usuario" style="width:300px; border-radius: 6px">
-          <input placeholder="Contraseña" type="password" id="c_usuario" style="width:300px; border-radius: 6px">
-          <h3></h3>
-          <nav align="right">
-            <button type="submit" class="btn-success">Ingresar</button>
-          </nav>
-          <h1></h1>
-          <H5 style="color:Black" align="center">¿Eres nuevo aquí?</H5>
-          <nav class="btn_Registrar" align="center">
-            <a routerLink="registroEntidades/newCliente" class="btn btn-primary active">Regístrate gratis</a>
-          </nav>
-    
-        </div>
         
+        <img class="img_Alquilar-container" src="https://imgur.com/uzCDh4Y.png">
+        <td *ngIf = "authService.hasRole('ROLE_CLIENTE')">
+            <a class="btn btn_Alquilar-container" routerLink="filtrarVivienda">Alquilar Inmueble</a>
+        </td>
       </div>
 
     </div>    
@@ -73,8 +81,9 @@
         </table>
     </div>    
 </div> 
-</div>
 
+
+</div>
 <!--<div  id="mapa1-mapbox" ></div>-->
 
 

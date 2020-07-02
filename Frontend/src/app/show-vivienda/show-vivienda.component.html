@@ -96,15 +96,14 @@
         <br>
         <label>
          Contacto: {{publicador.numero}}</label><br>
-        <button type="button" class="btn btn-secondary" id = "btn-abrir-popup" (click) = "mostrarPopup()">Contactar</button>
+          <td *ngIf = "authService.hasRole('ROLE_CLIENTE')">
+            <button type="button" class="btn btn-secondary" id = "btn-abrir-popup" (click) = "mostrarPopup()">Contactar</button>
+          </td>
+       
    </div>  
    
   </DIV>
 </div>
-
-
-
-
 
 <div class = "overlay" id = "overlay">
   <div class = "popup" id = "popup">

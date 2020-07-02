@@ -41,14 +41,14 @@
 
 
 <div class = "margen-izq">
-    <h2>¡Hola, {{publicador.nombre}} {{publicador.apellido}}! </h2>
+    <h2>¡Hola, {{usuario.publicador.nombre}} {{usuario.publicador.apellido}}! </h2>
     <div class = "contenedor-accion">
       <a><h3>Historial</h3></a>
       <a><h3>Reputacion</h3></a>
       <form action="">
-        <a class = "ventas" [routerLink] = "['/perfilpublicador/ventas', codigoPublicador]"><h3>Mis ventas</h3></a>
-        <a class = "configurar" [routerLink] = "['/perfilpublicador/configurar', codigoPublicador]"><h3>Configurar</h3></a>
-        <a class = "cerrar-sesion" [routerLink] = "['/home']"><h3>Cerrar sesión</h3></a>
+        <a class = "ventas" [routerLink] = "['/perfilpublicador/ventas']"><h3>Mis ventas</h3></a>
+        <a class = "configurar" [routerLink] = "['/perfilpublicador/configurar']"><h3>Configurar</h3></a>
+        <a class = "cerrar-sesion" (click) = "logOut()"[routerLink] = "['/eleccion']"><h3>Cerrar sesión</h3></a>
       </form>
     </div>
 </div>  

@@ -4,6 +4,8 @@ import { Vivienda } from 'src/app/model/vivienda';
 import { PublicadorService } from 'src/app/publicador.service';
 import { ViviendaService } from 'src/app/vivienda.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-vivienda-publicador',
@@ -14,17 +16,19 @@ export class ViviendaPublicadorComponent implements OnInit {
 
   viviendas: Observable<Vivienda[]>
   codigoPublicador: number;
+  usuario: Usuario
 
-  constructor(private publicadorServicio: PublicadorService, private servicioVivienda: ViviendaService, private router: Router, private dataRoute: ActivatedRoute) { 
-    this.codigoPublicador = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
+  constructor(private publicadorServicio: PublicadorService, private servicioVivienda: ViviendaService, private router: Router, private dataRoute: ActivatedRoute,
+    public authService: AuthService) { 
   }
 
   ngOnInit(): void {
-    this.viviendaPublicadorLista(this.codigoPublicador);
+    this.usuario = this.authService.usuario;
+    this.viviendaPublicadorLista(this.usuario.publicador.codigo);
   }
 
   viviendaPublicadorLista(codigo:number){
-    this.publicadorServicio.getViviendaLista(codigo).subscribe(
+    this.publicadorServicio.getViviendaList(codigo).subscribe(
       viviendas => this.viviendas = viviendas
     );
   }

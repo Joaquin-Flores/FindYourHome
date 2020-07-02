@@ -1,51 +1,24 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  
-<!------ Include the above in your HEAD tag ---------->
 
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+            <div class="row " align="center">
+            <div class="col" >
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <!--<img class="img_Logoizq-container " src="https://imgur.com/yzmpQ2X.png" >-->
-   
-    <ul class="navbar-nav mr-auto">
-      
-    </ul>
-     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/home" > 
-            <i class="fa fa-envelope-o"><img  src="https://imgur.com/UizFbwu.png" ></i>Inicio
-        </a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link">
-          <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/vcisxpx.png" ></i>Comprar
-        </a>
-    </li>
-
-    
-      <li class="nav-item ">
-        <a class="nav-link" href="/home">
-          <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/ujsrMoi.png" ></i>Vender
-        </a>
-    </li>
-     
-      <li class="nav-item ">
-        <a class="nav-link" href="/home">
-          <i class="fa fa-envelope-o"><img class="ojo" src="https://imgur.com/1VAWRJI.png" ></i>Alquilar
-        </a>
-    </li>
-    </ul>
-    
+          <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+      <div class="col ">
+        <div  class="Titutlo-container">
+        <br>
+          <h1>FindYourHome</h1>
+          <br>
+          <h3>Agregue imáganes a su nueva vivienda</h3>
+        </div>
+      </div>
+      <div class="col">
+        <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png">
+      </div>
+    </div>
+<hr style="border:20px;" style="width:100%" style="border-color:black;">
   </div>
-</nav>
-<div>
-
-
 
 <div class='table-responsive'>
     <div class="card-body text-black">
@@ -65,10 +38,10 @@
                     <th>{{p.codigo}}</th>
                     <th><a class = "btn btn-sm text-white btn-success">Editar</a></th>
                     <div  *ngIf = "!p.diseno">
-                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo, codigoPublicador]">Agregar imagenes</a></th>
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo]">Agregar imagenes</a></th>
                     </div>
                     <div  *ngIf = "p.diseno">
-                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo, codigoPublicador]">Editar Imagenes</a></th>
+                        <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/subirImagen', p.codigo]">Editar Imagenes</a></th>
                     </div>
                     <th><a class = "btn btn-sm text-white btn-success" [routerLink] = "['/registroEntidades/imagenVivienda', p.codigo]">Ver imagen</a></th>
                     <th><a class = "btn btn-sm text-white btn-danger" (click) = "eliminarVivienda(p.codigo); refresh()">Eliminar</a></th>

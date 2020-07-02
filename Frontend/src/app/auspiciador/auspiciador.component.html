@@ -10,7 +10,7 @@
             <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >  
         </div>
         <div class="col Titulo">
-            <label class="label ">Registrarse</label>
+            <label class="label ">Registrars auspiciador</label>
         </div>
         <div class="col">
             <img class="img_Logoizq-container" src="https://imgur.com/yzmpQ2X.png" >  
@@ -35,14 +35,15 @@
                     </div>
                     
                     <div class = "form-group">  
-                        <label class="col-md-3 control-label" for = "logo" >Logo</label>
+                        <label class="col-md-3 control-label" for = "logo1" >Logo</label>
                         <div class="col-md-9"> 
-                            <input type = "text" class = "form-control" id = "logo" [(ngModel)] = "auspiciador.logo" name ="logo">
+                            <input type = "text" class = "form-control" id = "logo1" [(ngModel)] = "auspiciador.logo" name ="logo1"
+                            placeholder="([a-zA-Z0-9_])*(.png)" required>
                         </div >
                     </div>
-         
+                    
                     <div class = "form-group" align="center">
-                        <button type="submit" class = "btn btn-success"  [disabled]="registrarForm.form.invalid">Registrar</button>
+                        <button type="submit" onclick="location.href='filtrarVivienda'" class = "btn btn-success" [disabled]="registrarForm.form.invalid">Registrar</button>
                     </div>  
                     </form>  
                 </fieldset>
@@ -55,4 +56,3 @@
 
   </div>
 </div>
-

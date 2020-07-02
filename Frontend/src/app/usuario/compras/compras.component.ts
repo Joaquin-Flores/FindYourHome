@@ -7,6 +7,8 @@ import { Vivienda } from 'src/app/model/vivienda';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ViviendaService } from 'src/app/vivienda.service';
 import { NgControlStatusGroup } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-compras',
@@ -14,27 +16,22 @@ import { NgControlStatusGroup } from '@angular/forms';
   styleUrls: ['./compras.component.css']
 })
 export class ComprasComponent implements OnInit {
-
-  codigoCliente: number;
-  cliente: Cliente;
   viviendas: Vivienda[] = [];
   retrievedImage: any[] = [];
   response: any;
   index:number = 0;
   esPosible: Promise<Boolean>;
   evento: Event;
+  usuario:Usuario;
 
 
-  constructor(private domSanitizer: DomSanitizer,private dataRoute: ActivatedRoute, private clienteService: ClienteService, private viviendaService: ViviendaService) { 
-    this.codigoCliente = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
+  constructor(private domSanitizer: DomSanitizer,private dataRoute: ActivatedRoute, private clienteService: ClienteService, private viviendaService: ViviendaService,
+    public authService:AuthService) { 
   }
 
   ngOnInit(): void {
-    this.clienteService.getCliente(this.codigoCliente).subscribe(res => {
-        this.cliente = res;
-        console.log("je");
-    });
-    this.clienteService.getViviendaContacto(this.codigoCliente).subscribe(res =>{
+    this.usuario = this.authService.usuario;
+    this.clienteService.getViviendaContacto(this.usuario.cliente.codigo).subscribe(res =>{
       this.viviendas = res;
       console.log(res);
     },
@@ -65,5 +62,9 @@ export class ComprasComponent implements OnInit {
       this.esPosible = Promise.resolve(true);
       console.log(this.esPosible)
     }
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 }

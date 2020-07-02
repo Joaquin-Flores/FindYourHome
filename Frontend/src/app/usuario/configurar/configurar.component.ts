@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from 'src/app/cliente.service';
 import { Observable } from 'rxjs';
 import { Cliente } from 'src/app/model/cliente';
+import { AuthService } from 'src/app/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-configurar',
@@ -11,17 +13,15 @@ import { Cliente } from 'src/app/model/cliente';
 })
 export class ConfigurarComponent implements OnInit {
 
-  codigoCliente: number;
-  cliente: any={};
+  usuario:Usuario;
 
-  constructor(private dataRoute: ActivatedRoute, private clienteService: ClienteService) { }
+  constructor(private dataRoute: ActivatedRoute, private clienteService: ClienteService, public authService:AuthService) { }
 
   ngOnInit(): void {
-    this.codigoCliente = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
-    this.clienteService.getCliente(this.codigoCliente).subscribe(res => {
-        this.cliente = res;
-        console.log(this.cliente);
-      });
+    this.usuario = this.authService.usuario;
   }
 
+  logOut(){
+    this.authService.logout();
+  }
 }

@@ -4,16 +4,15 @@ import { ViviendaService } from '../vivienda.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PublicadorService } from '../publicador.service';
 import { Observable } from 'rxjs';
-import { Publicador } from '../model/publicador';
-import { Cliente } from '../model/cliente';
 import { ClienteService } from '../cliente.service';
-import { ListadeseoService } from '../listadeseo.service';
 import { Listadeseo } from '../model/listadeseo';
 import { ActivatedRoute } from '@angular/router';
 import * as Mapboxgl from 'mapbox-gl';
 import { Auspiciador} from 'src/app/model/auspiciador';
 import { AuspiciadorService } from 'src/app/auspiciador.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth.service';
+import { Usuario } from '../model/usuario';
 
 @Component({
   selector: 'app-filtrar-vivienda',
@@ -24,13 +23,9 @@ export class FiltrarViviendaComponent implements OnInit {
   retrievedImage: any[] = [];
   viviendasInicial: Vivienda[] = []
   listaDeseo: Listadeseo = new Listadeseo();
-  cliente: Cliente;
   idVivienda: number;
-  publicador: Observable<Publicador>
   auspiciador: Observable<Auspiciador[]>;;
-  codigoCliente:number;
-  viviendas: Vivienda[] = [];
-  viviendas2:Vivienda[]=[ ]
+  viviendas: Vivienda[] = []
   listaUbicacion: any[] = [];
   ubicacion: String = "";
   nBano: number = null;
@@ -49,55 +44,57 @@ export class FiltrarViviendaComponent implements OnInit {
   coorde:any={};
   mapa: Mapboxgl.Map; 
   marker: Mapboxgl.Marker;
-  currentMarkers=[];
-  constructor(private auspiciadorServicio: AuspiciadorService,private domSanitizer: DomSanitizer,private viviendaService: ViviendaService, private publicadorServicio:PublicadorService, private clienteService:ClienteService, private listaDeseoService: ListadeseoService,private dataRoute: ActivatedRoute) { 
-    this.codigoCliente = parseInt(this.dataRoute.snapshot.paramMap.get('id'))}
-  
+  usuario:Usuario;
 
-registrarMarcadores(vivi: Vivienda[]){   
-  for (let index of this.viviendas){ 
-    this.getO(index.ciudad,index.numero,index.distrito,index.direccion)}
-}  
-viviendaPublicadorList(): any{
+  constructor(private auspiciadorServicio: AuspiciadorService,private domSanitizer: DomSanitizer,private viviendaService: ViviendaService, 
+    private publicadorServicio:PublicadorService, private clienteService:ClienteService,private dataRoute: ActivatedRoute,
+    public authService:AuthService) {}
+  
+    //MEJOR FILTRAR TODAS LAS VIVIENDAS QUE DE UN SOLO PUBLICADOR
+    
+   /* viviendaPublicadorList(): any{
       return this.publicadorServicio.getViviendaList().subscribe(
         data => {
           this.viviendas = data
-          this.registrarMarcadores(this.viviendas);
+          this.registrarMarcadores();
         }
       );
-    }
-    crearMarcador(lng:number, lat:number){
-      console.info("ENtro a crear marcador");
-       var marker = new Mapboxgl.Marker({draggable: false}).setLngLat([lng, lat]).addTo(this.mapa); 
-       marker.on('drag',()=> {console.log(marker.getLngLat()) }) 
-       this.currentMarkers.push(marker);
-     
-     }
-     
+    }*/
                 
   ngOnInit(): void {
-    Mapboxgl.accessToken = environment.mapboxKey; 
-    this.mapa = new Mapboxgl.Map({container: 'mapa1-mapbox',  style: 'mapbox://styles/mapbox/streets-v11',center: [this.lon1,this.lat1], zoom: 10 });    
-    
-    var nav = new Mapboxgl.NavigationControl();
-    this.mapa.addControl(nav,"top-left");     
-    console.log(this.codigoCliente)
-   
-    this.clienteService.getCliente(1).subscribe(res => {this.cliente = res; console.log(res)});
+
+    this.usuario = this.authService.usuario;
     this.viviendaService.getViviendaList().subscribe(
-      res => {this.viviendasInicial = res },
-      err =>{ console.log(err); }, () => { this.fetchEvent(this.indice) }
+      res => {
+        console.log(res)
+        this.viviendasInicial = res
+      },
+      err =>{
+        console.log(err);
+      },
+      () => {
+        this.fetchEvent(this.indice)
+      }
     );
-    this.viviendaPublicadorList();
+
+    Mapboxgl.accessToken = environment.mapboxKey; 
+    this.mapa = new Mapboxgl.Map({
+    container: 'mapa1-mapbox', // container id
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [this.lon1,this.lat1], // starting position  //LNG,LAT
+    zoom: 10 // starting zoom
+    });    
+    var nav = new Mapboxgl.NavigationControl();
+    this.mapa.addControl(nav,"top-left"); 
+    //this.viviendaPublicadorList();
     this.auspiciadorList();
-    this.filtradoMapa(this.ubicacion);
   }
   auspiciadorList(){
     this.auspiciadorServicio.getAuspiciadorist().subscribe(
       auspiciador => this.auspiciador=auspiciador
     );
   }
-getO(direccion: String, ciudad:String, numero:String, distrito:String){
+  getO(direccion: String, ciudad:String, numero:String, distrito:String){
     return this.publicadorServicio.getJson('https://maps.googleapis.com/maps/api/geocode/json?address='
     +direccion+ciudad+numero+distrito+'&key=AIzaSyBigtXRIe8TfStJYbeijp-yRX6f7wpzrOE').subscribe(res=> { 
     //this.latitud=res+".results[0].geometry.location.lat";
@@ -117,64 +114,61 @@ getO(direccion: String, ciudad:String, numero:String, distrito:String){
   console.log(this.longitud.results[0].geometry.location.lng); 
   this.lon1=this.longitud.results[0].geometry.location.lng;
   this.lat1=this.latitud.results[0].geometry.location.lat;
-
   this.crearMarcador(this.lon1,this.lat1);
   });
   
   }
-
-filtradoMapa(ubicacion:String){
-  for (let index of this.viviendas){ 
-    if (index.distrito=ubicacion){
-    this.getO(index.ciudad,index.numero,index.distrito,index.direccion)
-  }
+  
+registrarMarcadores(){
+  for (let index of this.viviendas){
+     this.getO(index.ciudad,index.numero,index.distrito,index.direccion)
    }
-
-}
- 
-fetchEvent(indice){
-    if(indice<this.viviendasInicial.length){
-      console.log(this.viviendasInicial[indice].fueContactado)
-      this.viviendaService.getImagen(indice+1).subscribe(event => {
-        this.retrievedImage.push('data:image/jpeg;base64,' + (this.domSanitizer.bypassSecurityTrustResourceUrl(event.picByte) as any).changingThisBreaksApplicationSecurity);
-      },
-      err => {
-        console.log(err);
-      },
-      () => {
-        //console.log(this.retrievedImage)
-        this.fetchEvent(this.indice+=1)
-      });
-    }
  }
-
-
  
+crearMarcador(lng:number, lat:number){
+  console.info("ENtro a crear marcador");
+  var marker = new Mapboxgl.Marker({
+    
+    draggable: false
+    })
+    .setLngLat([lng, lat]).addTo(this.mapa);
+    marker.on('drag',()=> {
+    console.log(marker.getLngLat())
+    })
+  }
+
+fetchEvent(indice){
+  if(indice<this.viviendasInicial.length){
+    console.log(this.viviendasInicial[indice].fueContactado)
+    this.viviendaService.getImagen(indice+1).subscribe(event => {
+      this.retrievedImage.push('data:image/jpeg;base64,' + (this.domSanitizer.bypassSecurityTrustResourceUrl(event.picByte) as any).changingThisBreaksApplicationSecurity);
+    },
+    err => {
+      console.log(err);
+    },
+    () => {
+      //console.log(this.retrievedImage)
+      this.fetchEvent(this.indice+=1)
+    });
+  }
+}
 
  filtrarVivienda(){
-  
   console.log(this.listaUbicacion.length)
+  this.buscarGeneral();
   if(this.listaUbicacion.length == 0){
     this.listaUbicacion.push("a")
   }
   this.viviendaService.filtradoGeneral(this.listaUbicacion, this.pMin, this.pMax, this.nHabitacion, this.nBano).subscribe(
     viviendas => this.viviendas = viviendas
   );
-  if (this.currentMarkers!==null) {
-    for (var i = this.currentMarkers.length - 1; i >= 0; i--) {
-      this.currentMarkers[i].remove();
-    }
-}
- this.registrarMarcadores(this.viviendas);
-
-
 }
 
 encontroResultado(){
   if(!this.viviendas){
     return true;
   }
-  return false;
+  return false; 
 }
 
 buscarGeneral(){
@@ -209,8 +203,7 @@ buscarGeneral(){
  }
 
  anadirFavorito(codigo){
-   console.log(this.cliente)
-   this.listaDeseoService.crearListaDeseo(this.cliente.codigo, codigo, this.listaDeseo).subscribe(res => console.log("bien"))
+   this.clienteService.createFavorito(this.usuario.cliente.codigo, codigo, this.listaDeseo).subscribe(res => console.log("bien"))
  }
 
  anadirUbicacion(ubicacion){
@@ -224,6 +217,4 @@ buscarGeneral(){
    console.log(this.listaUbicacion)
    this.listaUbicacion.push(ubicacion)
  }
-
-
 }

@@ -6,10 +6,11 @@ import * as Mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { Vivienda } from 'src/app/model/vivienda';
 import { Observable } from 'rxjs';
-import { ViviendaService } from 'src/app/vivienda.service';
 
 import { Auspiciador} from 'src/app/model/auspiciador';
 import { AuspiciadorService } from 'src/app/auspiciador.service';
+import { AuthService } from './auth.service';
+import { Usuario } from './model/usuario';
 
 @Component({
   selector: 'app-root',
@@ -29,12 +30,14 @@ export class AppComponent implements OnInit  {
   coorde:any={};
   mapa: Mapboxgl.Map; 
   marker: Mapboxgl.Marker;
+  usuario:Usuario;
  
   
-  constructor( private auspiciadorServicio: AuspiciadorService,private publicadorServicio: PublicadorService, private router: Router,private http: HttpClient){
+  constructor( private auspiciadorServicio: AuspiciadorService,private publicadorServicio: PublicadorService, private router: Router,private http: HttpClient,
+     public authService: AuthService){
   } 
   viviendaPublicadorList(): any{
-    return this.publicadorServicio.getViviendaList().subscribe(
+    return this.publicadorServicio.getViviendaList(this.usuario.publicador.codigo).subscribe(
       data => {
         this.viviendas = data
         this.registrarMarcadores();
@@ -42,6 +45,7 @@ export class AppComponent implements OnInit  {
     );
   }
   ngOnInit(){
+    this.usuario = this.authService.usuario;
     Mapboxgl.accessToken = environment.mapboxKey; 
     this.mapa = new Mapboxgl.Map({
     container: 'mapa1-mapbox', // container id
@@ -109,5 +113,9 @@ console.info("Se creó");
 
   clickear(){
     
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 }

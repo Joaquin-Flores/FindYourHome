@@ -28,25 +28,9 @@ export class PrincipalComponent implements OnInit {
   
   constructor( private publicadorServicio: PublicadorService, private router: Router,private http: HttpClient){
   } 
-  viviendaPublicadorList(): any{
-    return this.publicadorServicio.getViviendaList().subscribe(
-      data => {
-        this.viviendas = data
-        this.registrarMarcadores();
-      }
-    );
-  }
+  
   ngOnInit(){
-    Mapboxgl.accessToken = environment.mapboxKey; 
-    this.mapa = new Mapboxgl.Map({
-    container: 'mapa3-mapbox', // container id
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [this.lon1,this.lat1], // starting position  //LNG,LAT
-    zoom: 10 // starting zoom
-    });    
-    var nav = new Mapboxgl.NavigationControl();
-    this.mapa.addControl(nav,"top-left"); 
-    this.viviendaPublicadorList();
+    
 
   }  
   

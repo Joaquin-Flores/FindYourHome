@@ -6,7 +6,8 @@ import { Publicador } from '../model/publicador';
 import { PublicadorService } from '../publicador.service';
 import { ContactoService } from '../contacto.service';
 import { Contacto } from '../model/contacto';
-import { DatePipe } from '@angular/common';
+import { AuthService } from '../auth.service';
+import { Usuario } from '../model/usuario';
 
 declare const $:any;
 
@@ -17,7 +18,6 @@ declare const $:any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShowViviendaComponent implements OnInit {
-
   vivienda:Vivienda;
   publicador:Publicador;
   codigoVivienda:any;
@@ -25,6 +25,7 @@ export class ShowViviendaComponent implements OnInit {
   currDate = new Date();
   dt: string;
   contacto: Contacto = new Contacto();
+  usuario:Usuario;  
 
   retrievedImage:any[]= [];
   base64Data: any[]= [];
@@ -41,14 +42,12 @@ export class ShowViviendaComponent implements OnInit {
   cont:number = 0;
 
   constructor(private dataRoute: ActivatedRoute,private viviendaService: ViviendaService, 
-              private publicadorService: PublicadorService, private contactoService:ContactoService) { 
-                this.dataRoute.paramMap.subscribe(params =>{
-                  this.codigoCliente = parseInt(params.get('id1'));
-                  this.codigoVivienda = parseInt(params.get('id2'));
-                })
+              private publicadorService: PublicadorService, private contactoService:ContactoService, public authService:AuthService) { 
+              this.codigoVivienda = parseInt(this.dataRoute.snapshot.paramMap.get('id'))
   }
 
   ngOnInit(): void {
+    this.usuario = this.authService.usuario;
     this.fetchEvent().then(() => {this.cargo = true; console.log(this.cargo)});
     this.fetchEventDiseno().then(() => {this.cargo2 = true; console.log(this.cargo2)});
     this.getVivienda();
@@ -67,7 +66,7 @@ export class ShowViviendaComponent implements OnInit {
     if(this.cont == 0){
       this.dt = this.currDate.getFullYear() + '-' + ('0' + (this.currDate.getMonth() + 1)).slice(-2) + '-' + ('0' + this.currDate.getDate()).slice(-2);
       this.contacto.fecha = this.dt;
-      this.contactoService.nuevoContacto(this.contacto, this.codigoVivienda, this.codigoCliente).subscribe(res => console.log("bien"));
+      this.contactoService.nuevoContacto(this.contacto, this.codigoVivienda, this.usuario.cliente.codigo).subscribe(res => console.log("bien"));
     }
 
     var btnAbrirPopup = document.getElementById('btn-abrir-popup')

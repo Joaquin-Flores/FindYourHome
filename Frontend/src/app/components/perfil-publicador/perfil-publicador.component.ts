@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PublicadorService } from 'src/app/publicador.service';
 import { Vivienda } from 'src/app/model/vivienda';
 import { ViviendaService } from 'src/app/vivienda.service';
+import { Usuario } from 'src/app/model/usuario';
+import { AuthService } from 'src/app/auth.service';
+
 
 @Component({
   selector: 'app-perfil-publicador',
@@ -13,19 +16,17 @@ import { ViviendaService } from 'src/app/vivienda.service';
 })
 export class PerfilpublicadorComponent implements OnInit {
 
-  codigoPublicador: number;
-  viviendas: Observable<Vivienda[]>
+  usuario:Usuario;
   publicador: Publicador;
 
-  constructor(private dataRoute: ActivatedRoute, private publicadorService: PublicadorService,private servicioVivienda: ViviendaService, private router: Router) { }
+  viviendas: Observable<Vivienda[]>
+
+  constructor(private dataRoute: ActivatedRoute, private publicadorService: PublicadorService,private servicioVivienda: ViviendaService, private router: Router,
+    public authService:AuthService) { }
 
   ngOnInit(): void {
-    this.codigoPublicador = parseInt(this.dataRoute.snapshot.paramMap.get('id'));
-    this.publicadorService.getPublicador(this.codigoPublicador).subscribe(res => {
-        this.publicador = res;
-        console.log(this.publicador);
-      });
-    this.viviendaPublicadorList(this.codigoPublicador);
+    this.usuario = this.authService.usuario;
+    this.viviendaPublicadorList(this.usuario.publicador.codigo);
   }
 
   viviendaPublicadorList(codigo:number){
@@ -36,11 +37,14 @@ export class PerfilpublicadorComponent implements OnInit {
 
   eliminarVivienda(codigo:number){
     this.servicioVivienda.eliminarVivienda(codigo).subscribe(
-      data => this.router.navigate(['/registroEntidades/newVivienda/viviendapublicador/', this.codigoPublicador])
+      data => this.router.navigate(['/registroEntidades/newVivienda/viviendapublicador'])
     );
   }
 
   refresh(): void {
     window.location.reload();
+  }
+  logOut(){
+    this.authService.logout();
   }
 }

@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './usuarios/guards/auth.guard';
+import { RoleGuard } from './usuarios/guards/role.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateClienteComponent } from './create-cliente/create-cliente.component';
 import { ListClienteComponent } from './list-cliente/list-cliente.component';
@@ -35,6 +37,7 @@ import { EleccionCompradorComponent} from './eleccion-comprador/eleccion-comprad
 import { EleccionPublicadorComponent} from './eleccion-publicador/eleccion-publicador.component';
 import { LoginCompradorComponent} from './login-comprador/login-comprador.component';
 import { LoginPublicadorComponent} from './login-publicador/login-publicador.component';
+import { ActualizarPublicadorComponent} from './actualizar-publicador/actualizar-publicador.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -52,8 +55,6 @@ const routes: Routes = [
   {path: 'registroEntidades/viviendapublicador/:id', component: ViviendaPublicadorComponent},
   {path: 'registroEntidades/subirImagen/:id', component: SubirImagenComponent},
   {path: 'registroEntidades/imagenVivienda/:id', component: ImagenViviendaComponent},
-  {path: 'filtrarVivienda/showVivienda', component: ShowViviendaComponent},
-  {path: 'filtrarVivienda', component: FiltrarViviendaComponent},
   {path: 'encuesta', component: EncuestaComponent},
   {path: 'encuesta/msgRegistro', component: RegistroExitosoComponent},
   {path: 'tipoPublicador', component: TipoPublicadorComponent},
@@ -62,7 +63,6 @@ const routes: Routes = [
   {path: 'actualizarVivienda', component: ActualizarViviendaComponent},
   {path: 'registrarAuspiciador', component: AuspiciadorComponent},
   {path: 'principal', component: PrincipalComponent},
- 
   {path: 'listaEntidades/listCliente', component: ListClienteComponent},
   {path: 'registroEntidades/newCliente', component: CreateClienteComponent},
   {path: 'showCliente', component: ShowClienteComponent},
@@ -74,23 +74,21 @@ const routes: Routes = [
   {path: 'registroEntidades/viviendapublicador/:id', component: ViviendaPublicadorComponent},
   {path: 'registroEntidades/subirImagen/:id1/:id2', component: SubirImagenComponent},
   {path: 'registroEntidades/imagenVivienda/:id', component: ImagenViviendaComponent},
-  {path: 'filtrarVivienda/showVivienda/:id1/:id2', component: ShowViviendaComponent},
-  {path: 'filtrarVivienda/:id', component: FiltrarViviendaComponent},
-  {path: 'encuesta', component: EncuestaComponent},
-  {path: 'encuesta/msgRegistro', component: RegistroExitosoComponent},
+  {path: 'filtrarVivienda/showVivienda/:id', component: ShowViviendaComponent},
+  {path: 'filtrarVivienda', component: FiltrarViviendaComponent},
   {path: 'tipoPublicador/:id', component: TipoPublicadorComponent},
-  {path: 'tipoPublicador/publicarInmueble', component: PublicarInmuebleComponent},
-  {path: 'perfilusuario/:id', component: PerfilusuarioComponent},
-  {path: 'perfilusuario/compras/:id', component: ComprasComponent},
-  {path: 'perfilusuario/configurar/:id', component: ConfigurarComponent},
-  {path: 'perfilpublicador/:id', component: PerfilpublicadorComponent},
-  {path: 'perfilpublicador/ventas/:id', component: VentasComponent},
-  {path: 'perfilpublicador/configurar/:id', component: ConfigurarPublicadorComponent},
+  {path: 'perfilusuario', component: PerfilusuarioComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: 'ROLE_CLIENTE'}},
+  {path: 'perfilusuario/compras', component: ComprasComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: 'ROLE_CLIENTE'}},
+  {path: 'perfilusuario/configurar', component: ConfigurarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: 'ROLE_CLIENTE'}},
+  {path: 'perfilpublicador', component: PerfilpublicadorComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: 'ROLE_PUBLICADOR'}},
+  {path: 'perfilpublicador/ventas', component: VentasComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: 'ROLE_PUBLICADOR'}},
+  {path: 'perfilpublicador/configurar', component: ConfigurarPublicadorComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: 'ROLE_PUBLICADOR'}},
   {path: 'eleccion',component:EleccionComponent},
   {path: 'eleccionComprador',component:EleccionCompradorComponent},
   {path: 'eleccionPublicador',component:EleccionPublicadorComponent},
   {path: 'loginComprador',component:LoginCompradorComponent},
   {path: 'loginPublicador',component:LoginPublicadorComponent},
+  {path: 'actualizarPublicador',component:ActualizarPublicadorComponent},
   {path: '', pathMatch: 'full', redirectTo: 'eleccion'}
 
 
